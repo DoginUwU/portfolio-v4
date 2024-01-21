@@ -21,7 +21,7 @@
         </span>
         <div ref="languageBottomEffect" class="language-bottom-effect fixed bottom-0 left-0 right-0 transition-all" />
         <Vue3Marquee class="my-20 uppercase text-4xl text-white/70 font-extrabold overflow-hidden" :duration="50">
-            <span v-for="language in LANGUAGES" :key="language.name" class="mx-4"
+            <span v-for="language in LANGUAGES" :key="language.name" class="mx-4 hover:cursor-pointer"
                 @mouseenter="handleLanguage(language.color)" @mouseleave="handleLanguageLeave">
                 {{ language.name }}
             </span>
