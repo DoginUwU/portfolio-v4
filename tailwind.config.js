@@ -8,7 +8,7 @@ export default {
       },
       fontFamily: {
         'sans': ['Nunito', 'sans-serif'],
-      }
+      },
     },
   },
   plugins: [],

@@ -1,4 +1,6 @@
 import Spotify from './apis/Spotify.vue'
+import Github from './apis/Github.vue'
+import Code from './apis/Code.vue'
 
 export const APIS = [
     {
@@ -11,7 +13,14 @@ export const APIS = [
     {
         icon: '/assets/github.png',
         title: 'My Github Profile',
-        component: Spotify,
+        component: Github,
         color: '#FFFFFF'
+    },
+    {
+        icon: '/assets/code.png',
+        title: 'Code Stats',
+        component: Code,
+        color: '#FFFFFF',
+        caption: 'last 2 weeks'
     }
 ]

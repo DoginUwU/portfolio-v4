@@ -9,3 +9,7 @@ body {
 * {
     font-family: Nunito, sans-serif;
 }
+
+:root {
+    --navbar-height: 5rem;
+}
