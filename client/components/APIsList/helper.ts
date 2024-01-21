@@ -18,7 +18,7 @@ export const APIS = [
     },
     {
         icon: '/assets/code.png',
-        title: 'Code Stats',
+        title: 'Code Status',
         component: Code,
         color: '#FFFFFF',
         caption: 'last 2 weeks'

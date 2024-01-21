@@ -1,5 +1,5 @@
 <template>
-    <div class="flex gap-4 mt-2 flex-nowrap whitespace-nowrap">
+    <AutoTextScroll class="languages flex gap-4 mt-2 flex-nowrap whitespace-nowrap">
         <div class="flex items-center gap-2 text-xs">
             <span class="bg-blue-600/40 border border-blue-600 text-xs rounded-md leading-6 px-2">
                 TS
@@ -30,5 +30,5 @@
             </span>
             1 min
         </div>
-    </div>
+    </AutoTextScroll>
 </template>
