@@ -3,5 +3,16 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   srcDir: 'client',
   css: ['~/assets/css/main.css'],
-  modules: ["@nuxtjs/tailwindcss"]
+  modules: [
+    "@nuxtjs/tailwindcss",
+    ["@nuxtjs/google-fonts", {
+      families: {
+        Nunito: true,
+      },
+      display: "swap",
+      prefetch: true,
+      preconnect: true,
+    }
+    ]
+  ],
 })

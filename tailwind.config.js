@@ -5,6 +5,9 @@ export default {
     extend: {
       colors: {
         background: '#201F1F'
+      },
+      fontFamily: {
+        'sans': ['Nunito', 'sans-serif'],
       }
     },
   },
