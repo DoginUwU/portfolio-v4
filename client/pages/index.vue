@@ -19,13 +19,18 @@
         <span class="absolute bottom-4 left-0 right-0 text-center text-gray-300 text-sm">
             Use a roda do mouse para navegar
         </span>
-        <div ref="languageBottomEffect" class="language-bottom-effect fixed bottom-0 left-0 right-0 transition-all" />
-        <Vue3Marquee class="my-20 uppercase text-4xl text-white/70 font-extrabold overflow-hidden" :duration="50">
+        <div ref="languageBottomEffect" class="language-bottom-effect fixed bottom-0 left-0 right-0 transition-all z-10" />
+        <Vue3Marquee class="mt-10 mb-44 uppercase text-4xl text-white/70 font-extrabold overflow-hidden" :duration="50">
             <span v-for="language in LANGUAGES" :key="language.name" class="mx-4 hover:cursor-pointer"
                 @mouseenter="handleLanguage(language.color)" @mouseleave="handleLanguageLeave">
                 {{ language.name }}
             </span>
         </Vue3Marquee>
+        <section class="flex flex-col gap-24 overflow-hidden">
+            <TitleWithBackground />
+            <Carousel />
+        </section>
+        <div class="mt-96" />
     </section>
 </template>
 
