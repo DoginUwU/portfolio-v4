@@ -13,3 +13,13 @@ body {
 :root {
     --navbar-height: 5rem;
 }
+
+opacity-enter-active,
+.opacity-leave-active {
+    transition: opacity 0.5s;
+}
+
+.opacity-enter,
+.opacity-leave-to {
+    opacity: 0;
+}
