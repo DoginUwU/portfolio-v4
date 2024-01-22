@@ -2,7 +2,7 @@
     <header class="navbar default-container-size sticky top-0 flex items-center py-4 z-50 *:transition-all"
         :class="{ fixed: !isAtTop }">
         <nuxt-link to="/">
-            <img class="logo" src="/logo.svg" alt="Logo with my last name" />
+            <img class="logo transition-all" src="/logo.svg" alt="Logo with my last name" />
         </nuxt-link>
         <ul ref="links"
             class="links ml-auto list-none py-2 px-6 border border-gray-600/50 rounded-full flex gap-4 backdrop-blur-md">
