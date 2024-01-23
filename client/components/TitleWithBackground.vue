@@ -1,8 +1,10 @@
 <template>
-    <div class="text-center flex flex-col gap-4">
-        <h1 class="text-5xl font-bold uppercase text-image">Projetos</h1>
-        <span class="text-xl text-white/70">プロジェクト</span>
-    </div>
+  <div class="text-center flex flex-col gap-4">
+    <h1 class="text-5xl font-bold uppercase text-image">
+      Projetos
+    </h1>
+    <span class="text-xl text-white/70">プロジェクト</span>
+  </div>
 </template>
 
 <style scoped>

@@ -1,21 +1,25 @@
-import { ref, onMounted, onUnmounted } from 'vue';
+import { type Ref, ref, onMounted, onUnmounted } from 'vue'
 
-export function useScroll() {
-    const isAtTop = ref(true);
+interface Scroll {
+  isAtTop: Ref<boolean>
+}
 
-    const handleScroll = () => {
-        isAtTop.value = window.scrollY <= 50;
-    };
+export function useScroll (): Scroll {
+  const isAtTop = ref(true)
 
-    onMounted(() => {
-        window.addEventListener('scroll', handleScroll);
-    });
+  const handleScroll = (): void => {
+    isAtTop.value = window.scrollY <= 50
+  }
 
-    onUnmounted(() => {
-        window.removeEventListener('scroll', handleScroll);
-    });
+  onMounted(() => {
+    window.addEventListener('scroll', handleScroll)
+  })
 
-    return {
-        isAtTop,
-    };
+  onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll)
+  })
+
+  return {
+    isAtTop
+  }
 }

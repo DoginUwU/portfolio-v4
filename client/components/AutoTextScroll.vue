@@ -1,7 +1,7 @@
 <template>
-    <div ref="scroller" class="scroller">
-        <slot />
-    </div>
+  <div ref="scroller" class="scroller">
+    <slot />
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -11,20 +11,20 @@ const DELAY_BETWEEN_ANIMATIONS = 2000
 const scroller = ref<HTMLElement>()
 
 onMounted(() => {
-    const scrollerElement = scroller.value
-    if (!scrollerElement) return
+  const scrollerElement = scroller.value
+  if (scrollerElement === undefined) { return }
+
+  setTimeout(() => {
+    scrollerElement.style.animationPlayState = 'running'
+  }, DELAY_BETWEEN_ANIMATIONS)
+
+  scrollerElement.addEventListener('animationiteration', () => {
+    scrollerElement.style.animationPlayState = 'paused'
 
     setTimeout(() => {
-        scrollerElement.style.animationPlayState = 'running'
+      scrollerElement.style.animationPlayState = 'running'
     }, DELAY_BETWEEN_ANIMATIONS)
-
-    scrollerElement.addEventListener('animationiteration', () => {
-        scrollerElement.style.animationPlayState = 'paused'
-
-        setTimeout(() => {
-            scrollerElement.style.animationPlayState = 'running'
-        }, DELAY_BETWEEN_ANIMATIONS)
-    })
+  })
 })
 </script>
 
