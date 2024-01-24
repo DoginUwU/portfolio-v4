@@ -35,16 +35,19 @@
         {{ language.name }}
       </span>
     </Vue3Marquee>
-    <section class="flex flex-col gap-24 overflow-hidden">
-      <TitleWithBackground />
-      <Carousel />
-    </section>
+    <ClientOnly>
+      <section class="flex flex-col gap-24 overflow-hidden">
+        <TitleWithBackground />
+        <Carousel />
+      </section>
+    </ClientOnly>
     <div class="mt-96" />
   </section>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { Vue3Marquee } from 'vue3-marquee'
 import { useScroll } from '~/hooks/useScroll'
 
 const { isAtTop } = useScroll()
