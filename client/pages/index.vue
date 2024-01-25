@@ -13,7 +13,7 @@
           é garantir a criação de produtos de alta qualidade que atendam
           às expectativas e requisitos dos clientes.
         </p>
-        <Button class="shadow-md shadow-purple-500/50">
+        <Button class="shadow-md">
           Entrar em contato
         </Button>
       </article>
