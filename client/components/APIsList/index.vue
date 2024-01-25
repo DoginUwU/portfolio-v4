@@ -1,11 +1,11 @@
 <template>
   <section
-    class="h-fit p-4 bg-gray-700/20 border-2 border-gray-600 rounded-xl shadow-md flex flex-col gap-4 backdrop-blur"
+    class="h-fit p-4 default-card flex flex-col gap-4 backdrop-blur"
   >
     <article
       v-for="api in APIS"
       :key="api.title"
-      class="flex items-center gap-4 bg-gray-500/10 border-2 border-gray-600 rounded-xl p-4 relative backdrop-blur transition-all hover:cursor-pointer hover:bg-purple-600/10 hover:border-purple-600"
+      class="flex items-center gap-4 bg-gray-500/10 border border-transparent rounded-xl p-4 relative backdrop-blur transition-all hover:cursor-pointer hover:bg-purple-600/10 hover:border-purple-600"
     >
       <img
         :src="api.icon"

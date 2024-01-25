@@ -41,10 +41,6 @@ const MENU = [
     link: '/'
   },
   {
-    title: 'Sobre',
-    link: '/'
-  },
-  {
     title: 'Contato',
     link: '/'
   }

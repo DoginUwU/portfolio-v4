@@ -41,7 +41,68 @@
         <Carousel />
       </section>
     </ClientOnly>
-    <div class="mt-96" />
+    <section class="relative flex flex-col items-center gap-11 p-24 my-16">
+      <ClientOnly>
+        <Stars />
+      </ClientOnly>
+      <div class="text-center flex flex-col">
+        <h1 class="text-4xl font-bold mb-8">
+          O que eu faço?
+        </h1>
+        <p class="text-white/70">
+          Eu sou um desenvolvedor web full-stack, com foco em
+          desenvolvimento de aplicações web e mobile.
+        </p>
+        <p class="text-white/70">
+          Também tenho experiência com desenvolvimento de jogos e
+          aplicações desktop.
+        </p>
+      </div>
+      <div class="flex gap-8">
+        <ExperienceCard />
+        <ExperienceCard />
+        <ExperienceCard />
+      </div>
+    </section>
+    <section class="default-container-size flex items-stretch justify-between relative gap-8 mb-16">
+      <div class="flex flex-col items-start justify-between gap-6">
+        <div class="flex flex-col items-start justify-start gap-4">
+          <h1 class="text-4xl font-bold">
+            Entre em contato
+          </h1>
+          <p class="text-white/70">
+            Fique a vontade para escolher o modo de contato, irei te responder o mais breve possível.
+          </p>
+        </div>
+        <div class="flex flex-col items-start justify-start gap-4">
+          <ContactCard :active="true">
+            contato@legotardo.com
+          </ContactCard>
+          <ContactCard icon="uil-map-marker">
+            Londrina, Brazil
+          </ContactCard>
+        </div>
+        <div class="flex items-center justify-between gap-4 *:flex *:items-center *:justify-center *:p-3 *:bg-purple-600 *:rounded-full *:w-12 *:h-12">
+          <a href="https://github.com/DoginUwU" target="_blank" rel="noreferrer" aria-label="Github profile">
+            <i class="uil uil-github-alt" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/luiz-gotardo/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Linkedin profile"
+          >
+            <i class="uil uil-linkedin-alt" />
+          </a>
+        </div>
+      </div>
+      <form class="max-w-[500px] flex-1 p-8 default-card flex flex-col gap-8">
+        <Input id="name" label="Seu nome" placeholder="Seu nome..." />
+        <Input id="email" label="Seu email" placeholder="Seu email..." />
+        <Textarea id="message" label="Sua mensagem" placeholder="Sua mensagem..." />
+        <Button>Enviar</Button>
+      </form>
+    </section>
   </section>
 </template>
 

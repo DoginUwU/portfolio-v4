@@ -6,6 +6,10 @@ body {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
 
+.default-card {
+    @apply bg-gray-700/20 border border-gray-600 rounded-xl shadow-md backdrop-blur;
+}
+
 * {
     font-family: Nunito, sans-serif;
 }
