@@ -12,6 +12,7 @@
     </div>
 
     <button
+      v-if="state.activeIndex > 0"
       aria-label="previous image"
       type="button"
       className="button prev"
@@ -20,6 +21,7 @@
       <i class="uil uil-angle-left-b" />
     </button>
     <button
+      v-if="state.activeIndex < 9"
       aria-label="next image"
       type="button"
       className="button next"
@@ -31,7 +33,7 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, onBeforeMount, watch } from 'vue'
+import { reactive, onMounted, onBeforeMount, watch } from 'vue'
 
 const DELAY = 2000
 
@@ -50,22 +52,24 @@ watch(() => state.activeIndex, () => {
 })
 
 watch(() => state.stopInterval, () => {
+  if (!state.stopInterval) {
+    return
+  }
+
   if (state.interval !== null) {
     window.clearInterval(state.interval)
   }
 
-  if (state.stopInterval) {
-    window.setTimeout(() => {
-      state.stopInterval = false
-    }, DELAY)
+  window.setTimeout(() => {
+    state.stopInterval = false
 
-    return
-  }
-
-  state.interval = window.setInterval(() => {
-    state.activeIndex = (state.activeIndex + 1) % 10
+    startAutoRotate()
   }, DELAY)
 }, { immediate: true })
+
+onMounted(() => {
+  startAutoRotate()
+})
 
 onBeforeMount(() => {
   if (state.interval !== null) {
@@ -73,12 +77,22 @@ onBeforeMount(() => {
   }
 })
 
+function startAutoRotate (): void {
+  state.stopInterval = false
+
+  state.interval = window.setInterval(() => {
+    state.activeIndex = (state.activeIndex + 1) % 10
+  }, DELAY)
+}
+
 function handlePrev (): void {
-  state.activeIndex = state.activeIndex--
+  state.activeIndex--
+  state.stopInterval = true
 }
 
 function handleNext (): void {
-  state.activeIndex = state.activeIndex++
+  state.activeIndex++
+  state.stopInterval = true
 }
 </script>
 
