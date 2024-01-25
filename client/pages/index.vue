@@ -70,12 +70,12 @@
           <h1 class="text-4xl font-bold">
             Entre em contato
           </h1>
-          <p class="text-white/70">
+          <p class="text-white/70 max-w-96">
             Fique a vontade para escolher o modo de contato, irei te responder o mais breve possível.
           </p>
         </div>
         <div class="flex flex-col items-start justify-start gap-4">
-          <ContactCard :active="true">
+          <ContactCard icon="uil-envelope" :active="true">
             contato@legotardo.com
           </ContactCard>
           <ContactCard icon="uil-map-marker">
