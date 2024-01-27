@@ -3,7 +3,7 @@
     class="navbar default-container-size sticky top-0 flex items-center py-4 z-50 *:transition-all"
     :class="{ fixed: !isAtTop }"
   >
-    <nuxt-link to="/">
+    <nuxt-link to="/" class="hidden sm:block">
       <img class="logo transition-all" src="/logo.svg" alt="Logo with my last name">
     </nuxt-link>
     <ul
