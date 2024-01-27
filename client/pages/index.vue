@@ -1,8 +1,9 @@
 <template>
   <section>
-    <section class="default-container-size hero grid grid-cols-2 py-4 items-center justify-center gap-12">
-      <APIsList />
-      <article class="flex flex-col gap-16 items-start">
+    <img class="w-full max-w-[450px] px-20 mt-6 mx-auto lg:hidden" src="/logo.svg" alt="Logo with my last name">
+    <section class="default-container-size hero grid grid-cols-1 lg:grid-cols-2 py-4 items-center justify-center gap-12 mt-12 lg:mt-0">
+      <APIsList class="order-1 lg:-order-1" />
+      <article class="flex flex-col gap-16 items-start -order-1 lg:order-1">
         <p class="leading-7">
           Olá, meu nome é Luiz, e sou um apaixonado desenvolvedor
           web full-stack. Minha paixão pelo software se traduz na
@@ -13,18 +14,18 @@
           é garantir a criação de produtos de alta qualidade que atendam
           às expectativas e requisitos dos clientes.
         </p>
-        <Button class="shadow-md">
+        <Button class="shadow-md w-full sm:w-fit">
           Entrar em contato
         </Button>
       </article>
     </section>
     <Transition name="opacity">
-      <span v-if="isAtTop" class="absolute bottom-4 left-0 right-0 text-center text-gray-300 text-sm">
+      <span v-if="isAtTop" class="absolute bottom-4 left-0 right-0 text-center text-gray-300 text-sm hidden lg:block">
         Use a roda do mouse para navegar
       </span>
     </Transition>
-    <div ref="languageBottomEffect" class="language-bottom-effect fixed bottom-0 left-0 right-0 transition-all z-10" />
-    <Vue3Marquee class="mt-2 mb-44 uppercase text-4xl text-white/70 font-extrabold overflow-hidden" :duration="50">
+    <div ref="languageBottomEffect" class="language-bottom-effect fixed bottom-0 left-0 right-0 transition-all z-10 hidden lg:block" />
+    <Vue3Marquee class="my-12 lg:mt-2 lg:mb-44 uppercase text-4xl text-white/70 font-extrabold overflow-hidden" :duration="50">
       <span
         v-for="language in LANGUAGES"
         :key="language.name"
@@ -41,7 +42,7 @@
         <Carousel />
       </section>
     </ClientOnly>
-    <section class="relative flex flex-col items-center gap-11 p-24 my-16">
+    <section class="relative flex flex-col items-center gap-11 p-6 lg:p-24 my-16">
       <ClientOnly>
         <Stars />
       </ClientOnly>
@@ -58,13 +59,13 @@
           aplicações desktop.
         </p>
       </div>
-      <div class="flex gap-8">
+      <div class="flex flex-col lg:flex-row gap-8">
         <ExperienceCard />
         <ExperienceCard />
         <ExperienceCard />
       </div>
     </section>
-    <section class="default-container-size flex items-stretch justify-between relative gap-8 mb-16">
+    <section class="default-container-size flex flex-col lg:flex-row items-stretch justify-between relative gap-8 mb-16">
       <div class="flex flex-col items-start justify-between gap-6">
         <div class="flex flex-col items-start justify-start gap-4">
           <h1 class="text-4xl font-bold">
@@ -74,7 +75,7 @@
             Fique a vontade para escolher o modo de contato, irei te responder o mais breve possível.
           </p>
         </div>
-        <div class="flex flex-col items-start justify-start gap-4">
+        <div class="flex flex-col items-start justify-start gap-4 w-full lg:w-fit">
           <ContactCard icon="uil-envelope" :active="true">
             contato@legotardo.com
           </ContactCard>
@@ -200,7 +201,9 @@ const handleLanguageLeave = (): void => {
 </script>
 
 <style scoped>
-.hero {
+@media (min-width: 1024px) {
+  .hero {
     height: calc(100vh - var(--navbar-height));
+  }
 }
 </style>

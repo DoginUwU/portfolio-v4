@@ -4,8 +4,8 @@
       class="whitespace-nowrap transition-all -mb-2"
       :style="{ transform: `translateX(-${state.translateX > 0 ? state.translateX : 0}%)` }"
     >
-      <a v-for="cachorro in 10" :key="cachorro" href="/">
-        <div class="slide" :class="{ active: state.activeIndex === cachorro - 1, first: cachorro - 1 === 0 }">
+      <a v-for="cachorro in 10" :key="cachorro" href="/" :class="{ 'pointer-events-none select-none': !isActive(cachorro - 1) }">
+        <div class="slide" :class="{ active: isActive(cachorro - 1), first: cachorro - 1 === 0 }">
           <img src="https://www.legotardo.com/assets/loading_carousel.webp" alt="Carregando...">
         </div>
       </a>
@@ -45,10 +45,7 @@ const state = reactive({
 })
 
 watch(() => state.activeIndex, () => {
-  const isMobile = window.innerWidth < 768
-
-  state.translateX = isMobile ? state.activeIndex * 100 : state.activeIndex * 33.33 - 33
-  state.stopInterval = true
+  calculeTranslateX()
 })
 
 watch(() => state.stopInterval, () => {
@@ -69,13 +66,28 @@ watch(() => state.stopInterval, () => {
 
 onMounted(() => {
   startAutoRotate()
+
+  window.addEventListener('resize', calculeTranslateX)
 })
 
 onBeforeMount(() => {
   if (state.interval !== null) {
     window.clearInterval(state.interval)
   }
+
+  window.removeEventListener('resize', calculeTranslateX)
 })
+
+function isActive (index: number): boolean {
+  return state.activeIndex === index
+}
+
+function calculeTranslateX (): void {
+  const isMobile = window.innerWidth < 768
+
+  state.translateX = isMobile ? state.activeIndex * 100 : state.activeIndex * 33.33 - 33
+  state.stopInterval = true
+}
 
 function startAutoRotate (): void {
   state.stopInterval = false
@@ -130,5 +142,18 @@ function handleNext (): void {
 }
 .button.next {
   left: calc(50% + 25%);
+}
+
+@media (max-width: 767px) {
+  .slide {
+    width: 100%;
+  }
+
+  .button.prev {
+    left: calc(50% - 40%);
+  }
+  .button.next {
+    left: calc(50% + 40%);
+  }
 }
 </style>
