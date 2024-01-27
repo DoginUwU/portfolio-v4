@@ -19,7 +19,7 @@
         </h2>
         <component :is="api.component" />
       </div>
-      <span v-if="api.caption" class="absolute top-2 right-3 text-xs text-gray-400">{{ api.caption }}</span>
+      <span v-if="api.caption" class="absolute hidden sm:block top-2 right-3 text-xs text-gray-400">{{ api.caption }}</span>
     </article>
   </section>
 </template>

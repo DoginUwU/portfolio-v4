@@ -5,14 +5,27 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, onBeforeMount, ref, reactive, watch } from 'vue'
 
 const DELAY_BETWEEN_ANIMATIONS = 2000
 const scroller = ref<HTMLElement>()
 
-onMounted(() => {
+const state = reactive({
+  needScroll: false
+})
+
+watch(() => state.needScroll, (needScroll) => {
   const scrollerElement = scroller.value
   if (scrollerElement === undefined) { return }
+
+  if (!needScroll) {
+    scrollerElement.classList.remove('scroller')
+    return
+  }
+
+  if (!scrollerElement.classList.contains('scroller')) {
+    scrollerElement.classList.add('scroller')
+  }
 
   setTimeout(() => {
     scrollerElement.style.animationPlayState = 'running'
@@ -26,6 +39,23 @@ onMounted(() => {
     }, DELAY_BETWEEN_ANIMATIONS)
   })
 })
+
+onMounted(() => {
+  checkIfNeedScroll()
+
+  window.addEventListener('resize', checkIfNeedScroll)
+})
+
+onBeforeMount(() => {
+  window.removeEventListener('resize', checkIfNeedScroll)
+})
+
+function checkIfNeedScroll (): void {
+  const scrollerElement = scroller.value
+  if (scrollerElement === undefined) { return }
+
+  state.needScroll = scrollerElement.scrollWidth > scrollerElement.offsetWidth
+}
 </script>
 
 <style scoped>
