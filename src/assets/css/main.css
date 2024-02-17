@@ -1,5 +1,5 @@
 body {
-    @apply bg-background text-white;
+    @apply bg-background text-white overflow-x-hidden;
 }
 
 .default-container-size {
