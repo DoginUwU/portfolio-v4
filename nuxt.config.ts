@@ -22,6 +22,9 @@ export default defineNuxtConfig({
     }
   },
   runtimeConfig: {
-    wakatimeKey: ''
+    wakatimeKey: '',
+    spotifyClientId: '',
+    spotifyClientSecret: '',
+    spotifyRefreshToken: ''
   }
 })
