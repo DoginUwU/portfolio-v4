@@ -50,7 +50,7 @@ onBeforeMount(() => {
   window.removeEventListener('resize', checkIfNeedScroll)
 })
 
-function checkIfNeedScroll (): void {
+function checkIfNeedScroll(): void {
   const scrollerElement = scroller.value
   if (scrollerElement === undefined) { return }
 
@@ -60,17 +60,17 @@ function checkIfNeedScroll (): void {
 
 <style scoped>
 .scroller {
-    animation: scroll 10s linear infinite alternate;
-    animation-play-state: paused;
+  animation: scroll 10s linear infinite alternate;
+  animation-play-state: paused;
 }
 
 @keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
+  0% {
+    transform: translateX(0);
+  }
 
-    100% {
-        transform: translateX(-50%);
-    }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 </style>

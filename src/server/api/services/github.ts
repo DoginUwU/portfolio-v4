@@ -1,4 +1,4 @@
-import pick from "lodash-es/pick"
+import { pick } from "lodash-es"
 import { cache } from "~/server/utils/cache"
 
 const CACHE_TTL = 60 * 60; // 60 minutes

@@ -15,15 +15,18 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, onMounted, onBeforeUnmount, computed } from 'vue'
+import { reactive, watch, computed } from 'vue'
 const { data } = useFetch('/api/services/spotify')
 
 const state = reactive({
-  currentProgress: data.value?.currentProgress || data.value?.duration || 0,
+  currentProgress: 0,
   interval: 0,
 })
 
-onMounted(() => {
+watch(() => data.value, () => {
+  state.currentProgress = data.value?.currentProgress || data.value?.duration || 0
+  window.clearInterval(state.interval)
+
   state.interval = window.setInterval(() => {
     if (data.value && state.currentProgress >= data.value.duration) {
       window.clearInterval(state.interval)
@@ -32,12 +35,7 @@ onMounted(() => {
 
     state.currentProgress += 1000
   }, 1000)
-
-})
-
-onBeforeUnmount(() => {
-  window.clearInterval(state.interval)
-})
+}, { deep: true, immediate: true })
 
 const currentProgress = computed(() => {
   return convertMsToMinutes(state.currentProgress)

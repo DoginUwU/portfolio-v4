@@ -6,30 +6,6 @@
       </span>
       {{ language.text }}
     </div>
-    <!-- <div class="flex items-center gap-2 text-xs"> -->
-    <!--   <span class="text-red-200 bg-red-600/40 text-xs rounded-xl leading-6 px-2"> -->
-    <!--     Java -->
-    <!--   </span> -->
-    <!--   1 min -->
-    <!-- </div> -->
-    <!-- <div class="flex items-center gap-2 text-xs"> -->
-    <!--   <span class="text-orange-200 bg-orange-600/40 text-xs rounded-xl leading-6 px-2"> -->
-    <!--     Swift -->
-    <!--   </span> -->
-    <!--   1 hr 1 min -->
-    <!-- </div> -->
-    <!-- <div class="flex items-center gap-2 text-xs"> -->
-    <!--   <span class="text-orange-200 bg-orange-600/40 text-xs rounded-xl leading-6 px-2"> -->
-    <!--     Swift -->
-    <!--   </span> -->
-    <!--   1 hr 1 min -->
-    <!-- </div> -->
-    <!-- <div class="flex items-center gap-2 text-xs"> -->
-    <!--   <span class="text-orange-200 bg-orange-600/40 text-xs rounded-xl leading-6 px-2"> -->
-    <!--     Swift -->
-    <!--   </span> -->
-    <!--   1 min -->
-    <!-- </div> -->
   </AutoTextScroll>
 </template>
 
