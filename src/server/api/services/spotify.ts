@@ -1,4 +1,14 @@
-export default defineEventHandler(async () => {
+import { cache } from "~/server/utils/cache";
+
+const CACHE_TTL = 60 * 20; // 20 minutes
+
+export default defineEventHandler(async (): Promise<SpotifyTrack> => {
+  const cachedData = cache.get<SpotifyTrack>("spotify");
+
+  if (cachedData) {
+    return cachedData;
+  }
+
   const config = useRuntimeConfig();
   const clientId = config.spotifyClientId;
   const clientSecret = config.spotifyClientSecret;
@@ -6,13 +16,15 @@ export default defineEventHandler(async () => {
 
   const accessToken = await getAccessToken(clientId, clientSecret, refreshToken);
 
-  const currentPlayback = await getCurrentPlayback(accessToken);
+  let currentPlayback = await getCurrentPlayback(accessToken);
 
-  if (currentPlayback) {
-    return currentPlayback;
+  if (!currentPlayback) {
+    currentPlayback = await getRecentlyPlayed(accessToken);
   }
 
-  return await getRecentlyPlayed(accessToken);
+  cache.set("spotify", currentPlayback, CACHE_TTL);
+
+  return currentPlayback;
 })
 
 interface SpotifyTrack {

@@ -1,6 +1,24 @@
 import { pick } from "lodash-es";
+import { cache } from "~/server/utils/cache";
 
-export default defineEventHandler(async (event) => {
+const CACHE_TTL = 60 * 60; // 60 minutes
+
+interface WakatimeData {
+  languages: {
+    [key: string]: {
+      name: string;
+      text: string;
+    }
+  };
+}
+
+export default defineEventHandler(async (event): Promise<WakatimeData> => {
+  const cachedData = cache.get<WakatimeData>("wakatime");
+
+  if (cachedData) {
+    return cachedData;
+  }
+
   const config = useRuntimeConfig(event);
   const wakatimeKey = config.wakatimeKey;
 
@@ -8,6 +26,8 @@ export default defineEventHandler(async (event) => {
 
   const response = await fetch(API_URL);
   const data = await response.json();
+
+  cache.set("wakatime", data, CACHE_TTL);
 
   return pick(data.data, ['languages']);
 })

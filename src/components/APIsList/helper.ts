@@ -5,7 +5,6 @@ import Code from './apis/Code.vue'
 export const APIS = [
   {
     icon: '/assets/spotify.png',
-    title: 'Umbrella - Nightcore',
     component: Spotify,
     color: '#000000',
     caption: 'last song played'
