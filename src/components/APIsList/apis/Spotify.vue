@@ -40,6 +40,7 @@ onMounted(() => {
     }
 
     state.currentProgress += 1000
+    state.currentProgress = Math.min(state.currentProgress, data.value?.duration || 0)
   }, 1000)
 })
 

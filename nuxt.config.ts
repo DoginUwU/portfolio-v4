@@ -26,6 +26,8 @@ export default defineNuxtConfig({
     wakatimeKey: '',
     spotifyClientId: '',
     spotifyClientSecret: '',
-    spotifyRefreshToken: ''
+    spotifyRefreshToken: '',
+    notionKey: '',
+    notionDatabaseId: ''
   }
 })

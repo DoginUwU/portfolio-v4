@@ -1,7 +1,8 @@
 <template>
-  <section>
+  <article>
     <img class="w-full max-w-[450px] px-20 mt-6 mx-auto lg:hidden" src="/logo.svg" alt="Logo with my last name">
-    <section class="default-container-size hero grid grid-cols-1 lg:grid-cols-2 py-4 items-center justify-center gap-12 mt-12 lg:mt-0">
+    <section
+      class="default-container-size hero grid grid-cols-1 lg:grid-cols-2 py-4 items-center justify-center gap-12 mt-12 lg:mt-0">
       <APIsList class="order-1 lg:-order-1" />
       <article class="flex flex-col gap-16 items-start -order-1 lg:order-1">
         <p class="leading-7">
@@ -24,15 +25,12 @@
         Use a roda do mouse para navegar
       </span>
     </Transition>
-    <div ref="languageBottomEffect" class="language-bottom-effect fixed bottom-0 left-0 right-0 transition-all z-10 hidden lg:block" />
-    <Vue3Marquee class="my-12 lg:mt-2 lg:mb-44 uppercase text-4xl text-white/70 font-extrabold overflow-hidden" :duration="50">
-      <span
-        v-for="language in LANGUAGES"
-        :key="language.name"
-        class="mx-4 hover:cursor-pointer"
-        @mouseenter="handleLanguage(language.color)"
-        @mouseleave="handleLanguageLeave"
-      >
+    <div ref="languageBottomEffect"
+      class="language-bottom-effect fixed bottom-0 left-0 right-0 transition-all z-10 hidden lg:block" />
+    <Vue3Marquee class="my-12 lg:mt-2 lg:mb-44 uppercase text-4xl text-white/70 font-extrabold overflow-hidden"
+      :duration="50">
+      <span v-for="language in LANGUAGES" :key="language.name" class="mx-4 hover:cursor-pointer"
+        @mouseenter="handleLanguage(language.color)" @mouseleave="handleLanguageLeave">
         {{ language.name }}
       </span>
     </Vue3Marquee>
@@ -83,16 +81,13 @@
             Londrina, Brazil
           </ContactCard>
         </div>
-        <div class="flex items-center justify-between gap-4 *:flex *:items-center *:justify-center *:p-3 *:bg-purple-600 *:rounded-full *:w-12 *:h-12">
+        <div
+          class="flex items-center justify-between gap-4 *:flex *:items-center *:justify-center *:p-3 *:bg-purple-600 *:rounded-full *:w-12 *:h-12">
           <a href="https://github.com/DoginUwU" target="_blank" rel="noreferrer" aria-label="Github profile">
             <i class="uil uil-github-alt" />
           </a>
-          <a
-            href="https://www.linkedin.com/in/luiz-gotardo/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="Linkedin profile"
-          >
+          <a href="https://www.linkedin.com/in/luiz-gotardo/" target="_blank" rel="noreferrer"
+            aria-label="Linkedin profile">
             <i class="uil uil-linkedin-alt" />
           </a>
         </div>
@@ -104,7 +99,7 @@
         <Button>Enviar</Button>
       </form>
     </section>
-  </section>
+  </article>
 </template>
 
 <script lang="ts" setup>
