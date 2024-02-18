@@ -21,13 +21,14 @@ export default defineEventHandler(async (): Promise<GithubData> => {
 
   const data = await response.json()
 
-  cache.set("github", data, CACHE_TTL)
-
   const pickedData = pick(data, ['public_repos', 'followers'])
-
-  return {
+  const formattedData = {
     repos: pickedData.public_repos,
     followers: pickedData.followers
   }
+
+  cache.set("github", formattedData, CACHE_TTL)
+
+  return formattedData
 })
 

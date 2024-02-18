@@ -22,12 +22,13 @@ export default defineEventHandler(async (event): Promise<WakatimeData> => {
   const config = useRuntimeConfig(event);
   const wakatimeKey = config.wakatimeKey;
 
-  const API_URL = `https://wakatime.com/api/v1/users/current/stats/last_7_days?api_key=${wakatimeKey}`;
+  const API_URL = `https://wakatime.com/api/v1/users/current/stats/last_30_days?api_key=${wakatimeKey}`;
 
   const response = await fetch(API_URL);
   const data = await response.json();
+  const pickedData = pick(data.data, ['languages']);
 
-  cache.set("wakatime", data, CACHE_TTL);
+  cache.set("wakatime", pickedData, CACHE_TTL);
 
-  return pick(data.data, ['languages']);
+  return pickedData;
 })

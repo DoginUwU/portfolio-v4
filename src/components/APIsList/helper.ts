@@ -20,6 +20,6 @@ export const APIS = [
     title: 'Code Status',
     component: Code,
     color: '#FFFFFF',
-    caption: 'last 2 weeks'
+    caption: 'last month'
   }
 ]

@@ -4,7 +4,7 @@
       {{ data.name }}
     </h2>
     <span class="text-gray-400">{{ data.album }}</span>
-    <div v-if="data.currentProgress" class="flex items-center justify-center gap-4 mt-2">
+    <div class="flex items-center justify-center gap-4 mt-2">
       <span class="text-sm">{{ currentProgress }}</span>
       <div class="relative w-full h-1 bg-gray-400 rounded-xl overflow-hidden">
         <div class="absolute top-0 left-0 h-full bg-purple-600 " :style="{ width: progressWidth }" />
@@ -19,7 +19,7 @@ import { reactive, onMounted, onBeforeUnmount, computed } from 'vue'
 const { data } = useFetch('/api/services/spotify')
 
 const state = reactive({
-  currentProgress: data.value?.currentProgress || 0,
+  currentProgress: data.value?.currentProgress || data.value?.duration || 0,
   interval: 0,
 })
 
@@ -44,7 +44,7 @@ const currentProgress = computed(() => {
 })
 
 const progressWidth = computed(() => {
-  if (!data.value) return 0
+  if (!data.value) return '0%'
   const percentage = (state.currentProgress / data.value.duration) * 100
 
   return `${percentage}%`
