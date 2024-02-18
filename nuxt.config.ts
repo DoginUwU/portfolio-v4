@@ -14,7 +14,8 @@ export default defineNuxtConfig({
       prefetch: true,
       preconnect: true
     }
-    ]
+    ],
+    '@vueuse/nuxt'
   ],
   app: {
     head: {
