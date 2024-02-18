@@ -1,5 +1,10 @@
 <template>
-  <div v-if="data" class="flex flex-col text-sm w-full">
+  <section v-if="pending" class="flex flex-col gap-2">
+    <skeleton-bar class="h-3 w-[40%]" />
+    <skeleton-bar class="h-2 w-[20%]" />
+    <skeleton-bar class="mt-2 h-2 w-[100%]" />
+  </section>
+  <div v-else-if="data" class="flex flex-col text-sm w-full">
     <h2 class="text-base uppercase">
       {{ data.name }}
     </h2>
@@ -16,7 +21,8 @@
 
 <script setup lang="ts">
 import { reactive, watch, computed } from 'vue'
-const { data } = useFetch('/api/services/spotify')
+import SkeletonBar from '~/components/Skeletons/SkeletonBar.vue'
+const { data, pending } = useFetch('/api/services/spotify')
 
 const state = reactive({
   currentProgress: 0,
