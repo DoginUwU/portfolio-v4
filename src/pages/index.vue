@@ -29,7 +29,7 @@
       class="language-bottom-effect fixed bottom-0 left-0 right-0 transition-all z-10 hidden lg:block" />
     <Vue3Marquee class="my-12 lg:mt-2 lg:mb-44 uppercase text-4xl text-white/70 font-extrabold overflow-hidden"
       :duration="50">
-      <span v-for="language in LANGUAGES" :key="language.name" class="mx-4 hover:cursor-pointer"
+      <span v-for="language in LANGUAGES" :key="language.name" class="mx-4 hover:cursor-pointer hover:opacity-80"
         @mouseenter="handleLanguage(language.color)" @mouseleave="handleLanguageLeave">
         {{ language.name }}
       </span>
