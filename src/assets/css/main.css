@@ -31,6 +31,14 @@ body {
     border-radius: 10px;
 }
 
+::selection {
+  @apply bg-purple-600 text-white;
+}
+
+::-moz-selection() {
+  @apply bg-purple-600 text-white;
+}
+
 opacity-enter-active,
 .opacity-leave-active {
     transition: opacity 0.5s;
