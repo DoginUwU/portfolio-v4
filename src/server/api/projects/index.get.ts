@@ -3,10 +3,45 @@ import { cache } from "~/server/utils/cache"
 
 const CACHE_TTL = 60 * 60; // 1 hour
 
-export default defineEventHandler(async () => {
+interface NotionData {
+  id: string;
+  slug: string;
+  published: boolean;
+  date: string;
+  link: string;
+  images: {
+    name: string;
+    url: string;
+  }[];
+  title: string;
+  description: {
+    type: 'rich_text'
+    rich_text: {
+      text: {
+        content: string;
+      };
+      annotations: {
+        bold: boolean;
+        italic: boolean;
+        strikethrough: boolean;
+        underline: boolean;
+        code: boolean;
+        color: string;
+      };
+      plain_text: string;
+    }[];
+  }
+  tags: {
+    id: string;
+    name: string;
+    color: string;
+  }[];
+}
+
+export default defineEventHandler(async (): Promise<NotionData[]> => {
   const config = useRuntimeConfig();
 
-  const cachedData = cache.get("notionData");
+  const cachedData = cache.get<NotionData[]>("notionData");
 
   if (cachedData) {
     return cachedData;
@@ -25,7 +60,7 @@ export default defineEventHandler(async () => {
   return filteredData;
 });
 
-function parseNotionData(data: any[]) {
+function parseNotionData(data: any[]): NotionData[] {
   return data.map((item) => {
     return {
       id: item.id,

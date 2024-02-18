@@ -34,12 +34,10 @@
         {{ language.name }}
       </span>
     </Vue3Marquee>
-    <ClientOnly>
-      <section class="flex flex-col gap-24 overflow-hidden">
-        <TitleWithBackground />
-        <Carousel />
-      </section>
-    </ClientOnly>
+    <section class="flex flex-col gap-24 overflow-hidden">
+      <TitleWithBackground />
+      <Carousel />
+    </section>
     <section class="relative flex flex-col items-center gap-11 p-6 lg:p-24 my-16">
       <ClientOnly>
         <Stars />
