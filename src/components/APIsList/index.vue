@@ -7,9 +7,7 @@
         <h2 v-if="api.title" class="text-base uppercase">
           {{ api.title }}
         </h2>
-        <ClientOnly>
-          <component :is="api.component" />
-        </ClientOnly>
+        <component :is="api.component" />
       </div>
       <span v-if="api.caption" class="absolute hidden sm:block top-2 right-3 text-xs text-gray-400">{{ api.caption
       }}</span>

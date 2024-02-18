@@ -17,6 +17,6 @@
 
 <script setup lang="ts">
 import SkeletonBar from '~/components/Skeletons/SkeletonBar.vue'
-const { data, pending } = useFetch('/api/services/github')
+const { data, pending } = await useFetch('/api/services/github')
 </script>
 

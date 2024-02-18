@@ -20,28 +20,32 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, watch, computed } from 'vue'
+import { reactive, onMounted, onBeforeUnmount, computed } from 'vue'
 import SkeletonBar from '~/components/Skeletons/SkeletonBar.vue'
-const { data, pending } = useFetch('/api/services/spotify')
+const { data, pending } = await useFetch('/api/services/spotify')
 
 const state = reactive({
   currentProgress: 0,
-  interval: 0,
+  interval: null as NodeJS.Timeout | null,
 })
 
-watch(() => data.value, () => {
+onMounted(() => {
   state.currentProgress = data.value?.currentProgress || data.value?.duration || 0
-  window.clearInterval(state.interval)
+  clearInterval(state.interval!)
 
-  state.interval = window.setInterval(() => {
+  state.interval = setInterval(() => {
     if (data.value && state.currentProgress >= data.value.duration) {
-      window.clearInterval(state.interval)
+      clearInterval(state.interval!)
       return
     }
 
     state.currentProgress += 1000
   }, 1000)
-}, { deep: true, immediate: true })
+})
+
+onBeforeUnmount(() => {
+  clearInterval(state.interval!)
+})
 
 const currentProgress = computed(() => {
   return convertMsToMinutes(state.currentProgress)

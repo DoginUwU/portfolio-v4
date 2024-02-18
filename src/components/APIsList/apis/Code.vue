@@ -15,14 +15,14 @@
 
 <script setup lang="ts">
 import SkeletonBar from '~/components/Skeletons/SkeletonBar.vue';
-const { data, pending } = useFetch('/api/services/wakatime')
+const { data, pending } = await useFetch('/api/services/wakatime')
 
 const LANGUAGE_COLORS = {
   JavaScript: 'text-yellow-200 bg-yellow-600/40',
   TypeScript: 'text-blue-200 bg-blue-600/40',
   'Vue.js': 'text-green-200 bg-green-600/40',
   CSS: 'text-blue-200 bg-blue-600/40',
-} as const
+} as Record<string, string>
 
 function getLanguageColor(language: string) {
   return LANGUAGE_COLORS[language] || 'text-gray-200 bg-gray-600/40'
