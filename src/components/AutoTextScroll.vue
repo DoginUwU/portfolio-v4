@@ -54,7 +54,7 @@ function checkIfNeedScroll(): void {
   const scrollerElement = scroller.value
   if (scrollerElement === undefined) { return }
 
-  state.needScroll = scrollerElement.scrollWidth > scrollerElement.offsetWidth
+  state.needScroll = scrollerElement.offsetWidth > scrollerElement.parentElement?.offsetWidth!
 }
 </script>
 
@@ -62,6 +62,7 @@ function checkIfNeedScroll(): void {
 .scroller {
   animation: scroll 10s linear infinite alternate;
   animation-play-state: paused;
+  width: max-content;
 }
 
 @keyframes scroll {
@@ -70,7 +71,7 @@ function checkIfNeedScroll(): void {
   }
 
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-50%);
   }
 }
 </style>

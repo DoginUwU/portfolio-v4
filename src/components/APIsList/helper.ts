@@ -7,7 +7,7 @@ export const APIS = [
     icon: '/assets/spotify.png',
     component: Spotify,
     color: '#000000',
-    caption: 'last song played'
+    caption: 'last played song'
   },
   {
     icon: '/assets/github.png',
@@ -20,6 +20,6 @@ export const APIS = [
     title: 'Code Status',
     component: Code,
     color: '#FFFFFF',
-    caption: 'last month'
+    caption: 'last month (first 5 languages)'
   }
 ]
