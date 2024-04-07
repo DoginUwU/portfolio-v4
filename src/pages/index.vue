@@ -56,6 +56,7 @@ r<template>
         {{ language.name }}
       </span>
     </Vue3Marquee>
+    <PlanetAnimation />
     <section class="flex flex-col gap-24 overflow-hidden">
       <TitleWithBackground />
       <Carousel />
@@ -212,7 +213,7 @@ const backgroundOpacity = computed(() => {
 
   const pageHeight = window.innerHeight
 
-  return 1 - (y.value / (pageHeight / 2))
+  return 0.8 - (y.value / (pageHeight / 2))
 })
 
 const handleLanguage = (color: string): void => {

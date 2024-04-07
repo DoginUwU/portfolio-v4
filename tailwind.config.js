@@ -7,10 +7,9 @@ export default {
         background: '#000000'
       },
       fontFamily: {
-        'sans': ['Nunito', 'sans-serif'],
-      },
-    },
+        sans: ['Nunito', 'sans-serif']
+      }
+    }
   },
-  plugins: [],
+  plugins: []
 }
-
