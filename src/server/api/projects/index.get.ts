@@ -30,7 +30,8 @@ interface NotionData {
       };
       plain_text: string;
     }[];
-  }
+  },
+  shortDescription: string;
   tags: {
     id: string;
     name: string;
@@ -62,6 +63,8 @@ export default defineEventHandler(async (): Promise<NotionData[]> => {
 
 function parseNotionData(data: any[]): NotionData[] {
   return data.map((item) => {
+    const shortDescription = item.properties.Description.rich_text.map((text: any) => text.text.content).join(" ").substring(0, 100);
+
     return {
       id: item.id,
       slug: item.properties.Slug.rich_text[0].plain_text,
@@ -74,6 +77,7 @@ function parseNotionData(data: any[]): NotionData[] {
       })),
       title: item.properties.Name.title[0].plain_text,
       description: item.properties.Description.rich_text,
+      shortDescription,
       tags: item.properties.Tags.multi_select.map((tag: any) => ({
         id: tag.id,
         name: tag.name,

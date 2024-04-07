@@ -2,7 +2,8 @@
   <article>
     <img class="w-full max-w-[450px] px-20 mt-6 mx-auto lg:hidden" src="/logo.svg" alt="Logo with my last name">
     <section
-      class="default-container-size hero grid grid-cols-1 lg:grid-cols-2 py-4 items-center justify-center gap-12 mt-12 lg:mt-0">
+      class="default-container-size hero grid grid-cols-1 lg:grid-cols-2 py-4 items-center justify-center gap-12 mt-12 lg:mt-0"
+    >
       <APIsList class="order-1 lg:-order-1" />
       <article class="flex flex-col gap-16 items-start -order-1 lg:order-1">
         <p class="leading-7">
@@ -19,18 +20,33 @@
           Entrar em contato
         </Button>
       </article>
+      <img
+        class="background absolute top-0 left-0 w-screen h-screen object-cover -z-10"
+        src="assets/images/background.webp"
+        alt="Background"
+        :style="{ opacity: backgroundOpacity }"
+      >
     </section>
     <Transition name="opacity">
       <span v-if="isAtTop" class="absolute bottom-4 left-0 right-0 text-center text-gray-300 text-sm hidden lg:block">
         Use a roda do mouse para navegar
       </span>
     </Transition>
-    <div ref="languageBottomEffect"
-      class="language-bottom-effect fixed bottom-0 left-0 right-0 transition-all z-10 hidden lg:block" />
-    <Vue3Marquee class="my-12 lg:mt-2 lg:mb-44 uppercase text-4xl text-white/70 font-extrabold overflow-hidden"
-      :duration="50">
-      <span v-for="language in LANGUAGES" :key="language.name" class="mx-4 hover:cursor-pointer hover:opacity-80"
-        @mouseenter="handleLanguage(language.color)" @mouseleave="handleLanguageLeave">
+    <div
+      ref="languageBottomEffect"
+      class="language-bottom-effect fixed bottom-0 left-0 right-0 transition-all z-10 hidden lg:block"
+    />
+    <Vue3Marquee
+      class="my-12 lg:mt-2 lg:mb-44 uppercase text-4xl text-white/70 font-extrabold overflow-hidden"
+      :duration="50"
+    >
+      <span
+        v-for="language in LANGUAGES"
+        :key="language.name"
+        class="mx-4 hover:cursor-pointer hover:opacity-80"
+        @mouseenter="handleLanguage(language.color)"
+        @mouseleave="handleLanguageLeave"
+      >
         {{ language.name }}
       </span>
     </Vue3Marquee>
@@ -80,12 +96,17 @@
           </ContactCard>
         </div>
         <div
-          class="flex items-center justify-between gap-4 *:flex *:items-center *:justify-center *:p-3 *:bg-purple-600 *:rounded-full *:w-12 *:h-12">
+          class="flex items-center justify-between gap-4 *:flex *:items-center *:justify-center *:p-3 *:bg-purple-600 *:rounded-full *:w-12 *:h-12"
+        >
           <a href="https://github.com/DoginUwU" target="_blank" rel="noreferrer" aria-label="Github profile">
             <i class="uil uil-github-alt" />
           </a>
-          <a href="https://www.linkedin.com/in/luiz-gotardo/" target="_blank" rel="noreferrer"
-            aria-label="Linkedin profile">
+          <a
+            href="https://www.linkedin.com/in/luiz-gotardo/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Linkedin profile"
+          >
             <i class="uil uil-linkedin-alt" />
           </a>
         </div>
@@ -101,11 +122,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { Vue3Marquee } from 'vue3-marquee'
 import { useScroll } from '~/hooks/useScroll'
 
-const { isAtTop } = useScroll()
+const { isAtTop, y } = useScroll()
 
 const LANGUAGES = [
   {
@@ -180,6 +201,14 @@ const LANGUAGES = [
 
 const languageBottomEffect = ref<HTMLDivElement | null>(null)
 
+const backgroundOpacity = computed(() => {
+  if (process.server === true) { return 1 }
+
+  const pageHeight = window.innerHeight
+
+  return 1 - (y.value / (pageHeight / 2))
+})
+
 const handleLanguage = (color: string): void => {
   if (languageBottomEffect.value === null) { return }
 
@@ -194,6 +223,19 @@ const handleLanguageLeave = (): void => {
 </script>
 
 <style scoped>
+.hero .background {
+  animation: background 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes background {
+  0% {
+    scale: 0.8;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
 @media (min-width: 1024px) {
   .hero {
     height: calc(100vh - var(--navbar-height));

@@ -6,6 +6,10 @@
         :class="{ 'pointer-events-none select-none': !isActive(index) }">
         <div class="slide" :class="{ active: isActive(index), first: index === 0 }">
           <img :src="project.images[0].url" :alt="project.images[0].name">
+          <div v-if="isActive(index)" class="absolute bottom-0 left-0 w-full bg-black/40 p-4">
+            <h1>{{ project.title }}</h1>
+            <p class="max-w-full overflow-hidden text-ellipsis text-white/80">{{ project.shortDescription }}</p>
+          </div>
         </div>
       </a>
     </div>
