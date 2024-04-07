@@ -1,4 +1,4 @@
-<template>
+r<template>
   <article>
     <img class="w-full max-w-[450px] px-20 mt-6 mx-auto lg:hidden" src="/logo.svg" alt="Logo with my last name">
     <section
@@ -20,12 +20,18 @@
           Entrar em contato
         </Button>
       </article>
-      <img
-        class="background absolute top-0 left-0 w-screen h-screen object-cover -z-10"
-        src="assets/images/background.webp"
-        alt="Background"
-        :style="{ opacity: backgroundOpacity }"
-      >
+      <client-only>
+        <nuxt-img
+          ref="background"
+          class="background absolute top-0 left-0 w-screen h-screen object-cover -z-10"
+          src="/assets/background.webp"
+          alt="Background"
+          preload
+          loading="lazy"
+          :style="{ opacity: backgroundOpacity }"
+          @load="handleBackgroundLoad"
+        />
+      </client-only>
     </section>
     <Transition name="opacity">
       <span v-if="isAtTop" class="absolute bottom-4 left-0 right-0 text-center text-gray-300 text-sm hidden lg:block">
@@ -125,7 +131,6 @@
 import { computed, ref } from 'vue'
 import { Vue3Marquee } from 'vue3-marquee'
 import { useScroll } from '~/hooks/useScroll'
-
 const { isAtTop, y } = useScroll()
 
 const LANGUAGES = [
@@ -200,6 +205,7 @@ const LANGUAGES = [
 ]
 
 const languageBottomEffect = ref<HTMLDivElement | null>(null)
+const background = ref<{ $el: HTMLImageElement } | null>(null)
 
 const backgroundOpacity = computed(() => {
   if (process.server === true) { return 1 }
@@ -220,11 +226,18 @@ const handleLanguageLeave = (): void => {
 
   languageBottomEffect.value.style.boxShadow = '0 0 10px 10px transparent'
 }
+
+const handleBackgroundLoad = (): void => {
+  if (background.value === null) { return }
+
+  background.value.$el.style.animationPlayState = 'running'
+}
 </script>
 
 <style scoped>
 .hero .background {
   animation: background 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  animation-play-state: paused;
 }
 
 @keyframes background {
