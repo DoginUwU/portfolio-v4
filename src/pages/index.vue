@@ -1,4 +1,4 @@
-r<template>
+<template>
   <article>
     <img class="w-full max-w-[450px] px-20 mt-6 mx-auto lg:hidden" src="/logo.svg" alt="Logo with my last name">
     <section

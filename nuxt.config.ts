@@ -25,6 +25,9 @@ export default defineNuxtConfig({
     spotifyClientSecret: '',
     spotifyRefreshToken: '',
     notionKey: '',
-    notionDatabaseId: ''
+    notionDatabaseId: '',
+    public: {
+      portfolioGameUrl: ''
+    }
   }
 })
