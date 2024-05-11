@@ -57,9 +57,13 @@
       </span>
     </Vue3Marquee>
     <PlanetAnimation />
-    <section class="flex flex-col gap-24 overflow-hidden">
+    <section class="default-container-size flex flex-col gap-12 overflow-hidden pb-12">
       <TitleWithBackground />
-      <Carousel />
+      <!-- <Carousel /> -->
+      <ProjectsGrid />
+      <Button class="w-full sm:w-fit mx-auto">
+        Ver todos os projetos
+      </Button>
     </section>
     <section class="relative flex flex-col items-center gap-11 p-6 lg:p-24 my-16">
       <ClientOnly>
