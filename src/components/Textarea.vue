@@ -1,6 +1,9 @@
 <template>
   <div class="flex flex-col gap-3">
-    <label class="text-white/70 text-sm" :for="id">
+    <label
+      class="text-white/70 text-sm"
+      :for="id"
+    >
       {{ label }}
     </label>
 

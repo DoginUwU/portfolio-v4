@@ -5,7 +5,7 @@ interface Scroll {
   y: Ref<number>
 }
 
-export function useScroll (): Scroll {
+export function useScroll(): Scroll {
   const isAtTop = ref(true)
   const y = ref(0)
 
@@ -24,6 +24,6 @@ export function useScroll (): Scroll {
 
   return {
     isAtTop,
-    y
+    y,
   }
 }

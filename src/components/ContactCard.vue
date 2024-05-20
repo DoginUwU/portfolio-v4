@@ -1,6 +1,12 @@
 <template>
-  <div class="w-full flex items-center justify-start gap-4 py-3 px-5 rounded-xl border" :class="{ 'bg-purple-600/10 border-purple-600': active, 'border-transparent': !active }">
-    <i class="uil text-purple-600" :class="icon" />
+  <div
+    class="w-full flex items-center justify-start gap-4 py-3 px-5 rounded-xl border"
+    :class="{ 'bg-purple-600/10 border-purple-600': active, 'border-transparent': !active }"
+  >
+    <i
+      class="uil text-purple-600"
+      :class="icon"
+    />
     <slot />
   </div>
 </template>
@@ -9,11 +15,11 @@
 defineProps({
   icon: {
     type: String,
-    default: 'uil-phone'
+    default: 'uil-phone',
   },
   active: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 })
 </script>

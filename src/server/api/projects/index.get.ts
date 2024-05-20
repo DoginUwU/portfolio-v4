@@ -39,17 +39,18 @@ interface NotionData {
   }>
 }
 
-export default defineEventHandler(async (): Promise<NotionData[]> => {
+export default defineEventHandler(async (event): Promise<NotionData[]> => {
+  const query = getQuery(event)
   const config = useRuntimeConfig()
 
-  const cachedData = cache.get<NotionData[]>('notionData')
+  const cachedData = cache.get<NotionData[]>(`notionData-${query.limit}`)
 
   if (cachedData != null) {
     return cachedData
   }
 
   const { results } = await notion.databases.query({
-    database_id: config.notionDatabaseId
+    database_id: config.notionDatabaseId,
   })
 
   const data = parseNotionData(results)
@@ -58,10 +59,10 @@ export default defineEventHandler(async (): Promise<NotionData[]> => {
 
   cache.set('notionData', filteredData, CACHE_TTL)
 
-  return filteredData
+  return query.limit ? filteredData.slice(0, Number(query.limit)) : filteredData
 })
 
-function parseNotionData (data: any[]): NotionData[] {
+function parseNotionData(data: any[]): NotionData[] {
   return data.map((item) => {
     const shortDescription = item.properties.Description.rich_text.map((text: any) => text.text.content).join(' ').substring(0, 100)
 
@@ -73,7 +74,7 @@ function parseNotionData (data: any[]): NotionData[] {
       link: item.properties.Link.url,
       images: item.properties.Images.files.map((image: any) => ({
         name: image.name,
-        url: image.file.url
+        url: image.file.url,
       })),
       title: item.properties.Name.title[0].plain_text,
       description: item.properties.Description.rich_text,
@@ -81,8 +82,8 @@ function parseNotionData (data: any[]): NotionData[] {
       tags: item.properties.Tags.multi_select.map((tag: any) => ({
         id: tag.id,
         name: tag.name,
-        color: tag.color
-      }))
+        color: tag.color,
+      })),
     }
   })
 }

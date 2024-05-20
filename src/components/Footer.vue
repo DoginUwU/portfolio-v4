@@ -3,6 +3,9 @@
     <p class="text-sm">
       Feito com 🩷 por Luiz E. Gotardo
     </p>
-    <a class="underline hover:text-purple-500" href="/licenses">Licenças de conteúdo</a>
+    <a
+      class="underline hover:text-purple-500"
+      href="/licenses"
+    >Licenças de conteúdo</a>
   </footer>
 </template>

@@ -1,5 +1,8 @@
 <template>
-  <div v-if="data" class="relative mb-12">
+  <div
+    v-if="data"
+    class="relative mb-12"
+  >
     <div
       class="whitespace-nowrap transition-all -mb-2"
       :style="{ transform: `translateX(-${state.translateX > 0 ? state.translateX : 0}%)` }"
@@ -10,9 +13,18 @@
         href="/"
         :class="{ 'pointer-events-none select-none': !isActive(index) }"
       >
-        <div class="slide" :class="{ active: isActive(index), first: index === 0 }">
-          <img :src="project.images[0].url" :alt="project.images[0].name">
-          <div v-if="isActive(index)" class="absolute bottom-0 left-0 w-full bg-black/40 p-4">
+        <div
+          class="slide"
+          :class="{ active: isActive(index), first: index === 0 }"
+        >
+          <img
+            :src="project.images[0].url"
+            :alt="project.images[0].name"
+          >
+          <div
+            v-if="isActive(index)"
+            class="absolute bottom-0 left-0 w-full bg-black/40 p-4"
+          >
             <h1>{{ project.title }}</h1>
             <p class="max-w-full overflow-hidden text-ellipsis text-white/80">{{ project.shortDescription }}</p>
           </div>
@@ -54,7 +66,7 @@ const state = reactive({
   activeIndex: 1,
   interval: null as number | null,
   stopInterval: false,
-  translateX: 0
+  translateX: 0,
 })
 
 watch(() => state.activeIndex, () => {
@@ -91,18 +103,18 @@ onBeforeMount(() => {
   window.removeEventListener('resize', calculeTranslateX)
 })
 
-function isActive (index: number): boolean {
+function isActive(index: number): boolean {
   return state.activeIndex === index
 }
 
-function calculeTranslateX (): void {
+function calculeTranslateX(): void {
   const isMobile = window.innerWidth < 768
 
   state.translateX = isMobile ? state.activeIndex * 100 : state.activeIndex * 33.33 - 33
   state.stopInterval = true
 }
 
-function startAutoRotate (): void {
+function startAutoRotate(): void {
   state.stopInterval = false
 
   state.interval = window.setInterval(() => {
@@ -110,12 +122,12 @@ function startAutoRotate (): void {
   }, DELAY)
 }
 
-function handlePrev (): void {
+function handlePrev(): void {
   state.activeIndex--
   state.stopInterval = true
 }
 
-function handleNext (): void {
+function handleNext(): void {
   state.activeIndex++
   state.stopInterval = true
 }

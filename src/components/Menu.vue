@@ -3,8 +3,15 @@
     class="navbar default-container-size sticky top-0 flex items-center py-4 z-50 *:transition-all"
     :class="{ fixed: !isAtTop && width > 640 }"
   >
-    <nuxt-link to="/" class="hidden sm:block">
-      <img class="logo transition-all" src="/logo.svg" alt="Logo with my last name">
+    <nuxt-link
+      to="/"
+      class="hidden sm:block"
+    >
+      <img
+        class="logo transition-all"
+        src="/logo.svg"
+        alt="Logo with my last name"
+      >
     </nuxt-link>
     <ul
       ref="links"
@@ -35,20 +42,20 @@ const links = ref<HTMLElement | null>(null)
 const MENU = [
   {
     title: 'Início',
-    link: '/'
+    link: '/',
   },
   {
     title: 'Projetos',
-    link: '/'
+    link: '/projects',
   },
   {
     title: 'Jogo',
-    link: '/game'
+    link: '/game',
   },
   {
     title: 'Contato',
-    link: '/#contact'
-  }
+    link: '/#contact',
+  },
 ]
 
 onMounted(() => {

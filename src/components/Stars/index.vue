@@ -1,5 +1,8 @@
 <template>
-  <canvas ref="canvas" class="absolute top-0 w-screen h-full -z-10" />
+  <canvas
+    ref="canvas"
+    class="absolute top-0 w-screen h-full -z-10"
+  />
 </template>
 
 <script lang="ts" setup>

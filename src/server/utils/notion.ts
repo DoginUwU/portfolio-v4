@@ -1,5 +1,5 @@
-import { Client } from '@notionhq/client';
+import { Client } from '@notionhq/client'
 
-const config = useRuntimeConfig();
+const config = useRuntimeConfig()
 
-export const notion = new Client({ auth: config.notionKey });
+export const notion = new Client({ auth: config.notionKey })

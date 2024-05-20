@@ -12,7 +12,7 @@ export class ThreePlanet {
   private planet: THREE.Object3D | null = null
   private mixer: THREE.AnimationMixer | null = null
 
-  constructor (parent: HTMLElement) {
+  constructor(parent: HTMLElement) {
     this.parent = parent
     this.scene = new THREE.Scene()
     this.camera = new THREE.PerspectiveCamera(75, parent.clientWidth / parent.clientHeight, 0.1, 1000)
@@ -48,7 +48,7 @@ export class ThreePlanet {
     this.camera.position.z = 5
   }
 
-  public animate (): void {
+  public animate(): void {
     requestAnimationFrame(this.animate.bind(this))
 
     this.renderer.render(this.scene, this.camera)
@@ -56,7 +56,7 @@ export class ThreePlanet {
     this.mixer?.update(0.01)
   }
 
-  public onWindowResize (): void {
+  public onWindowResize(): void {
     const width = this.parent.clientWidth
     const height = this.parent.clientHeight
 
@@ -67,12 +67,13 @@ export class ThreePlanet {
     this.planetResize()
   }
 
-  private planetResize (): void {
+  private planetResize(): void {
     const width = this.parent.clientWidth
 
     if (width < 768) {
       this.planet?.scale.set(1.8, 1.8, 1.8)
-    } else {
+    }
+    else {
       this.planet?.scale.set(3, 3, 3)
     }
   }

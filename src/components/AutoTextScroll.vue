@@ -1,5 +1,8 @@
 <template>
-  <div ref="scroller" class="scroller">
+  <div
+    ref="scroller"
+    class="scroller"
+  >
     <slot />
   </div>
 </template>
@@ -11,7 +14,7 @@ const DELAY_BETWEEN_ANIMATIONS = 2000
 const scroller = ref<HTMLElement>()
 
 const state = reactive({
-  needScroll: false
+  needScroll: false,
 })
 
 watch(() => state.needScroll, (needScroll) => {
@@ -54,7 +57,7 @@ function checkIfNeedScroll(): void {
   const scrollerElement = scroller.value
   if (scrollerElement === undefined) { return }
 
-  state.needScroll = scrollerElement.offsetWidth > scrollerElement.parentElement?.offsetWidth!
+  state.needScroll = scrollerElement.offsetWidth > (scrollerElement.parentElement?.offsetWidth ?? 0)
 }
 </script>
 

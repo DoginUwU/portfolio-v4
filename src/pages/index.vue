@@ -1,6 +1,10 @@
 <template>
   <article>
-    <img class="w-full max-w-[450px] px-20 mt-6 mx-auto lg:hidden" src="/logo.svg" alt="Logo with my last name">
+    <img
+      class="w-full max-w-[450px] px-20 mt-6 mx-auto lg:hidden"
+      src="/logo.svg"
+      alt="Logo with my last name"
+    >
     <section
       class="default-container-size hero grid grid-cols-1 lg:grid-cols-2 py-4 items-center justify-center gap-12 mt-12 lg:mt-0"
     >
@@ -36,7 +40,10 @@
       </client-only>
     </section>
     <Transition name="opacity">
-      <span v-if="isAtTop" class="absolute bottom-4 left-0 right-0 text-center text-gray-300 text-sm hidden lg:block">
+      <span
+        v-if="isAtTop"
+        class="absolute bottom-4 left-0 right-0 text-center text-gray-300 text-sm hidden lg:block"
+      >
         Use a roda do mouse para navegar
       </span>
     </Transition>
@@ -62,10 +69,15 @@
     <section class="default-container-size flex flex-col gap-12 overflow-hidden pb-12">
       <TitleWithBackground />
       <!-- <Carousel /> -->
-      <ProjectsGrid />
-      <Button class="w-full sm:w-fit mx-auto">
-        Ver todos os projetos
-      </Button>
+      <ProjectsGrid :limit="3" />
+      <nuxt-link
+        class="mx-auto"
+        href="/projects"
+      >
+        <Button class="sm:w-fit">
+          Ver todos os projetos
+        </Button>
+      </nuxt-link>
     </section>
     <section class="relative flex flex-col items-center gap-11 p-6 lg:p-24 my-16">
       <ClientOnly>
@@ -90,7 +102,10 @@
         <ExperienceCard />
       </div>
     </section>
-    <section id="contact" class="default-container-size flex flex-col lg:flex-row items-stretch justify-between relative gap-8 mb-16">
+    <section
+      id="contact"
+      class="default-container-size flex flex-col lg:flex-row items-stretch justify-between relative gap-8 mb-16"
+    >
       <div class="flex flex-col items-start justify-between gap-6">
         <div class="flex flex-col items-start justify-start gap-4">
           <h1 class="text-4xl font-bold">
@@ -101,7 +116,10 @@
           </p>
         </div>
         <div class="flex flex-col items-start justify-start gap-4 w-full lg:w-fit">
-          <ContactCard icon="uil-envelope" :active="true">
+          <ContactCard
+            icon="uil-envelope"
+            :active="true"
+          >
             contato@legotardo.com
           </ContactCard>
           <ContactCard icon="uil-map-marker">
@@ -111,7 +129,12 @@
         <div
           class="flex items-center justify-between gap-4 *:flex *:items-center *:justify-center *:p-3 *:bg-purple-600 *:rounded-full *:w-12 *:h-12"
         >
-          <a href="https://github.com/DoginUwU" target="_blank" rel="noreferrer" aria-label="Github profile">
+          <a
+            href="https://github.com/DoginUwU"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Github profile"
+          >
             <i class="uil uil-github-alt" />
           </a>
           <a
@@ -125,9 +148,21 @@
         </div>
       </div>
       <form class="max-w-[500px] flex-1 p-8 default-card flex flex-col gap-8">
-        <Input id="name" label="Seu nome" placeholder="Seu nome..." />
-        <Input id="email" label="Seu email" placeholder="Seu email..." />
-        <Textarea id="message" label="Sua mensagem" placeholder="Sua mensagem..." />
+        <Input
+          id="name"
+          label="Seu nome"
+          placeholder="Seu nome..."
+        />
+        <Input
+          id="email"
+          label="Seu email"
+          placeholder="Seu email..."
+        />
+        <Textarea
+          id="message"
+          label="Sua mensagem"
+          placeholder="Sua mensagem..."
+        />
         <Button>Enviar</Button>
       </form>
     </section>
@@ -138,84 +173,85 @@
 import { computed, ref } from 'vue'
 import { Vue3Marquee } from 'vue3-marquee'
 import { useScroll } from '~/hooks/useScroll'
+
 const { isAtTop, y } = useScroll()
 
 const LANGUAGES = [
   {
     name: 'Typescript',
-    color: '#007ACC'
+    color: '#007ACC',
   },
   {
     name: 'Javascript',
-    color: '#F7DF1E'
+    color: '#F7DF1E',
   },
   {
     name: 'NodeJS',
-    color: '#339933'
+    color: '#339933',
   },
   {
     name: 'Vue.JS',
-    color: '#4FC08D'
+    color: '#4FC08D',
   },
   {
     name: 'React',
-    color: '#61DAFB'
+    color: '#61DAFB',
   },
   {
     name: 'Mysql',
-    color: '#4479A1'
+    color: '#4479A1',
   },
   {
     name: 'MongoDB',
-    color: '#47A248'
+    color: '#47A248',
   },
   {
     name: 'C#',
-    color: '#239120'
+    color: '#239120',
   },
   {
     name: 'C++',
-    color: '#00599C'
+    color: '#00599C',
   },
   {
     name: 'Java',
-    color: '#007396'
+    color: '#007396',
   },
   {
     name: 'Express',
-    color: '#000000'
+    color: '#000000',
   },
   {
     name: 'Javascript',
-    color: '#F7DF1E'
+    color: '#F7DF1E',
   },
   {
     name: 'NodeJS',
-    color: '#339933'
+    color: '#339933',
   },
   {
     name: 'Vue.JS',
-    color: '#4FC08D'
+    color: '#4FC08D',
   },
   {
     name: 'Typescript',
-    color: '#007ACC'
+    color: '#007ACC',
   },
   {
     name: 'React',
-    color: '#61DAFB'
+    color: '#61DAFB',
   },
   {
     name: 'Mysql',
-    color: '#4479A1'
-  }
+    color: '#4479A1',
+  },
 ]
 
 const languageBottomEffect = ref<HTMLDivElement | null>(null)
 const background = ref<{ $el: HTMLImageElement } | null>(null)
 
 const backgroundOpacity = computed(() => {
-  if (process.server === true) { return 1 }
+  if (import.meta.server === true) { return 1 }
 
   const pageHeight = window.innerHeight
 

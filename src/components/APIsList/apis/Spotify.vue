@@ -1,10 +1,16 @@
 <template>
-  <section v-if="pending" class="flex flex-col gap-2">
+  <section
+    v-if="pending"
+    class="flex flex-col gap-2"
+  >
     <skeleton-bar class="h-3 w-[40%]" />
     <skeleton-bar class="h-2 w-[20%]" />
     <skeleton-bar class="mt-2 h-2 w-[100%]" />
   </section>
-  <div v-else-if="data" class="flex flex-col text-sm w-full">
+  <div
+    v-else-if="data"
+    class="flex flex-col text-sm w-full"
+  >
     <h2 class="text-base uppercase">
       {{ data.name }}
     </h2>
@@ -12,7 +18,10 @@
     <div class="flex items-center justify-center gap-4 mt-2">
       <span class="text-sm">{{ currentProgress }}</span>
       <div class="relative w-full h-1 bg-gray-400 rounded-xl overflow-hidden">
-        <div class="absolute top-0 left-0 h-full bg-purple-600 " :style="{ width: progressWidth }" />
+        <div
+          class="absolute top-0 left-0 h-full bg-purple-600 "
+          :style="{ width: progressWidth }"
+        />
       </div>
       <span class="text-sm">{{ convertMsToMinutes(data.duration) }}</span>
     </div>
@@ -22,6 +31,7 @@
 <script setup lang="ts">
 import { reactive, onMounted, onBeforeUnmount, computed } from 'vue'
 import SkeletonBar from '~/components/Skeletons/SkeletonBar.vue'
+
 const { data, pending } = await useFetch('/api/services/spotify')
 
 const state = reactive({

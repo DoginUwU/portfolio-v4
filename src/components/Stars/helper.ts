@@ -18,22 +18,22 @@ class Stars {
   canvas: HTMLCanvasElement
   ctx: CanvasRenderingContext2D | null
 
-  constructor (canvas: HTMLCanvasElement) {
+  constructor(canvas: HTMLCanvasElement) {
     this.canvas = canvas
     this.ctx = canvas.getContext('2d')
     window.addEventListener('resize', () => { this.render() })
   }
 
-  init (): void {
+  init(): void {
     this.render()
     this.createCircle()
   }
 
-  rand (min: number, max: number): number {
+  rand(min: number, max: number): number {
     return Math.random() * (max - min) + min
   }
 
-  render (): void {
+  render(): void {
     const wHeight = window.innerHeight
     const wWidth = window.innerWidth
 
@@ -43,7 +43,7 @@ class Stars {
     this.canvas.width = wWidth
   }
 
-  createCircle (): void {
+  createCircle(): void {
     const stars: IStar[] = []
 
     for (let i = 0; i < this.numStars; i += 1) {
@@ -53,7 +53,7 @@ class Stars {
         yPos: this.rand(0, this.canvas.height),
         xVelocity: this.rand(this.minSpeed, this.maxSpeed),
         yVelocity: this.rand(this.minSpeed, this.maxSpeed),
-        color: this.color
+        color: this.color,
       }
 
       stars.push(star)
@@ -63,7 +63,7 @@ class Stars {
     this.animate(stars)
   }
 
-  draw (star: IStar): void {
+  draw(star: IStar): void {
     const { ctx } = this
     if (ctx === null) { return }
 
@@ -73,7 +73,7 @@ class Stars {
     ctx.fill()
   }
 
-  animate (stars: IStar[]): void {
+  animate(stars: IStar[]): void {
     const { ctx } = this
     if (ctx === null) { return }
 
@@ -94,7 +94,7 @@ class Stars {
     }, 100 / this.fps)
   }
 
-  clearCanvas (): void {
+  clearCanvas(): void {
     const { ctx } = this
     if (ctx === null) { return }
 

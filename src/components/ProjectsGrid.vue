@@ -1,7 +1,16 @@
 <template>
   <div class="projects grid gap-4">
-    <div v-for="project in projects" :key="project.id" class="default-card flex flex-col rounded-2xl group cursor-pointer">
-      <img class="project-image group-hover:-translate-y-2 rounded-t-xl" :src="project.images[0].url" :alt="project.images[0].name">
+    <div
+      v-for="project in projects"
+      :key="project.id"
+      class="default-card flex flex-col rounded-2xl group cursor-pointer"
+    >
+      <img
+        class="project-image group-hover:-translate-y-2 rounded-t-xl"
+        :src="project.images[0].url"
+        :alt="project.images[0].name"
+        :style="{ aspectRatio: '1.8' }"
+      >
       <div class="p-4">
         <h3 class="font-bold group-hover:text-purple-500 transition">
           {{ project.title }}
@@ -13,15 +22,17 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, onMounted, onBeforeMount, watch } from 'vue'
+const props = defineProps<{
+  limit?: number
+}>()
 
-const { data: projects } = await useFetch('/api/projects')
+const { data: projects } = await useFetch('/api/projects', { params: { limit: props.limit } })
 
-function formatDate (date: string) {
+function formatDate(date: string): string {
   return new Date(date).toLocaleDateString('pt-BR', {
     day: 'numeric',
     month: 'long',
-    year: 'numeric'
+    year: 'numeric',
   })
 }
 </script>

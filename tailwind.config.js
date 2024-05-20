@@ -4,12 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#000000'
+        background: '#000000',
       },
       fontFamily: {
-        sans: ['Nunito', 'sans-serif']
-      }
-    }
+        sans: ['Nunito', 'sans-serif'],
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 }
