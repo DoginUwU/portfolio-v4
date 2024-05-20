@@ -16,9 +16,11 @@
           é garantir a criação de produtos de alta qualidade que atendam
           às expectativas e requisitos dos clientes.
         </p>
-        <Button class="shadow-md w-full sm:w-fit">
-          Entrar em contato
-        </Button>
+        <a href="#contact">
+          <Button class="shadow-md w-full sm:w-fit">
+            Entrar em contato
+          </Button>
+        </a>
       </article>
       <client-only>
         <nuxt-img
@@ -88,7 +90,7 @@
         <ExperienceCard />
       </div>
     </section>
-    <section class="default-container-size flex flex-col lg:flex-row items-stretch justify-between relative gap-8 mb-16">
+    <section id="contact" class="default-container-size flex flex-col lg:flex-row items-stretch justify-between relative gap-8 mb-16">
       <div class="flex flex-col items-start justify-between gap-6">
         <div class="flex flex-col items-start justify-start gap-4">
           <h1 class="text-4xl font-bold">

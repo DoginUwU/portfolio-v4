@@ -44,7 +44,7 @@ export default defineEventHandler(async (): Promise<NotionData[]> => {
 
   const cachedData = cache.get<NotionData[]>('notionData')
 
-  if (cachedData) {
+  if (cachedData != null) {
     return cachedData
   }
 

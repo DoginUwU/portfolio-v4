@@ -47,7 +47,7 @@ const MENU = [
   },
   {
     title: 'Contato',
-    link: '/'
+    link: '/#contact'
   }
 ]
 
