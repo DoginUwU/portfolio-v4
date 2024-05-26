@@ -14,6 +14,10 @@ body {
     @apply bg-gray-700/20 border border-gray-600 rounded-xl shadow-md backdrop-blur;
 }
 
+.full-screen-min-height {
+    min-height: calc(100vh - var(--navbar-height));
+}
+
 * {
     font-family: Nunito, sans-serif;
 }
@@ -39,11 +43,11 @@ body {
   @apply bg-purple-600 text-white;
 }
 
-::-moz-selection() {
+::-moz-selection {
   @apply bg-purple-600 text-white;
 }
 
-opacity-enter-active,
+.opacity-enter-active,
 .opacity-leave-active {
     transition: opacity 0.5s;
 }

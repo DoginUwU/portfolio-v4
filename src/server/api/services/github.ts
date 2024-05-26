@@ -8,10 +8,12 @@ interface GithubData {
   followers: number
   publicRepos: {
     name: string
+    description: string
     url: string
     stars: number
     createdAt: string
     language: string
+    topics: string[]
   }[]
 }
 
@@ -32,15 +34,17 @@ export default defineEventHandler(async (): Promise<GithubData> => {
 
   const pickedUserData = pick(dataUser, ['public_repos', 'followers'])
   const publicRepos = dataRepos.map((repo: any) =>
-    pick(repo, ['name', 'html_url', 'stargazers_count', 'created_at', 'language']),
-  )
+    pick(repo, ['name', 'html_url', 'stargazers_count', 'created_at', 'language', 'description', 'topics']),
+  ).sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
 
   const formattedRepos = publicRepos.map((repo: any) => ({
     name: repo.name,
+    description: repo.description,
     url: repo.html_url,
     stars: repo.stargazers_count,
     createdAt: repo.created_at,
     language: repo.language,
+    topics: repo.topics,
   }))
 
   const formattedData = {

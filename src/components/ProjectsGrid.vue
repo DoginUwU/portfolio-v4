@@ -1,23 +1,27 @@
 <template>
   <div class="projects grid gap-4">
-    <div
+    <nuxt-link
       v-for="project in projects"
       :key="project.id"
-      class="default-card flex flex-col rounded-2xl group cursor-pointer"
+      :to="`/project/${project.slug}`"
     >
-      <img
-        class="project-image group-hover:-translate-y-2 rounded-t-xl"
-        :src="project.images[0].url"
-        :alt="project.images[0].name"
-        :style="{ aspectRatio: '1.8' }"
+      <div
+        class="default-card flex flex-col rounded-2xl group cursor-pointer"
       >
-      <div class="p-4">
-        <h3 class="font-bold group-hover:text-purple-500 transition">
-          {{ project.title }}
-        </h3>
-        <span class="text-xs">{{ formatDate(project.date) }}</span>
+        <img
+          class="project-image group-hover:-translate-y-2 rounded-t-xl"
+          :src="project.images[0].url"
+          :alt="project.images[0].name"
+          :style="{ aspectRatio: '1.8' }"
+        >
+        <div class="p-4">
+          <h3 class="font-bold group-hover:text-purple-500 transition">
+            {{ project.title }}
+          </h3>
+          <span class="text-xs">{{ formatDate(project.date) }}</span>
+        </div>
       </div>
-    </div>
+    </nuxt-link>
   </div>
 </template>
 
