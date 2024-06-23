@@ -16,6 +16,8 @@ import Loading from '@/components/Loading.vue'
 
 useSeoMeta({
   title: 'Jogo - Gotardo',
+  ogTitle: 'Jogo - Gotardo',
+  ogDescription: 'Teste um jogo 2D criado através de C#',
 })
 
 const config = useRuntimeConfig()

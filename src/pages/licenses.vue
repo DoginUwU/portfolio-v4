@@ -14,6 +14,7 @@
 <script lang="ts" setup>
 useSeoMeta({
   title: 'Licenças - Gotardo',
+  ogTitle: 'Licenças - Gotardo',
 })
 
 const LICENSES = [

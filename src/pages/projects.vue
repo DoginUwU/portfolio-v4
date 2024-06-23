@@ -49,6 +49,8 @@
 <script setup lang="ts">
 useSeoMeta({
   title: 'Projetos - Gotardo',
+  ogTitle: 'Projetos - Gotardo',
+  ogDescription: 'Conheça os projetos que desenvolvi e contribui no GitHub ao longo do tempo',
 })
 
 const { data, pending } = await useFetch('/api/services/github')

@@ -252,6 +252,8 @@ import { useScroll } from '~/hooks/useScroll'
 
 useSeoMeta({
   title: 'Gotardo - Desenvolvedor',
+  ogTitle: 'Gotardo - Desenvolvedor',
+  ogDescription: 'Desenvolvedor web full-stack, com foco em desenvolvimento de aplicações web e desktop.',
 })
 
 const { isAtTop, y } = useScroll()
