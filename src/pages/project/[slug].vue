@@ -9,9 +9,9 @@
       </h1>
       <span class="text-gray-300">{{ github.description }}</span>
     </div>
-    <div class="bg-gray-600/50 w-full rounded-xl overflow-hidden max-h-96">
+    <div class="bg-gray-600/50 w-full h-96 rounded-xl overflow-hidden relative">
       <img
-        class="w-full object-cover"
+        class="w-full h-full object-cover object-center"
         :src="project.images[0].url"
         alt=""
       >
@@ -30,7 +30,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-1 w-full">
       <div
         v-if="project.link"
-        class="bg-gray-600/50 w-full p-4 rounded-xl flex flex-col items-center text-center"
+        class="bg-gray-600/50 w-full p-4 rounded-xl flex flex-col items-center justify-between text-center"
       >
         <h3 class="font-bold text-xl">
           Link do Projeto
@@ -48,7 +48,7 @@
       </div>
       <div
         v-if="project.github"
-        class="bg-gray-600/50 w-full p-4 rounded-xl flex flex-col items-center text-center"
+        class="bg-gray-600/50 w-full p-4 rounded-xl flex flex-col items-center justify-between text-center"
       >
         <h3 class="font-bold text-xl">
           Repositório
