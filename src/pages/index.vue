@@ -68,7 +68,6 @@
     <PlanetAnimation />
     <section class="default-container-size flex flex-col gap-12 overflow-hidden pb-12">
       <TitleWithBackground />
-      <!-- <Carousel /> -->
       <ProjectsGrid :limit="3" />
       <nuxt-link
         class="mx-auto"
@@ -101,32 +100,32 @@
           <template #title>
             Front-end
           </template>
-          <p>
+          <span>
             Desenvolvimento de interfaces elegantes e responsivas
             com foco na experiência do usuário. Utilizando tecnologias
             como Vue.JS, React.
             Tenho experiência também com aplicativos mobile utilizando React Native.
-          </p>
+          </span>
         </ExperienceCard>
         <ExperienceCard icon="uil-database">
           <template #title>
             Back-end
           </template>
-          <p>
+          <span>
             Desenvolvimento de APIs robustas e escaláveis, com foco
             na segurança e performance. Utilizando tecnologias como
             NodeJS, Express.
             Também tenho experiência com bancos de dados SQL e NoSQL.
-          </p>
+          </span>
         </ExperienceCard>
         <ExperienceCard icon="uil-apps">
           <template #title>
             Aplicativos e Jogos
           </template>
-          <p>
+          <span>
             Desenvolvimento de aplicativos para computadores, utilizando linguagens como C++ e C#.
             Em questão de jogos, tenho experiência com Unity e Godot Engine.
-          </p>
+          </span>
         </ExperienceCard>
       </div>
     </section>
