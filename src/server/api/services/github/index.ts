@@ -1,20 +1,15 @@
 import { pick } from 'lodash-es'
 import { cache } from '~/server/utils/cache'
+import type { GithubRepository } from '~/types/github'
+import { formatGithubRepository } from '~/server/utils/github'
+import { API_GITHUB_USER } from '~/server/constants/github'
 
 const CACHE_TTL = 60 * 60 // 60 minutes
 
 interface GithubData {
   repos: number
   followers: number
-  publicRepos: {
-    name: string
-    description: string
-    url: string
-    stars: number
-    createdAt: string
-    language: string
-    topics: string[]
-  }[]
+  publicRepos: GithubRepository[]
 }
 
 export default defineEventHandler(async (): Promise<GithubData> => {
@@ -24,7 +19,7 @@ export default defineEventHandler(async (): Promise<GithubData> => {
     return cachedData
   }
 
-  const API_URL = 'https://api.github.com/users/doginuwu'
+  const API_URL = `https://api.github.com/users/${API_GITHUB_USER}`
 
   const responseUser = await fetch(API_URL)
   const dataUser = await responseUser.json()
@@ -37,15 +32,7 @@ export default defineEventHandler(async (): Promise<GithubData> => {
     pick(repo, ['name', 'html_url', 'stargazers_count', 'created_at', 'language', 'description', 'topics']),
   ).sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
 
-  const formattedRepos = publicRepos.map((repo: any) => ({
-    name: repo.name,
-    description: repo.description,
-    url: repo.html_url,
-    stars: repo.stargazers_count,
-    createdAt: repo.created_at,
-    language: repo.language,
-    topics: repo.topics,
-  }))
+  const formattedRepos = publicRepos.map(formatGithubRepository)
 
   const formattedData = {
     repos: pickedUserData.public_repos,

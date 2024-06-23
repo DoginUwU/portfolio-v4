@@ -97,9 +97,37 @@
         </p>
       </div>
       <div class="flex flex-col lg:flex-row gap-8">
-        <ExperienceCard />
-        <ExperienceCard />
-        <ExperienceCard />
+        <ExperienceCard icon="uil-react">
+          <template #title>
+            Front-end
+          </template>
+          <p>
+            Desenvolvimento de interfaces elegantes e responsivas
+            com foco na experiência do usuário. Utilizando tecnologias
+            como Vue.JS, React.
+            Tenho experiência também com aplicativos mobile utilizando React Native.
+          </p>
+        </ExperienceCard>
+        <ExperienceCard icon="uil-database">
+          <template #title>
+            Back-end
+          </template>
+          <p>
+            Desenvolvimento de APIs robustas e escaláveis, com foco
+            na segurança e performance. Utilizando tecnologias como
+            NodeJS, Express.
+            Também tenho experiência com bancos de dados SQL e NoSQL.
+          </p>
+        </ExperienceCard>
+        <ExperienceCard icon="uil-apps">
+          <template #title>
+            Aplicativos e Jogos
+          </template>
+          <p>
+            Desenvolvimento de aplicativos para computadores, utilizando linguagens como C++ e C#.
+            Em questão de jogos, tenho experiência com Unity e Godot Engine.
+          </p>
+        </ExperienceCard>
       </div>
     </section>
     <section
@@ -147,23 +175,70 @@
           </a>
         </div>
       </div>
-      <form class="max-w-[500px] flex-1 p-8 default-card flex flex-col gap-8">
+      <form
+        class="max-w-[500px] flex-1 p-8 default-card flex flex-col gap-8"
+        @submit="handleContactSubmit"
+      >
         <Input
           id="name"
+          name="user_name"
           label="Seu nome"
           placeholder="Seu nome..."
+          required
         />
         <Input
           id="email"
+          name="user_email"
           label="Seu email"
           placeholder="Seu email..."
+          type="email"
+          required
         />
         <Textarea
           id="message"
+          name="message"
           label="Sua mensagem"
           placeholder="Sua mensagem..."
+          required
         />
-        <Button>Enviar</Button>
+        <Button
+          type="submit"
+          :disabled="state.sendingEmail"
+          :error="state.sendingEmailError"
+          :success="state.sendingEmailSuccess"
+        >
+          <div class="transition-wrapper">
+            <transition
+              name="scale"
+              appear
+            >
+              <span
+                v-if="state.sendingEmail"
+                key="sending"
+              >
+                Enviando...
+              </span>
+              <span
+                v-else-if="state.sendingEmailError"
+                key="error"
+              >
+                Não foi possível enviar... Quer tentar novamente?
+              </span>
+              <span
+                v-else-if="state.sendingEmailSuccess"
+                key="success"
+              >
+                Enviado com sucesso!
+              </span>
+              <span
+                v-else
+                key="default"
+              >
+                Enviar
+              </span>
+            </transition>
+          </div>
+        </Button>
       </form>
     </section>
   </article>
@@ -172,6 +247,7 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 import { Vue3Marquee } from 'vue3-marquee'
+import Email from '@emailjs/browser'
 import { useScroll } from '~/hooks/useScroll'
 
 const { isAtTop, y } = useScroll()
@@ -250,12 +326,22 @@ const LANGUAGES = [
 const languageBottomEffect = ref<HTMLDivElement | null>(null)
 const background = ref<{ $el: HTMLImageElement } | null>(null)
 
+const state = reactive({
+  sendingEmail: false,
+  sendingEmailError: false,
+  sendingEmailSuccess: false,
+})
+
 const backgroundOpacity = computed(() => {
   if (import.meta.server === true) { return 1 }
 
   const pageHeight = window.innerHeight
 
   return 0.8 - (y.value / (pageHeight / 2))
+})
+
+onMounted(() => {
+  Email.init('user_pbH18gsT3YH3yt2bffOUA')
 })
 
 const handleLanguage = (color: string): void => {
@@ -274,6 +360,38 @@ const handleBackgroundLoad = (): void => {
   if (background.value === null) { return }
 
   background.value.$el.style.animationPlayState = 'running'
+}
+
+const handleContactSubmit = async (event: Event): Promise<void> => {
+  event.preventDefault()
+
+  const form = event.target as HTMLFormElement
+
+  try {
+    state.sendingEmail = true
+    state.sendingEmailError = false
+
+    await Email.sendForm(
+      'service_x9v3gy7',
+      'template_gpu5tlq',
+      form,
+    )
+
+    state.sendingEmailSuccess = true
+    state.sendingEmail = false
+    form.reset()
+
+    setTimeout(() => {
+      state.sendingEmailSuccess = false
+    }, 5000)
+  }
+  catch (error) {
+    state.sendingEmailError = true
+    console.error(error)
+  }
+  finally {
+    state.sendingEmail = false
+  }
 }
 </script>
 
@@ -296,5 +414,28 @@ const handleBackgroundLoad = (): void => {
   .hero {
     height: calc(100vh - var(--navbar-height));
   }
+}
+
+.transition-wrapper {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.transition-wrapper span {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: scale(1) translate(-50%, -50%);
+}
+
+.scale-enter-active {
+  animation: scale 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scale-enter-from {
+  transform: scale(0) translate(-50%, -50%);
 }
 </style>

@@ -26,11 +26,14 @@
 </template>
 
 <script lang="ts" setup>
+const projectStore = useProjectStore()
+await useAsyncData('projects', () => projectStore.fetchProjects())
+
 const props = defineProps<{
   limit?: number
 }>()
 
-const { data: projects } = await useFetch('/api/projects', { params: { limit: props.limit } })
+const projects = projectStore.projects.slice(0, props.limit)
 
 function formatDate(date: string): string {
   return new Date(date).toLocaleDateString('pt-BR', {

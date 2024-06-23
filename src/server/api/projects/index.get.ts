@@ -9,6 +9,7 @@ interface NotionData {
   published: boolean
   date: string
   link: string
+  github: string
   images: Array<{
     name: string
     url: string
@@ -71,7 +72,8 @@ function parseNotionData(data: any[]): NotionData[] {
       slug: item.properties.Slug.rich_text[0].plain_text,
       published: item.properties.Published.checkbox,
       date: item.properties.Date.date.start,
-      link: item.properties.Github.url,
+      link: item.properties.Link.url,
+      github: item.properties.Github.url,
       images: item.properties.Images.files.map((image: any) => ({
         name: image.name,
         url: image.file.url,

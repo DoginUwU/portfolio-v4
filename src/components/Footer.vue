@@ -3,9 +3,11 @@
     <p class="text-sm">
       Feito com 🩷 por Luiz E. Gotardo
     </p>
-    <a
+    <nuxt-link
       class="underline hover:text-purple-500"
       href="/licenses"
-    >Licenças de conteúdo</a>
+    >
+      Licenças de conteúdo
+    </nuxt-link>
   </footer>
 </template>

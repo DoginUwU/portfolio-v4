@@ -12,7 +12,7 @@ export default defineNuxtConfig({
     prefetch: true,
     preconnect: true,
   },
-  ], '@vueuse/nuxt', '@nuxt/image', '@nuxt/eslint'],
+  ], '@vueuse/nuxt', '@nuxt/image', '@nuxt/eslint', '@pinia/nuxt'],
   app: {
     head: {
       link: [{ rel: 'stylesheet', href: 'https://unicons.iconscout.com/release/v4.0.8/css/line.css' }],
