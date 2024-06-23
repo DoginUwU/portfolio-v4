@@ -29,6 +29,25 @@
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-1 w-full">
       <div
+        v-if="project.link"
+        class="bg-gray-600/50 w-full p-4 rounded-xl flex flex-col items-center text-center"
+      >
+        <h3 class="font-bold text-xl">
+          Link do Projeto
+        </h3>
+        <span class="text-gray-300 mb-6">Que tal dar uma olhada no projeto? 🚀</span>
+        <a
+          class="w-full"
+          target="_blank"
+          :href="project.link"
+        >
+          <Button class="w-full rounded-xl">
+            Abrir
+          </Button>
+        </a>
+      </div>
+      <div
+        v-if="project.github"
         class="bg-gray-600/50 w-full p-4 rounded-xl flex flex-col items-center text-center"
       >
         <h3 class="font-bold text-xl">
@@ -38,7 +57,7 @@
         <a
           class="w-full"
           target="_blank"
-          :href="project.link"
+          :href="project.github"
         >
           <Button class="w-full rounded-xl">
             Abrir
