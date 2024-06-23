@@ -24,7 +24,7 @@ export default defineEventHandler(async (): Promise<GithubData> => {
   const responseUser = await fetch(API_URL)
   const dataUser = await responseUser.json()
 
-  const responseRepos = await fetch(dataUser.repos_url)
+  const responseRepos = await fetch(`${dataUser.repos_url}?per_page=100`)
   const dataRepos = await responseRepos.json()
 
   const pickedUserData = pick(dataUser, ['public_repos', 'followers'])
