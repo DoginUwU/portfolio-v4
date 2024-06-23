@@ -250,6 +250,10 @@ import { Vue3Marquee } from 'vue3-marquee'
 import Email from '@emailjs/browser'
 import { useScroll } from '~/hooks/useScroll'
 
+useSeoMeta({
+  title: 'Gotardo - Desenvolvedor',
+})
+
 const { isAtTop, y } = useScroll()
 
 const LANGUAGES = [

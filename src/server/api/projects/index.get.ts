@@ -57,10 +57,11 @@ export default defineEventHandler(async (event): Promise<NotionData[]> => {
   const data = parseNotionData(results)
 
   const filteredData = data.filter(item => item.published)
+  const sortedData = filteredData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 
-  cache.set('notionData', filteredData, CACHE_TTL)
+  cache.set('notionData', sortedData, CACHE_TTL)
 
-  return query.limit ? filteredData.slice(0, Number(query.limit)) : filteredData
+  return query.limit ? sortedData.slice(0, Number(query.limit)) : sortedData
 })
 
 function parseNotionData(data: any[]): NotionData[] {

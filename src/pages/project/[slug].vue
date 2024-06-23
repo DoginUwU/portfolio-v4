@@ -81,6 +81,14 @@ const project = projectStore.projects.find(project => project.slug === route.par
 
 const { data: github } = await useFetch(`/api/services/github/projects/${project!.slug}`)
 
+useSeoMeta({
+  title: `${project!.title} - Gotardo`,
+  ogTitle: project!.title,
+  description: github.value!.description,
+  ogDescription: github.value!.description,
+  ogImage: project!.images[0].url,
+})
+
 const md = markdownit({
   html: true,
   linkify: true,
@@ -120,7 +128,11 @@ const readme = computed(() => {
 }
 
 .markdown pre {
-  @apply bg-gray-300/10 p-4 rounded-md;
+  @apply bg-gray-300/10 p-4 rounded-md whitespace-normal;
+}
+
+.markdown pre code {
+  @apply bg-transparent p-0;
 }
 
 .markdown blockquote {

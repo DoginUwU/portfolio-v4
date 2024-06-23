@@ -47,6 +47,10 @@
 </template>
 
 <script setup lang="ts">
+useSeoMeta({
+  title: 'Projetos - Gotardo',
+})
+
 const { data, pending } = await useFetch('/api/services/github')
 
 function formatName(name: string): string {

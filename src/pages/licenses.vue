@@ -12,6 +12,10 @@
 </template>
 
 <script lang="ts" setup>
+useSeoMeta({
+  title: 'Licenças - Gotardo',
+})
+
 const LICENSES = [
   {
     name: 'Stylized planet',

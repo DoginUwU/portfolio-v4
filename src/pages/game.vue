@@ -14,6 +14,10 @@
 import { reactive } from 'vue'
 import Loading from '@/components/Loading.vue'
 
+useSeoMeta({
+  title: 'Jogo - Gotardo',
+})
+
 const config = useRuntimeConfig()
 
 const state = reactive({
