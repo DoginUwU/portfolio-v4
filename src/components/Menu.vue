@@ -5,7 +5,7 @@
   >
     <nuxt-link
       to="/"
-      class="hidden sm:block"
+      class="hidden lg:block"
     >
       <img
         class="logo transition-all"
