@@ -20,7 +20,10 @@
           é garantir a criação de produtos de alta qualidade que atendam
           às expectativas e requisitos dos clientes.
         </p>
-        <a href="#contact">
+        <a
+          class="w-full sm:w-fit"
+          href="#contact"
+        >
           <Button class="shadow-md w-full sm:w-fit">
             Entrar em contato
           </Button>
