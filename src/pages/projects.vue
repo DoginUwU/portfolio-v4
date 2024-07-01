@@ -30,7 +30,7 @@
           </p>
           <ul
             v-if="repo.topics?.length"
-            class="flex gap-2"
+            class="flex gap-2 max-w-full overflow-hidden overflow-x-auto"
           >
             <li
               v-for="topic in repo.topics"
