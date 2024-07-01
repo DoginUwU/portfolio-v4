@@ -123,7 +123,7 @@
             Aplicativos e Jogos
           </template>
           <span>
-            Desenvolvimento de aplicativos para computadores, utilizando linguagens como C++ e C#.
+            Desenvolvimento de aplicativos para computadores e celular, utilizando linguagens como C++, C#, React-Native, Java e Kotlin.
             Em questão de jogos, tenho experiência com Unity e Godot Engine.
           </span>
         </ExperienceCard>
@@ -321,6 +321,14 @@ const LANGUAGES = [
   {
     name: 'React',
     color: '#61DAFB',
+  },
+  {
+    name: 'Flutter',
+    color: '#02569B',
+  },
+  {
+    name: 'Jetpack Compose',
+    color: '#6200EE',
   },
   {
     name: 'Mysql',
