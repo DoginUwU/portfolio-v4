@@ -149,12 +149,12 @@
           <ContactCard
             icon="uil-envelope"
             :active="true"
-          >
-            contato@legotardo.com
-          </ContactCard>
-          <ContactCard icon="uil-map-marker">
-            Londrina, Brazil
-          </ContactCard>
+            text="contato@legotardo.com"
+          />
+          <ContactCard
+            icon="uil-map-marker"
+            text="Londrina, Brazil"
+          />
         </div>
         <div
           class="flex items-center justify-between gap-4 *:flex *:items-center *:justify-center *:p-3 *:bg-purple-600 *:rounded-full *:w-12 *:h-12"

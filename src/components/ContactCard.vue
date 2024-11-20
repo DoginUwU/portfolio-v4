@@ -7,7 +7,7 @@
       class="uil text-purple-600"
       :class="icon"
     />
-    <slot />
+    <p>{{ text }}</p>
   </div>
 </template>
 
@@ -20,6 +20,9 @@ defineProps({
   active: {
     type: Boolean,
     default: false,
+  },
+  text: {
+    type: String,
   },
 })
 </script>
