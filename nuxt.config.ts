@@ -15,6 +15,7 @@ export default defineNuxtConfig({
     head: {
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'preload', as: 'image', type: 'image/webp', href: '/assets/background2.webp' },
       ],
       htmlAttrs: {
         lang: 'pt-BR',
