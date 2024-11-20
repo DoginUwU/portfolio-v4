@@ -33,7 +33,7 @@
         <nuxt-img
           ref="background"
           class="background absolute top-0 left-0 w-screen h-screen object-cover -z-10"
-          src="/assets/background.webp"
+          src="/assets/background2.webp"
           alt="Background"
           preload
           loading="lazy"
@@ -254,6 +254,7 @@ import { useScroll } from '~/hooks/useScroll'
 
 useSeoMeta({
   title: 'Gotardo - Desenvolvedor',
+  description: 'Desenvolvedor web full-stack, com foco em desenvolvimento de aplicações web e desktop.',
   ogTitle: 'Gotardo - Desenvolvedor',
   ogDescription: 'Desenvolvedor web full-stack, com foco em desenvolvimento de aplicações web e desktop.',
 })

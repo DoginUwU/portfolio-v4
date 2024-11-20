@@ -27,9 +27,9 @@
               >
                 <div class="flex justify-between items-center">
                   <div>
-                    <h3 class="font-bold group-hover:text-purple-500 transition">
+                    <h1 class="font-bold group-hover:text-purple-500 transition">
                       {{ formatName(repo.name) }}
-                    </h3>
+                    </h1>
                   </div>
                   <span class="text-gray-400">
                     <i class="uil uil-star" />

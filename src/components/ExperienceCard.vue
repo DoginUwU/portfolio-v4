@@ -6,9 +6,9 @@
         :class="icon"
       />
     </div>
-    <h3 class="font-semibold">
+    <h1 class="font-semibold">
       <slot name="title" />
-    </h3>
+    </h1>
     <p class="text-sm text-white/70">
       <slot />
     </p>

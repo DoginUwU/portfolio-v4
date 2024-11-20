@@ -7,7 +7,7 @@
     >
       <img
         :src="api.icon"
-        :alt="api.title"
+        :alt="api.title ?? api.alt"
         class="w-20 h-20 rounded-xl p-3"
         :style="{ backgroundColor: api.color }"
       >

@@ -15,9 +15,9 @@
           :style="{ aspectRatio: '1.8' }"
         >
         <div class="p-4">
-          <h3 class="font-bold group-hover:text-purple-500 transition">
+          <h1 class="font-bold group-hover:text-purple-500 transition">
             {{ project.title }}
-          </h3>
+          </h1>
           <span class="text-xs">{{ formatDate(project.date) }}</span>
         </div>
       </div>

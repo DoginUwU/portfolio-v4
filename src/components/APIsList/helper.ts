@@ -8,6 +8,7 @@ export const APIS = [
     component: Spotify,
     color: '#000000',
     caption: 'last played song',
+    alt: 'spotify logo',
   },
   {
     icon: '/assets/github.png',
