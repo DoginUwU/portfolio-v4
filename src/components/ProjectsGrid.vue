@@ -1,5 +1,8 @@
 <template>
-  <div class="projects grid gap-4">
+  <div
+    v-if="projects"
+    class="projects grid gap-4"
+  >
     <nuxt-link
       v-for="project in projects"
       :key="project.id"
@@ -26,14 +29,13 @@
 </template>
 
 <script lang="ts" setup>
-const projectStore = useProjectStore()
-await useAsyncData('projects', () => projectStore.fetchProjects())
+const { data } = await useFetch('/api/projects', { key: 'projects' })
 
 const props = defineProps<{
   limit?: number
 }>()
 
-const projects = projectStore.projects.slice(0, props.limit)
+const projects = data.value?.slice(0, props.limit)
 
 function formatDate(date: string): string {
   return new Date(date).toLocaleDateString('pt-BR', {

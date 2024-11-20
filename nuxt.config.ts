@@ -35,6 +35,9 @@ export default defineNuxtConfig({
     },
   },
   srcDir: 'src',
+  experimental: {
+    payloadExtraction: true,
+  },
   eslint: {
     config: {
       stylistic: true,
