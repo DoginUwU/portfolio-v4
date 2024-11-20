@@ -73,14 +73,14 @@ import markdownit from 'markdown-it'
 import xss from 'xss'
 
 const route = useRoute()
-const { data: projects } = useNuxtData('projects')
+const nuxtApp = useNuxtApp()
 const { data } = await useLazyFetch('/api/projects', {
-  key: `project-${route.params.slug}`,
-  default() {
-    return projects.value?.find((project: any) => project.slug === route.params.slug)
+  key: `projects`,
+  getCachedData(key) {
+    return nuxtApp.payload.data[key] || nuxtApp.static.data[key]
   },
 })
-const project = Array.isArray(data.value) ? data.value.find(project => project.slug === route.params.slug) : data.value
+const project = data.value?.find(project => project.slug === route.params.slug)
 const { data: github } = await useFetch(`/api/services/github/projects/${project!.slug}`)
 
 useSeoMeta({

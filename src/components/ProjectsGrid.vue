@@ -29,7 +29,13 @@
 </template>
 
 <script lang="ts" setup>
-const { data } = await useFetch('/api/projects', { key: 'projects' })
+const nuxtApp = useNuxtApp()
+
+const { data } = await useFetch('/api/projects', { key: 'projects',
+  getCachedData(key) {
+    return nuxtApp.payload.data[key] || nuxtApp.static.data[key]
+  },
+})
 
 const props = defineProps<{
   limit?: number
