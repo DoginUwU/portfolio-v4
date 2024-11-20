@@ -64,13 +64,15 @@
 </template>
 
 <script setup lang="ts">
+import { ttl } from '~/helpers/ttl'
+
 useSeoMeta({
   title: 'Projetos - Gotardo',
   ogTitle: 'Projetos - Gotardo',
   ogDescription: 'Conheça os projetos que desenvolvi e contribui no GitHub ao longo do tempo',
 })
 
-const { data, status } = await useFetch('/api/services/github')
+const { data, status } = await useFetch('/api/services/github', { key: 'github-projects', ...ttl(24 * 60 * 60 * 1000) })
 
 function formatName(name: string): string {
   return name.replace(/-/g, ' ')
