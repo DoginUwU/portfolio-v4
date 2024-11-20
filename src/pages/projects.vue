@@ -1,48 +1,65 @@
 <template>
   <section class="default-container-size mt-12">
     <ProjectsGrid />
-    <template v-if="!pending && data">
-      <a
-        v-for="repo in data.publicRepos"
-        :key="repo.name"
-        :href="repo.url"
-        target="_blank"
-      >
-        <div
-          class="default-card mt-4 p-4 group cursor-pointer flex flex-col gap-2"
+    <DynamicScroller
+      v-if="status !== 'pending' && data"
+      class="scroller"
+      :items="data.publicRepos"
+      :min-item-size="70"
+      key-field="url"
+    >
+      <template #default="{ item: repo, index, active }">
+        <DynamicScrollerItem
+          :item="repo"
+          :active="active"
+          :size-dependencies="[
+            repo.description,
+          ]"
+          :data-index="index"
         >
-          <div class="flex justify-between items-center">
-            <div>
-              <h3 class="font-bold group-hover:text-purple-500 transition">
-                {{ formatName(repo.name) }}
-              </h3>
-            </div>
-            <span class="text-gray-400">
-              <i class="uil uil-star" />
-              {{ repo.stars }}
-            </span>
-          </div>
-          <p
-            v-if="repo.description?.length"
-            class="text-gray-400"
-          >
-            {{ repo.description }}
-          </p>
-          <ul
-            v-if="repo.topics?.length"
-            class="flex gap-2 max-w-full overflow-hidden overflow-x-auto"
-          >
-            <li
-              v-for="topic in repo.topics"
-              :key="topic"
-              class="text-gray-400 bg-gray-800 px-2 py-1 rounded-xl text-sm"
+          <div class="pb-4 pr-1">
+            <a
+              :href="repo.url"
+              target="_blank"
             >
-              {{ topic }}
-            </li>
-          </ul>
-        </div>
-      </a>
-    </template>
+              <div
+                class="default-card mt-4 p-4 group cursor-pointer flex flex-col gap-2"
+              >
+                <div class="flex justify-between items-center">
+                  <div>
+                    <h3 class="font-bold group-hover:text-purple-500 transition">
+                      {{ formatName(repo.name) }}
+                    </h3>
+                  </div>
+                  <span class="text-gray-400">
+                    <i class="uil uil-star" />
+                    {{ repo.stars }}
+                  </span>
+                </div>
+                <p
+                  v-if="repo.description?.length"
+                  class="text-gray-400"
+                >
+                  {{ repo.description }}
+                </p>
+                <ul
+                  v-if="repo.topics?.length"
+                  class="flex gap-2 max-w-full overflow-hidden overflow-x-auto"
+                >
+                  <li
+                    v-for="topic in repo.topics"
+                    :key="topic"
+                    class="text-gray-400 bg-gray-800 px-2 py-1 rounded-xl text-sm"
+                  >
+                    {{ topic }}
+                  </li>
+                </ul>
+              </div>
+            </a>
+          </div>
+        </DynamicScrollerItem>
+      </template>
+    </DynamicScroller>
   </section>
 </template>
 
@@ -53,7 +70,7 @@ useSeoMeta({
   ogDescription: 'Conheça os projetos que desenvolvi e contribui no GitHub ao longo do tempo',
 })
 
-const { data, pending } = await useFetch('/api/services/github')
+const { data, status } = await useFetch('/api/services/github')
 
 function formatName(name: string): string {
   return name.replace(/-/g, ' ')

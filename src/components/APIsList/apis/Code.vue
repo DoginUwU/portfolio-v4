@@ -36,6 +36,8 @@ const LANGUAGE_COLORS: Record<string, string> = {
   'TypeScript': 'text-blue-200 bg-blue-600/40',
   'Vue.js': 'text-green-200 bg-green-600/40',
   'CSS': 'text-blue-200 bg-blue-600/40',
+  'Zig': 'text-orange-200 bg-orange-600/40',
+  'SCSS': 'text-red-200 bg-red-600/40',
 }
 
 function getLanguageColor(language: string): string {
