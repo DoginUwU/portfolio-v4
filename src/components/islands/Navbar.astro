@@ -1,0 +1,100 @@
+---
+const MENU = [
+    {
+        title: "Início",
+        link: "/",
+    },
+    {
+        title: "Projetos",
+        link: "/projects",
+    },
+    {
+        title: "Jogo",
+        link: "/game",
+    },
+    {
+        title: "Contato",
+        link: "/#contact",
+    },
+];
+---
+
+<header
+    id="navbar"
+    class="navbar default-container-size sticky top-0 flex items-center py-4 z-50 *:transition-all"
+>
+    <a href="/" class="hidden lg:block">
+        <img
+            class="logo transition-all"
+            src="/logo.svg"
+            alt="Logo with my last name"
+        />
+    </a>
+    <ul
+        class="links ml-auto list-none py-2 px-6 border border-gray-600/50 rounded-full flex gap-4 backdrop-blur-md"
+    >
+        {
+            MENU.map((item) => (
+                <li>
+                    <a
+                        class="font-semibold text-sm text-white/80 transition hover:text-purple-500 active:scale-90"
+                        href={item.link}
+                    >
+                        {item.title}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</header>
+
+<script>
+    let hasLargeWidth = window.innerWidth > 640;
+    let isAtTop = window.scrollY <= 50;
+    const navbarElement = document.getElementById("navbar");
+    const ulElement = navbarElement?.getElementsByTagName("ul")[0];
+    computedHeaderClass();
+
+    window.addEventListener("resize", () => {
+        hasLargeWidth = window.innerWidth > 640;
+
+        computedHeaderClass();
+    });
+
+    document.addEventListener("scroll", () => {
+        isAtTop = window.scrollY <= 50;
+
+        computedHeaderClass();
+    });
+
+    function computedHeaderClass() {
+        if (!navbarElement || !ulElement) return;
+        const linksWidth = ulElement.offsetWidth ?? 0;
+
+        if (hasLargeWidth && !isAtTop) {
+            navbarElement.classList.add("fixed");
+            ulElement.style.marginRight = "unset";
+        } else {
+            ulElement.style.marginRight = `calc(50% - ${linksWidth / 2}px)`;
+            navbarElement.classList.remove("fixed");
+        }
+    }
+</script>
+
+<style>
+    .navbar {
+        height: var(--navbar-height);
+    }
+
+    .navbar.fixed {
+        @apply select-none pointer-events-none;
+    }
+
+    .navbar.fixed .logo {
+        @apply opacity-0;
+    }
+
+    .navbar.fixed .links {
+        pointer-events: all;
+    }
+</style>

@@ -1,11 +1,88 @@
 ---
+import Button from "../components/Button.astro";
 import Layout from "../layouts/Layout.astro";
+import background from "../assets/images/background2.webp";
+import { Image } from "astro:assets";
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Gotardo - Developer">
 	<main>
-		<h1>oi</h1>
+		<section>
+			<img
+				class="w-full max-w-[450px] px-20 mt-6 mx-auto lg:hidden"
+				src="/logo.svg"
+				alt="Logo with my last name"
+			/>
+			<section
+				class="default-container-size hero grid grid-cols-1 lg:grid-cols-2 py-4 items-center justify-center gap-12 mt-12 lg:mt-0"
+			>
+				<article
+					class="flex flex-col gap-16 items-start -order-1 lg:order-1"
+				>
+					<p class="leading-7">
+						Olá, meu nome é Luiz, e sou um apaixonado desenvolvedor
+						web full-stack. Minha paixão pelo software se traduz na
+						habilidade de conceber ideias e transformá-las em
+						realidade, por meio de interfaces elegantes. Dedico um
+						cuidado meticuloso à experiência do usuário, à
+						arquitetura e à qualidade do código em todos os projetos
+						que realizo. Atualmente, meu foco principal é garantir a
+						criação de produtos de alta qualidade que atendam às
+						expectativas e requisitos dos clientes.
+					</p>
+					<a class="w-full sm:w-fit" href="#contact">
+						<Button class="shadow-md w-full sm:w-fit">
+							Entrar em contato
+						</Button>
+					</a>
+				</article>
+				<Image
+					id="background"
+					class="background absolute top-0 left-0 w-screen h-screen object-cover -z-10 opacity-85"
+					src={background}
+					alt="Background"
+					loading="lazy"
+					decoding="async"
+				/>
+			</section>
+		</section>
 	</main>
 </Layout>
 
-<style></style>
+<script>
+	document.addEventListener("scroll", () => {
+		const backgroundElement = document.getElementById("background");
+
+		window.requestAnimationFrame(() => {
+			const scrollTop = window.scrollY;
+			const maxScroll = 700;
+			const opacity = Math.max(0, 1 - scrollTop / maxScroll);
+
+			if (!backgroundElement) return;
+
+			backgroundElement.style.opacity = String(opacity);
+		});
+	});
+</script>
+
+<style>
+	.hero .background {
+		will-change: opacity;
+		animation: background 200ms cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	@keyframes background {
+		0% {
+			scale: 0.8;
+		}
+		100% {
+			scale: 1;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.hero {
+			height: calc(100vh - var(--navbar-height));
+		}
+	}
+</style>
