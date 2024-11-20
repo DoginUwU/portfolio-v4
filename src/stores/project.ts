@@ -12,6 +12,8 @@ export const useProjectStore = defineStore('projects', {
       const { data } = await useFetch('/api/projects')
 
       this.projects = data.value as NotionData[]
+
+      return data.value
     },
     findProjectBySlug(slug: string) {
       return this.projects.find(project => project.slug === slug)
