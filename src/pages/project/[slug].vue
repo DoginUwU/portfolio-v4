@@ -71,16 +71,14 @@
 <script setup lang="ts">
 import markdownit from 'markdown-it'
 import xss from 'xss'
+import { ttl } from '~/helpers/ttl'
 
 const route = useRoute()
-const nuxtApp = useNuxtApp()
-const { data } = await useLazyFetch('/api/projects', {
+const { data } = await useFetch('/api/projects', {
   key: `projects`,
-  getCachedData(key) {
-    return nuxtApp.payload.data[key] || nuxtApp.static.data[key]
-  },
+  ...ttl(24 * 60 * 60 * 1000),
 })
-const project = data.value?.find(project => project.slug === route.params.slug)
+const project = data.value?.find((project: any) => project.slug === route.params.slug)
 const { data: github } = await useFetch(`/api/services/github/projects/${project!.slug}`)
 
 useSeoMeta({

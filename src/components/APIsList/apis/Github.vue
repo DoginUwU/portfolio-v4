@@ -23,6 +23,7 @@
 
 <script setup lang="ts">
 import SkeletonBar from '~/components/Skeletons/SkeletonBar.vue'
+import { ttl } from '~/helpers/ttl'
 
-const { data, pending } = await useFetch('/api/services/github')
+const { data, pending } = await useFetch('/api/services/github', { key: 'github', ...ttl(24 * 60 * 60 * 1000) })
 </script>

@@ -28,8 +28,9 @@
 
 <script setup lang="ts">
 import SkeletonBar from '~/components/Skeletons/SkeletonBar.vue'
+import { ttl } from '~/helpers/ttl'
 
-const { data, pending } = await useFetch('/api/services/wakatime')
+const { data, pending } = await useFetch('/api/services/wakatime', { key: 'wakatime', ...ttl(24 * 60 * 60 * 1000) })
 
 const LANGUAGE_COLORS: Record<string, string> = {
   'JavaScript': 'text-yellow-200 bg-yellow-600/40',

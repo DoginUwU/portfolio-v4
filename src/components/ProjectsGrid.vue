@@ -29,12 +29,10 @@
 </template>
 
 <script lang="ts" setup>
-const nuxtApp = useNuxtApp()
+import { ttl } from '~/helpers/ttl'
 
 const { data } = await useFetch('/api/projects', { key: 'projects',
-  getCachedData(key) {
-    return nuxtApp.payload.data[key] || nuxtApp.static.data[key]
-  },
+  ...ttl(24 * 60 * 60 * 1000),
 })
 
 const props = defineProps<{

@@ -31,8 +31,9 @@
 <script setup lang="ts">
 import { reactive, onMounted, onBeforeUnmount, computed } from 'vue'
 import SkeletonBar from '~/components/Skeletons/SkeletonBar.vue'
+import { ttl } from '~/helpers/ttl'
 
-const { data, pending } = await useFetch('/api/services/spotify')
+const { data, pending } = await useFetch('/api/services/spotify', { key: 'spotify', ...ttl(60 * 1000) })
 
 const state = reactive({
   currentProgress: 0,
