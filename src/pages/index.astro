@@ -63,7 +63,10 @@ import ProjectsGrid from "../components/ProjectsGrid.astro";
 </Layout>
 
 <script>
-	document.addEventListener("scroll", () => {
+	document.addEventListener("scroll", updateBackgroundOpacity);
+	setTimeout(updateBackgroundOpacity, 500);
+
+	function updateBackgroundOpacity() {
 		const backgroundElement = document.getElementById("background");
 
 		window.requestAnimationFrame(() => {
@@ -75,21 +78,25 @@ import ProjectsGrid from "../components/ProjectsGrid.astro";
 
 			backgroundElement.style.opacity = String(opacity);
 		});
-	});
+	}
 </script>
 
 <style>
 	.hero .background {
 		will-change: opacity;
-		animation: background 200ms cubic-bezier(0.4, 0, 0.2, 1);
+		animation: background 600ms cubic-bezier(1, 0, 0, 1);
 	}
 
 	@keyframes background {
 		0% {
 			scale: 0.8;
+			opacity: 0;
+			filter: blur(10px);
 		}
 		100% {
 			scale: 1;
+			opacity: 1;
+			filter: blur(0px);
 		}
 	}
 

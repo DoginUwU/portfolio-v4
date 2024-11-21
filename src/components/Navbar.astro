@@ -21,7 +21,7 @@ const MENU = [
 
 <header
     id="navbar"
-    class="navbar default-container-size sticky top-0 flex items-center py-4 z-50 *:transition-all"
+    class="navbar default-container-size sticky top-0 flex items-center py-4 z-50"
 >
     <a href="/" class="hidden lg:block">
         <img
@@ -84,6 +84,12 @@ const MENU = [
 <style>
     .navbar {
         height: var(--navbar-height);
+    }
+
+    .navbar * {
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.79, 0.14, 0.15, 0.86);
+        transition-duration: 300ms;
     }
 
     .navbar.fixed {
