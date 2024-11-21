@@ -1,11 +1,12 @@
 ---
+import { Image } from "astro:assets";
 import Button from "../components/Button.astro";
 import HeroAPIs from "../components/HeroAPIs/HeroAPIs.astro";
 import Layout from "../layouts/Layout.astro";
 import background from "../assets/images/background2.webp";
-import { Image } from "astro:assets";
 import MarqueeLanguages from "../components/MarqueeLanguages.vue";
 import PlanetAnimation from "../components/PlanetAnimation.vue";
+import ProjectsGrid from "../components/ProjectsGrid.astro";
 ---
 
 <Layout title="Gotardo - Developer">
@@ -52,6 +53,12 @@ import PlanetAnimation from "../components/PlanetAnimation.vue";
 		</section>
 		<MarqueeLanguages client:load />
 		<PlanetAnimation client:load />
+		<div class="text-center flex flex-col gap-4">
+			<h1 class="text-5xl font-bold uppercase text-image">Projetos</h1>
+			<span class="text-xl text-white/70">プロジェクト</span>
+		</div>
+		<ProjectsGrid class="default-container-size w-full mt-12" />
+		<Button class="ml-auto mr-auto block mt-12">Ver projetos</Button>
 	</main>
 </Layout>
 

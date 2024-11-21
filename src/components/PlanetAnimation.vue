@@ -1,7 +1,7 @@
 <template>
     <div
       ref="planetContainer"
-      class="w-screen h-fit md:h-screen flex items-center justify-center md:-mt-24 pointer-events-none md:pointer-events-auto"
+      class="w-screen h-fit overflow-hidden md:h-screen flex items-center justify-center md:-mt-24 pointer-events-none md:pointer-events-auto"
     >
       <div
         ref="canvasParent"

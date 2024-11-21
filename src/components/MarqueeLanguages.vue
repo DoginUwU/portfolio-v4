@@ -1,5 +1,6 @@
 <template>
-    <Vue3Marquee
+    <div>
+      <Vue3Marquee
       class="my-12 lg:mt-2 lg:mb-44 uppercase text-4xl text-white/70 font-extrabold overflow-hidden"
       :duration="50"
     >
@@ -12,11 +13,12 @@
       >
         {{ language.name }}
       </span>
-    </Vue3Marquee>
-    <div
-      ref="languageBottomEffect"
-      class="language-bottom-effect fixed bottom-0 left-0 right-0 transition-all z-10 hidden lg:block"
-    />
+      </Vue3Marquee>
+      <div
+        ref="languageBottomEffect"
+        class="language-bottom-effect fixed bottom-0 left-0 right-0 transition-all z-10 hidden lg:block"
+      />
+    </div>
 </template>
 
 <script setup lang="ts">
