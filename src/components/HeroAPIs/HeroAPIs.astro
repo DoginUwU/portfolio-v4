@@ -1,0 +1,65 @@
+---
+import { Image } from "astro:assets";
+
+import spotifyWEBP from "../../assets/images/spotify.webp";
+import codeWEBP from "../../assets/images/code.webp";
+import githubWEBP from "../../assets/images/github.webp";
+
+import Spotify from "./kinds/Spotify.vue";
+import Github from "./kinds/Github.vue";
+import Wakatime from "./kinds/Wakatime.vue";
+
+const APIS = [
+    {
+        icon: spotifyWEBP,
+        color: "#000000",
+        caption: "last played song",
+        alt: "spotify logo",
+        componentName: "Spotify",
+    },
+    {
+        icon: githubWEBP,
+        title: "My Github Profile",
+        color: "#FFFFFF",
+        componentName: "Github",
+    },
+    {
+        icon: codeWEBP,
+        title: "Code Status",
+        color: "#FFFFFF",
+        caption: "last month (first 5 languages)",
+        componentName: "Wakatime",
+    },
+];
+---
+
+<section class="h-fit p-4 default-card flex flex-col gap-4 backdrop-blur">
+    {
+        APIS.map((api) => (
+            <div class="flex items-center gap-4 bg-gray-500/10 border border-transparent rounded-xl p-4 relative backdrop-blur transition-all hover:cursor-pointer hover:bg-purple-600/10 hover:border-purple-600">
+                <Image
+                    src={api.icon}
+                    alt={api.title ?? api.alt}
+                    class="w-20 h-20 rounded-xl p-3"
+                    style={{ backgroundColor: api.color }}
+                />
+                <div class="w-full overflow-hidden">
+                    <h2 v-if="api.title" class="text-base uppercase">
+                        {api.title}
+                    </h2>
+                    {api.componentName === "Spotify" && <Spotify client:load />}
+                    {api.componentName === "Github" && <Github client:load />}
+                    {api.componentName === "Wakatime" && (
+                        <Wakatime client:load />
+                    )}
+                </div>
+                <span
+                    v-if="api.caption"
+                    class="absolute hidden sm:block top-2 right-3 text-xs text-gray-400"
+                >
+                    {api.caption}
+                </span>
+            </div>
+        ))
+    }
+</section>
