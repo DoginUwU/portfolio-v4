@@ -4,6 +4,8 @@ import HeroAPIs from "../components/HeroAPIs/HeroAPIs.astro";
 import Layout from "../layouts/Layout.astro";
 import background from "../assets/images/background2.webp";
 import { Image } from "astro:assets";
+import MarqueeLanguages from "../components/MarqueeLanguages.vue";
+import PlanetAnimation from "../components/PlanetAnimation.vue";
 ---
 
 <Layout title="Gotardo - Developer">
@@ -48,6 +50,8 @@ import { Image } from "astro:assets";
 				/>
 			</section>
 		</section>
+		<MarqueeLanguages client:load />
+		<PlanetAnimation client:load />
 	</main>
 </Layout>
 
