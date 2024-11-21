@@ -58,7 +58,6 @@
   function checkIfNeedScroll(): void {
     const scrollerElement = scroller.value
     if (scrollerElement === undefined) { return }
-    console.log(scrollerElement, scrollerElement.offsetWidth, scrollerElement.parentElement?.offsetWidth)
   
     state.needScroll = scrollerElement.offsetWidth > (scrollerElement.parentElement?.offsetWidth ?? 0)
   }

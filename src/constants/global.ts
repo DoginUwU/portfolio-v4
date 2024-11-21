@@ -1,1 +1,1 @@
-export const PORTFOLIO_BACKEND_URL = 'https://portfolio-back-six.vercel.app'
+export const PORTFOLIO_BACKEND_URL = 'https://api.legotardo.com'
