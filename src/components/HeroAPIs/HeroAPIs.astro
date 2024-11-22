@@ -40,13 +40,13 @@ const APIS = [
                 <Image
                     src={api.icon}
                     alt={api.title ?? api.alt}
-                    class="w-20 h-20 rounded-xl p-3"
                     style={{ backgroundColor: api.color }}
+                    class="w-20 h-20 rounded-xl p-3"
                 />
                 <div class="w-full overflow-hidden">
-                    <h2 v-if="api.title" class="text-base uppercase">
-                        {api.title}
-                    </h2>
+                    {api.title && (
+                        <h2 class="text-base uppercase">{api.title}</h2>
+                    )}
                     {api.componentName === "Spotify" && <Spotify client:load />}
                     {api.componentName === "Github" && <Github client:load />}
                     {api.componentName === "Wakatime" && (

@@ -7,6 +7,12 @@ import background from "../assets/images/background2.webp";
 import MarqueeLanguages from "../components/MarqueeLanguages.vue";
 import PlanetAnimation from "../components/PlanetAnimation.vue";
 import ProjectsGrid from "../components/ProjectsGrid.astro";
+import ExperienceCard from "../components/ExperienceCard.astro";
+
+import reactSVG from "../assets/icons/react.svg";
+import databaseSVG from "../assets/icons/database.svg";
+import appsSVG from "../assets/icons/apps.svg";
+import Stars from "../components/stars/index.vue";
 ---
 
 <Layout title="Gotardo - Developer">
@@ -59,6 +65,52 @@ import ProjectsGrid from "../components/ProjectsGrid.astro";
 		</div>
 		<ProjectsGrid class="default-container-size w-full mt-12" />
 		<Button class="ml-auto mr-auto block mt-12">Ver projetos</Button>
+		<section
+			class="relative flex flex-col items-center gap-11 p-6 lg:p-24 my-16"
+		>
+			<Stars client:load />
+			<div class="text-center flex flex-col">
+				<h1 class="text-4xl font-bold mb-8">O que eu faço?</h1>
+				<p class="text-white/70">
+					Eu sou um desenvolvedor web full-stack, com foco em
+					desenvolvimento de aplicações web e mobile.
+				</p>
+				<p class="text-white/70">
+					Também tenho experiência com desenvolvimento de jogos e
+					aplicações desktop.
+				</p>
+			</div>
+
+			<div class="flex flex-col lg:flex-row gap-8">
+				<ExperienceCard icon={reactSVG}>
+					<h2 slot="title" class="font-bold">Front-end</h2>
+					<span>
+						Desenvolvimento de interfaces elegantes e responsivas
+						com foco na experiência do usuário. Utilizando
+						tecnologias como Vue.JS, React. Tenho experiência também
+						com aplicativos mobile utilizando React Native.
+					</span>
+				</ExperienceCard>
+				<ExperienceCard icon={databaseSVG}>
+					<h2 slot="title" class="font-bold">Back-end</h2>
+					<span>
+						Desenvolvimento de APIs robustas e escaláveis, com foco
+						na segurança e performance. Utilizando tecnologias como
+						NodeJS, Express. Também tenho experiência com bancos de
+						dados SQL e NoSQL.
+					</span>
+				</ExperienceCard>
+				<ExperienceCard icon={appsSVG}>
+					<h2 slot="title" class="font-bold">Aplicativos e Jogos</h2>
+					<span>
+						Desenvolvimento de aplicativos para computadores e
+						celular, utilizando linguagens como C++, C#,
+						React-Native, Java e Kotlin. Em questão de jogos, tenho
+						experiência com Unity e Godot Engine.
+					</span>
+				</ExperienceCard>
+			</div>
+		</section>
 	</main>
 </Layout>
 
