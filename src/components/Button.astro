@@ -4,11 +4,13 @@ interface Props {
     error?: boolean;
     success?: boolean;
     class?: string;
+    type?: "reset" | "submit" | "button";
 }
 const {
     disabled = false,
     error = false,
     success = false,
+    type = "button",
     ...attrs
 } = Astro.props;
 ---
@@ -19,6 +21,7 @@ const {
         attrs.class,
     ]}
     disabled={disabled}
+    type={type}
 >
     <slot />
 </button>

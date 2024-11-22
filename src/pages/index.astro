@@ -8,11 +8,18 @@ import MarqueeLanguages from "../components/MarqueeLanguages.vue";
 import PlanetAnimation from "../components/PlanetAnimation.vue";
 import ProjectsGrid from "../components/ProjectsGrid.astro";
 import ExperienceCard from "../components/ExperienceCard.astro";
+import Stars from "../components/stars/index.vue";
+import ContactCard from "../components/ContactCard.astro";
+import Input from "../components/Input.astro";
+import Textarea from "../components/Textarea.astro";
 
 import reactSVG from "../assets/icons/react.svg";
 import databaseSVG from "../assets/icons/database.svg";
 import appsSVG from "../assets/icons/apps.svg";
-import Stars from "../components/stars/index.vue";
+import envelopeSVG from "../assets/icons/envelope.svg";
+import mapMarkerSVG from "../assets/icons/map-marker.svg";
+import githubSVG from "../assets/icons/github.svg";
+import linkedinSVG from "../assets/icons/linkedin.svg";
 ---
 
 <Layout title="Gotardo - Developer">
@@ -110,6 +117,98 @@ import Stars from "../components/stars/index.vue";
 					</span>
 				</ExperienceCard>
 			</div>
+		</section>
+		<section
+			id="contact"
+			class="default-container-size flex flex-col lg:flex-row items-stretch justify-between relative gap-8 mb-16"
+		>
+			<div class="flex flex-col items-start justify-between gap-6">
+				<div class="flex flex-col items-start justify-start gap-4">
+					<h1 class="text-4xl font-bold">Entre em contato</h1>
+					<p class="text-white/70 max-w-96">
+						Fique a vontade para escolher o modo de contato, irei te
+						responder o mais breve possível.
+					</p>
+				</div>
+				<div
+					class="flex flex-col items-start justify-start gap-4 w-full lg:w-fit"
+				>
+					<ContactCard
+						icon={envelopeSVG}
+						text="contato@legotardo.com"
+						active
+					/>
+					<ContactCard icon={mapMarkerSVG} text="Londrina, Brazil" />
+				</div>
+				<div
+					class="flex items-center justify-between gap-4 *:flex *:items-center *:justify-center *:p-3 *:bg-purple-600 *:rounded-full *:w-12 *:h-12"
+				>
+					<a
+						href="https://github.com/DoginUwU"
+						target="_blank"
+						rel="noreferrer"
+						aria-label="Github profile"
+					>
+						<Image src={githubSVG} width={16} alt="Github logo" />
+					</a>
+					<a
+						href="https://www.linkedin.com/in/luiz-gotardo/"
+						target="_blank"
+						rel="noreferrer"
+						aria-label="Linkedin profile"
+					>
+						<Image
+							src={linkedinSVG}
+							width={16}
+							alt="LinkedIn logo"
+						/>
+					</a>
+				</div>
+			</div>
+			<form
+				class="max-w-[500px] flex-1 p-8 default-card flex flex-col gap-8"
+				@submit="handleContactSubmit"
+			>
+				<Input
+					id="name"
+					name="user_name"
+					label="Seu nome"
+					placeholder="Seu nome..."
+					required
+				/>
+				<Input
+					id="email"
+					name="user_email"
+					label="Seu email"
+					placeholder="Seu email..."
+					type="email"
+					required
+				/>
+				<Textarea
+					id="message"
+					name="message"
+					label="Sua mensagem"
+					placeholder="Sua mensagem..."
+					required
+				/>
+				<Button
+					type="submit"
+					:disabled="state.sendingEmail"
+					:error="state.sendingEmailError"
+					:success="state.sendingEmailSuccess"
+				>
+					<div class="transition-wrapper">
+						<span v-if="state.sendingEmail">Enviando...</span>
+						<span v-else-if="state.sendingEmailError">
+							Não foi possível enviar... Quer tentar novamente?
+						</span>
+						<span v-else-if="state.sendingEmailSuccess">
+							Enviado com sucesso!
+						</span>
+						<span v-else>Enviar</span>
+					</div>
+				</Button>
+			</form>
 		</section>
 	</main>
 </Layout>

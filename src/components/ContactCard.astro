@@ -1,0 +1,27 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+    icon: ImageMetadata;
+    active?: boolean;
+    text: string;
+}
+
+const { text, active, icon } = Astro.props;
+
+let activeClass = "border-transparent";
+
+if (active) {
+    activeClass = "bg-purple-600/10 border-purple-600";
+}
+---
+
+<div
+    class:list={[
+        "w-full flex items-center justify-start gap-4 py-3 px-5 rounded-xl border",
+        activeClass,
+    ]}
+>
+    <Image src={icon} alt={text} width={18} />
+    <p>{text}</p>
+</div>
