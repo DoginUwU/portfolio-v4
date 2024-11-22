@@ -35,11 +35,12 @@ const state = reactive({
 
 onMounted(async () => {
     try {
-        const response = await fetch(`${PORTFOLIO_BACKEND_URL}/hero/github`);
-        const data: HeroGithub = await response.json();
-        state.data = data;
+      const response = await fetch(`${PORTFOLIO_BACKEND_URL}/hero/github`);
+      const data: HeroGithub = await response.json();
+      state.data = data;
     } catch (err) {
-        console.error(err);
+      state.data = { repos: 109, followers: 100}
+      console.error(err);
     }
 })
 </script>

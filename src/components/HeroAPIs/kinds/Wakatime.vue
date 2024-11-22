@@ -48,11 +48,21 @@ const state = reactive({
 
 onMounted(async () => {
     try {
-        const response = await fetch(`${PORTFOLIO_BACKEND_URL}/hero/wakatime`);
-        const data: HeroWakatime = await response.json();
-        state.data = data;
+      const response = await fetch(`${PORTFOLIO_BACKEND_URL}/hero/wakatime`);
+      const data: HeroWakatime = await response.json();
+      state.data = data;
     } catch (err) {
-        console.error(err);
+      state.data = {
+        "languages":
+        [
+          {"name":"TypeScript","text":"42 hrs 20 mins"},
+          {"name":"Vue.js","text":"32 hrs 26 mins"},
+          {"name":"Zig","text":"8 hrs 33 mins"},
+          {"name":"JSON","text":"5 hrs 18 mins"},
+          {"name":"Astro","text":"2 hrs 48 mins"}
+        ]
+      }
+      console.error(err);
     }
 })
   

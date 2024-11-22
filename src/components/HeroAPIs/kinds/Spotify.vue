@@ -53,21 +53,33 @@ onBeforeUnmount(() => {
 })
 
 async function handleSpotifyPlayingNow() {
-    const response = await fetch(`${PORTFOLIO_BACKEND_URL}/hero/spotify?time=${Date.now()}`);
-    const data: HeroSpotify = await response.json();
-    state.data = data;
+    try {
+      const response = await fetch(`${PORTFOLIO_BACKEND_URL}/hero/spotify?time=${Date.now()}`);
+      const data: HeroSpotify = await response.json();
+      state.data = data;
+    } catch (err) {
+      state.data = {
+        name: "I'll Be Missing You",
+        artist: "Lofi Fruits Music",
+        album: "90s Oldschool Lofi Hip Hop",
+        image: "https://i.scdn.co/image/ab67616d0000b27318f6df6b0d4ab0d5abd5775e",
+        duration: 118153
+      }
+    } 
 
-    state.currentProgress = data.currentProgress || data.duration || 0
+    if(!state.data) throw new Error("Missing spotify data")
+
+    state.currentProgress = state.data.currentProgress || state.data.duration || 0
     clearInterval(state.interval!)
 
     state.interval = setInterval(() => {
-        if (data && state.currentProgress >= data.duration) {
+        if (state.data && state.currentProgress >= state.data.duration) {
         clearInterval(state.interval!)
         return
         }
 
         state.currentProgress += 1000
-        state.currentProgress = Math.min(state.currentProgress, data.duration || 0)
+        state.currentProgress = Math.min(state.currentProgress, state.data!.duration || 0)
     }, 1000)
 }
 
