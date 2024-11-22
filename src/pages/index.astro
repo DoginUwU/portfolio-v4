@@ -141,13 +141,14 @@ import linkedinSVG from "../assets/icons/linkedin.svg";
 					<ContactCard icon={mapMarkerSVG} text="Londrina, Brazil" />
 				</div>
 				<div
-					class="flex items-center justify-between gap-4 *:flex *:items-center *:justify-center *:p-3 *:bg-purple-600 *:rounded-full *:w-12 *:h-12"
+					class="flex items-center justify-between gap-4 *:flex *:items-center *:justify-center *:p-3 *:bg-purple-600 *:rounded-full *:w-12 *:h-12 *:transition-colors"
 				>
 					<a
 						href="https://github.com/DoginUwU"
 						target="_blank"
 						rel="noreferrer"
 						aria-label="Github profile"
+						class="hover:bg-purple-700"
 					>
 						<Image src={githubSVG} width={16} alt="Github logo" />
 					</a>
@@ -156,6 +157,7 @@ import linkedinSVG from "../assets/icons/linkedin.svg";
 						target="_blank"
 						rel="noreferrer"
 						aria-label="Linkedin profile"
+						class="hover:bg-purple-700"
 					>
 						<Image
 							src={linkedinSVG}
@@ -166,8 +168,8 @@ import linkedinSVG from "../assets/icons/linkedin.svg";
 				</div>
 			</div>
 			<form
+				id="contact-form"
 				class="max-w-[500px] flex-1 p-8 default-card flex flex-col gap-8"
-				@submit="handleContactSubmit"
 			>
 				<Input
 					id="name"
@@ -191,29 +193,19 @@ import linkedinSVG from "../assets/icons/linkedin.svg";
 					placeholder="Sua mensagem..."
 					required
 				/>
-				<Button
-					type="submit"
-					:disabled="state.sendingEmail"
-					:error="state.sendingEmailError"
-					:success="state.sendingEmailSuccess"
-				>
-					<div class="transition-wrapper">
-						<span v-if="state.sendingEmail">Enviando...</span>
-						<span v-else-if="state.sendingEmailError">
-							Não foi possível enviar... Quer tentar novamente?
-						</span>
-						<span v-else-if="state.sendingEmailSuccess">
-							Enviado com sucesso!
-						</span>
-						<span v-else>Enviar</span>
-					</div>
+				<Button id="submit-contact-form" type="submit">
+					<span class="relative">Enviar</span>
 				</Button>
 			</form>
 		</section>
 	</main>
 </Layout>
 
-<script>
+<script is:inline>
+	emailjs.init({
+		publicKey: "user_pbH18gsT3YH3yt2bffOUA",
+	});
+
 	document.addEventListener("scroll", updateBackgroundOpacity);
 	setTimeout(updateBackgroundOpacity, 500);
 
@@ -229,6 +221,43 @@ import linkedinSVG from "../assets/icons/linkedin.svg";
 
 			backgroundElement.style.opacity = String(opacity);
 		});
+	}
+
+	const BUTTON_LOADING_MS = 3000;
+	const contactForm = document.getElementById("contact-form");
+	contactForm.addEventListener("submit", handleContactForms);
+
+	async function handleContactForms(event) {
+		event.preventDefault();
+
+		const form = event.target;
+		const submitButton = document.getElementById("submit-contact-form");
+		const submitButtonText = submitButton.getElementsByTagName("span")[0];
+
+		if (!submitButton) return;
+
+		submitButton.classList.add("loading");
+		submitButtonText.innerText = "Enviando...";
+		const currentTime = Date.now();
+
+		await emailjs.sendForm("service_x9v3gy7", "template_gpu5tlq", form);
+
+		const durationTime = Date.now();
+		const delayToContinue = Math.max(
+			0,
+			currentTime - durationTime + BUTTON_LOADING_MS,
+		);
+		await new Promise((resolve) => setTimeout(resolve, delayToContinue));
+
+		submitButton.classList.add("finished");
+		submitButtonText.innerText = "Enviado!";
+		form.reset();
+
+		await new Promise((resolve) => setTimeout(resolve, 2500));
+
+		submitButton.classList.remove("finished");
+		submitButton.classList.remove("loading");
+		submitButtonText.innerText = "Enviar";
 	}
 </script>
 
