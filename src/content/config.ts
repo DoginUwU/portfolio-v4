@@ -8,6 +8,7 @@ const projectsCollection = defineCollection({
         cover: image().refine((img) => img.width >= 1080, {
             message: "Cover image must be at least 1080 pixels wide!",
         }),
+        link: z.string(),
         createdAt: z.string(),
         tags: z.array(z.enum(["typescript", "astro", "c++", "opengl", "glfw", "vue"]))
     })

@@ -25,7 +25,7 @@ const { limit, ...attrs } = Astro.props;
             })
             .slice(0, limit ?? allProjects.length)
             .map((project) => (
-                <a href={`/projects/${project.slug}`}>
+                <a href={`/projects/${project.slug}`} class="h-fit">
                     <div class="default-card flex flex-col rounded-2xl group cursor-pointer">
                         <Image
                             style={{ aspectRatio: "1.78" }}

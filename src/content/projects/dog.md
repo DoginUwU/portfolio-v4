@@ -5,6 +5,7 @@ cover: ../assets/dog.webp
 createdAt: "2023-12-31 00:00:00"
 tags: ["c++", "opengl", "glfw"]
 slug: dog-engine
+link: https://github.com/DoginUwU/dog
 ---
 
 ### Escopo do projeto
@@ -19,3 +20,4 @@ Meu objetivo com isso é utilizar e consolidar conhecimentos em computação gr�
 - **Gerenciamento de recursos (Assets):** Criação de um sistema para armazenamento e carregamento de assets no jogo, tais como: Shaders, Texturas, Objetos, etc...
 - **Gerencimanto de cenas:** Gerenciamento de cenas para escopar componentes individuais do jogo, possibilitando ter um maior controle de quais elementos serão exibidos na tela.
 
+![Arquitetura do Dog Engine atualmente](../assets/dog-arch1.webp)
