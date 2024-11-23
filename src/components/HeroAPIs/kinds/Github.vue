@@ -23,11 +23,11 @@
   
 <script setup lang="ts">
 import { onMounted, reactive } from 'vue';
+import { PORTFOLIO_BACKEND_URL } from '../../../constants/global';
 import type { HeroGithub } from '../../../types/hero';
+import AutoTextScroll from '../../AutoTextScroll.vue';
 import SkeletonBar from '../../SkeletonBar.vue';
 import Tag from '../../Tag.vue';
-import AutoTextScroll from '../../AutoTextScroll.vue';
-import { PORTFOLIO_BACKEND_URL } from '../../../constants/global';
 
 const state = reactive({
     data: null as HeroGithub | null,

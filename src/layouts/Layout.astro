@@ -17,7 +17,7 @@ function formatImageForMeta(): string | undefined {
 	if (!image) return undefined;
 	if (typeof image === "string") return image;
 
-	return `${Astro.url.origin}${image.src}`;
+	return image.src;
 }
 ---
 
