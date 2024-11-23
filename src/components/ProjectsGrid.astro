@@ -28,10 +28,11 @@ const { limit, ...attrs } = Astro.props;
                 <a href={`/projects/${project.slug}`}>
                     <div class="default-card flex flex-col rounded-2xl group cursor-pointer">
                         <Image
+                            style={{ aspectRatio: "1.78" }}
                             src={project.data.cover}
                             alt={project.data.title}
+                            widths={[500]}
                             class="project-image group-hover:-translate-y-2 rounded-t-xl"
-                            style={{ aspectRatio: "1.78" }}
                             loading="eager"
                         />
                         <div class="p-4">

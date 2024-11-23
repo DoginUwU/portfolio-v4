@@ -3,12 +3,19 @@ import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import { formatDate } from "../../helpers/date";
 
+import faviconPNG from "../../assets/images/favicon.png";
+
 const allBlog = await getCollection("blog");
 // const tagsSet = new Set(allBlog.flatMap((article) => article.data.scope));
 // const tags = Array.from(tagsSet);
 ---
 
-<Layout title="Gotardo - Blog" description="Públicações" keywords={["blog"]}>
+<Layout
+    title="Gotardo - Blog"
+    description="Públicações"
+    keywords={["blog"]}
+    image={faviconPNG}
+>
     <main class="default-container-size flex flex-col gap-9 min-h-screen">
         <h1 class="text-4xl font-bold mt-8 -mb-2">Postagens</h1>
         <input
@@ -32,7 +39,7 @@ const allBlog = await getCollection("blog");
             }
         </ol> -->
         <div class="w-full h-[1px] bg-gray-700"></div>
-        <span id="terms-not-found" class="text-gray-300">
+        <span id="terms-not-found" class="text-gray-300" style="display: none;">
             😥 Nenhum resultado foi encontrado...
         </span>
         {

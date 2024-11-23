@@ -5,12 +5,14 @@ import { Image } from "astro:assets";
 import flaskSVG from "../../assets/icons/flask.svg";
 import UnityGameWEBP from "./assets/unity-game.webp";
 import Button from "../../components/Button.astro";
+import faviconPNG from "../../assets/images/favicon.png";
 ---
 
 <Layout
     title="Gotardo - Labs"
     description="Coisas experimentais e interativas feitas com o objetivo de divertir e mostrar algum tipo de tecnologia."
     keywords={["labs", "experimentos", "web", "interativo"]}
+    image={faviconPNG}
 >
     <main class="default-container-size flex flex-col gap-9 min-h-screen">
         <div class="flex items-center gap-2 mt-8 -mb-2">
@@ -18,7 +20,7 @@ import Button from "../../components/Button.astro";
             <Image src={flaskSVG} alt="Frasco de laboratório" width={34} />
         </div>
 
-        <section class="flex gap-4">
+        <section class="flex gap-8">
             <Image
                 src={UnityGameWEBP}
                 widths={[500]}
