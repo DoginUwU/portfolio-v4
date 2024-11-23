@@ -20,9 +20,24 @@ import envelopeSVG from "../assets/icons/envelope.svg";
 import mapMarkerSVG from "../assets/icons/map-marker.svg";
 import githubSVG from "../assets/icons/github.svg";
 import linkedinSVG from "../assets/icons/linkedin.svg";
+
+import faviconPNG from "../assets/images/favicon.png";
 ---
 
-<Layout title="Gotardo - Developer">
+<Layout
+	title="Gotardo - Developer"
+	description="Apenas um desenvolvedor apaixonado pelo o que faz."
+	keywords={[
+		"portfolio",
+		"full-stack",
+		"web",
+		"vue",
+		"react",
+		"mobile",
+		"game developer",
+	]}
+	image={faviconPNG}
+>
 	<main>
 		<section>
 			<img
@@ -70,8 +85,10 @@ import linkedinSVG from "../assets/icons/linkedin.svg";
 			<h1 class="text-5xl font-bold uppercase text-image">Projetos</h1>
 			<span class="text-xl text-white/70">プロジェクト</span>
 		</div>
-		<ProjectsGrid class="default-container-size w-full mt-12" />
-		<Button class="ml-auto mr-auto block mt-12">Ver projetos</Button>
+		<ProjectsGrid class="default-container-size w-full mt-12" limit={3} />
+		<a href="/projects">
+			<Button class="ml-auto mr-auto block mt-12">Ver projetos</Button>
+		</a>
 		<section
 			class="relative flex flex-col items-center gap-11 p-6 lg:p-24 my-16"
 		>

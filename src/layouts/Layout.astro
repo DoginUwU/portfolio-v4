@@ -1,19 +1,40 @@
 ---
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
+import type { ImageMetadata } from "astro";
 
 interface Props {
 	title: string;
+	description?: string;
+	keywords?: string[];
+	author?: string;
+	image?: string | ImageMetadata;
 }
 
-const { title } = Astro.props;
+const { title, description, keywords, author, image } = Astro.props;
+
+function formatImageForMeta(): string | undefined {
+	if (!image) return undefined;
+	if (typeof image === "string") return image;
+
+	return `${Astro.url.origin}${image.src}`;
+}
 ---
 
 <!doctype html>
 <html lang="pt-BR">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords?.join(", ")} />
+		<meta name="author" content={author} />
+
+		<meta name="og:title" content={title} />
+		<meta name="og:image" content={formatImageForMeta()} />
+		<meta property="og:type" content="website" />
+		<meta name="og:description" content={description} />
+
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/ico" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
@@ -70,7 +91,7 @@ const { title } = Astro.props;
 	}
 
 	body {
-		@apply bg-black text-white h-[300vh];
+		@apply bg-black text-white;
 	}
 
 	.default-container-size {
@@ -79,5 +100,25 @@ const { title } = Astro.props;
 
 	.default-card {
 		@apply bg-gray-700/20 border border-gray-600 rounded-xl shadow-md backdrop-blur;
+	}
+
+	.markdown-prettier {
+		@apply flex flex-col gap-6;
+	}
+
+	.markdown-prettier h1 {
+		@apply text-4xl font-bold;
+	}
+
+	.markdown-prettier h3 {
+		@apply text-2xl font-semibold text-slate-200;
+	}
+
+	.markdown-prettier img {
+		@apply rounded-lg;
+	}
+
+	.markdown-prettier pre {
+		@apply p-4 rounded-xl;
 	}
 </style>

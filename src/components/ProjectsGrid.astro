@@ -1,22 +1,17 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
+import { formatDate } from "../helpers/date";
+import Tag from "./Tag.vue";
 
 const allProjects = await getCollection("projects");
 
 interface Props {
     class?: string;
+    limit?: number;
 }
 
-const { ...attrs } = Astro.props;
-
-function formatDate(date: string): string {
-    return new Date(date).toLocaleDateString("pt-BR", {
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-    });
-}
+const { limit, ...attrs } = Astro.props;
 ---
 
 <div class:list={["projects grid gap-4", attrs.class]}>
@@ -28,24 +23,31 @@ function formatDate(date: string): string {
                     new Date(a.data.createdAt).getTime()
                 );
             })
-            .slice(0, 3)
+            .slice(0, limit ?? allProjects.length)
             .map((project) => (
-                <div class="default-card flex flex-col rounded-2xl group cursor-pointer">
-                    <Image
-                        src={project.data.cover}
-                        alt={project.data.title}
-                        class="project-image group-hover:-translate-y-2 rounded-t-xl"
-                        style={{ aspectRatio: "1.8" }}
-                    />
-                    <div class="p-4">
-                        <h1 class="font-bold group-hover:text-purple-500 transition">
-                            {project.data.title}
-                        </h1>
-                        <span class="text-xs">
-                            {formatDate(project.data.createdAt)}
-                        </span>
+                <a href={`/projects/${project.slug}`}>
+                    <div class="default-card flex flex-col rounded-2xl group cursor-pointer">
+                        <Image
+                            src={project.data.cover}
+                            alt={project.data.title}
+                            class="project-image group-hover:-translate-y-2 rounded-t-xl"
+                            style={{ aspectRatio: "1.8" }}
+                        />
+                        <div class="p-4">
+                            <h1 class="font-bold group-hover:text-purple-500 transition">
+                                {project.data.title}
+                            </h1>
+                            <span class="text-xs">
+                                {formatDate(project.data.createdAt)}
+                            </span>
+                            <div class="flex gap-1 mt-1">
+                                {project.data.tags.map((tag) => (
+                                    <Tag>{tag}</Tag>
+                                ))}
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </a>
             ))
     }
 </div>

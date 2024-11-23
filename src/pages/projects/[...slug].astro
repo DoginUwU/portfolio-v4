@@ -1,0 +1,46 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import Tag from "../../components/Tag.vue";
+import { formatDate } from "../../helpers/date";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+    const projects = await getCollection("projects");
+    return projects.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout
+    title={`${entry.data.title} - Gotardo`}
+    description={entry.data.subtitle}
+    keywords={entry.data.tags}
+    image={entry.data.cover}
+    author="Luiz E. Gotardo"
+>
+    <main class="markdown-prettier default-container-size mt-12">
+        <h1 class="text-center">{entry.data.title}</h1>
+        <div class="flex gap-1 mx-auto">
+            {entry.data.tags.map((tag) => <Tag>{tag}</Tag>)}
+            <span class="ml-2">
+                {formatDate(entry.data.createdAt)}
+            </span>
+        </div>
+        {
+            entry.data.subtitle && (
+                <p class="text-center text-slate-200">{entry.data.subtitle}</p>
+            )
+        }
+        <Image
+            src={entry.data.cover}
+            alt={`Cover image to show the ${entry.data.title} project`}
+        />
+        <Content />
+    </main>
+</Layout>

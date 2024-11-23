@@ -37,6 +37,9 @@ onMounted(async () => {
     try {
       const response = await fetch(`${PORTFOLIO_BACKEND_URL}/hero/github`);
       const data: HeroGithub = await response.json();
+
+      if(!data.followers || !data.repos) throw new Error("Missing github data")
+
       state.data = data;
     } catch (err) {
       state.data = { repos: 109, followers: 100}
