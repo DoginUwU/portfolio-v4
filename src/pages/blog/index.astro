@@ -1,0 +1,119 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { formatDate } from "../../helpers/date";
+
+const allBlog = await getCollection("blog");
+// const tagsSet = new Set(allBlog.flatMap((article) => article.data.scope));
+// const tags = Array.from(tagsSet);
+---
+
+<Layout title="Gotardo - Blog" description="Públicações" keywords={["blog"]}>
+    <main class="default-container-size flex flex-col gap-9 min-h-screen">
+        <h1 class="text-4xl font-bold mt-8 -mb-2">Postagens</h1>
+        <input
+            id="search-blog"
+            class="py-3 px-5 text-sm max-w-[400px] rounded-3xl bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:bg-gray-900 transition"
+            placeholder="Pesquise por um assunto..."
+        />
+        <!-- <ol
+            class="bg-gray-800 text-white rounded-3xl w-fit p-2 flex gap-2 text-sm -mt-2"
+        >
+            {
+                ["Tudo", ...tags].map((tag) => (
+                    <li
+                        role="button"
+                        data-tag={tag}
+                        class="filter-tag px-2 py-1"
+                    >
+                        {tag}
+                    </li>
+                ))
+            }
+        </ol> -->
+        <div class="w-full h-[1px] bg-gray-700"></div>
+        {
+            allBlog.map((article) => (
+                <a
+                    data-title={article.data.title}
+                    href={`/blog/${article.slug}`}
+                >
+                    <article class="flex flex-col gap-1 group">
+                        <span class="text-xs text-gray-400 uppercase">
+                            {article.data.scope}
+                        </span>
+                        <h2 class="text-lg font-semibold group-hover:text-purple-400 transition-colors">
+                            {article.data.title}
+                        </h2>
+                        <p class="text-gray-300 line-clamp-3">{article.body}</p>
+                        <span class="text-sm text-gray-400">
+                            {`${formatDate(article.data.createdAt)} - ${article.data.estimated} min`}
+                        </span>
+                    </article>
+                </a>
+            ))
+        }
+    </main>
+</Layout>
+
+<script>
+    const posts = document.querySelectorAll<HTMLElement>("[data-title]");
+    const inputElement = document.getElementById("search-blog");
+
+    inputElement?.addEventListener("input", (event) => {
+        if (event.target && "value" in event.target) {
+            filterByTitle(String(event.target.value));
+        }
+    });
+
+    if (inputElement && "value" in inputElement) {
+        filterByTitle(String(inputElement?.value));
+    }
+
+    function filterByTitle(value: string) {
+        posts.forEach((post) => {
+            const postTitle = post.dataset.title;
+
+            if (!postTitle) return;
+
+            if (formatText(postTitle).includes(formatText(value))) {
+                post.style.display = "block";
+            } else {
+                post.style.display = "none";
+            }
+        });
+    }
+
+    function formatText(value: string): string {
+        return value
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replace(/[^a-zA-Z]/g, "");
+    }
+
+    // const tags = document.querySelectorAll<HTMLLIElement>(".filter-tag");
+    // const activeTag = tags[0].dataset.tag ?? "Tudo";
+
+    // updateActiveTag();
+
+    // function updateActiveTag() {
+    //     tags.forEach((tag) => {
+    //         const tagString = tag.dataset.tag;
+
+    //         if (!tagString) return;
+
+    //         if (tagString === activeTag) {
+    //             tag.classList.add("active");
+    //         } else {
+    //             tag.classList.remove("active");
+    //         }
+    //     });
+    // }
+</script>
+
+<style>
+    .filter-tag.active {
+        @apply bg-white rounded-2xl text-black;
+    }
+</style>

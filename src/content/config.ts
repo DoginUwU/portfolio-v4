@@ -13,6 +13,21 @@ const projectsCollection = defineCollection({
     })
 })
 
+const blogCollection = defineCollection({
+    type: 'content',
+    schema: () => z.object({
+        title: z.string(),
+        createdAt: z.string(),
+        tags: z.array(z.enum(["typescript", "astro", "c++", "opengl", "glfw", "vue"])),
+        scope: z.string(),
+        estimated: z.number().min(1),
+
+        previous: z.string().optional(),
+        next: z.string().optional(),
+    })
+})
+
 export const collections = {
     projects: projectsCollection,
+    blog: blogCollection,
 }
