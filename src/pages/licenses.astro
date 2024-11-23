@@ -1,0 +1,31 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const LICENSES = [
+    {
+        title: "Stylized planet model",
+        license: "CC BY 4.0",
+        href: "https://sketchfab.com/3d-models/stylized-planet-789725db86f547fc9163b00f302c3e70",
+    },
+];
+---
+
+<Layout title="Gotardo - Licenças de terceiros">
+    <h1 class="default-container-size text-4xl font-bold mt-8 -mb-2">
+        Licenças de terceiro
+    </h1>
+    <main
+        class="min-h-screen default-container-size mt-12 flex gap-4 flex-wrap items-start justify-start"
+    >
+        {
+            LICENSES.map((license) => (
+                <a href={license.href} class="w-fit h-fit" target="_blank">
+                    <div class="default-card w-fit py-4 px-6">
+                        <h2>{license.title}</h2>
+                        <span>{license.license}</span>
+                    </div>
+                </a>
+            ))
+        }
+    </main>
+</Layout>
