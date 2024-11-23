@@ -131,4 +131,12 @@ function formatImageForMeta(): string | undefined {
 	.markdown-prettier pre {
 		@apply p-4 rounded-xl;
 	}
+
+	.markdown-prettier li {
+		@apply list-disc list-inside;
+	}
+
+	.markdown-prettier li:not(:first-child) {
+		@apply mt-3;
+	}
 </style>
