@@ -13,6 +13,7 @@ import ContactCard from "../components/ContactCard.astro";
 import Input from "../components/Input.astro";
 import Textarea from "../components/Textarea.astro";
 
+import LogoSVG from "../assets/images/logo.svg";
 import reactSVG from "../assets/icons/react.svg";
 import databaseSVG from "../assets/icons/database.svg";
 import appsSVG from "../assets/icons/apps.svg";
@@ -40,9 +41,9 @@ import faviconPNG from "../assets/images/favicon.png";
 >
 	<main>
 		<section>
-			<img
+			<Image
 				class="w-full max-w-[450px] px-20 mt-6 mx-auto lg:hidden"
-				src="/logo.svg"
+				src={LogoSVG}
 				alt="Logo with my last name"
 			/>
 			<section
