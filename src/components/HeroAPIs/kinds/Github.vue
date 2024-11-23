@@ -43,7 +43,6 @@ onMounted(async () => {
       state.data = data;
     } catch (err) {
       state.data = { repos: 109, followers: 100}
-      console.error(err);
     }
 })
 </script>
