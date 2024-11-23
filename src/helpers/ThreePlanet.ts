@@ -1,21 +1,21 @@
-import * as THREE from 'three'
+import { Scene, PerspectiveCamera, WebGLRenderer, Object3D, AnimationMixer, AmbientLight } from 'three'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 
 export class ThreePlanet {
-  private readonly scene: THREE.Scene
-  private readonly camera: THREE.PerspectiveCamera
-  private readonly renderer: THREE.WebGLRenderer
+  private readonly scene: Scene
+  private readonly camera: PerspectiveCamera
+  private readonly renderer: WebGLRenderer
   private readonly controls: OrbitControls
   private readonly gltfLoader: GLTFLoader
   private readonly parent: HTMLElement
-  private planet: THREE.Object3D | null = null
-  private mixer: THREE.AnimationMixer | null = null
+  private planet: Object3D | null = null
+  private mixer: AnimationMixer | null = null
 
   constructor(parent: HTMLElement) {
     this.parent = parent
-    this.scene = new THREE.Scene()
-    this.camera = new THREE.PerspectiveCamera(75, parent.clientWidth / parent.clientHeight, 0.1, 1000)
+    this.scene = new Scene()
+    this.camera = new PerspectiveCamera(75, parent.clientWidth / parent.clientHeight, 0.1, 1000)
     this.controls = new OrbitControls(this.camera, parent)
     this.controls.enableZoom = false
     this.controls.enableDamping = true
@@ -23,7 +23,7 @@ export class ThreePlanet {
 
     this.gltfLoader = new GLTFLoader()
 
-    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true })
+    this.renderer = new WebGLRenderer({ antialias: true, alpha: true })
     this.renderer.setSize(parent.clientWidth, parent.clientHeight)
     this.renderer.setClearColor(0xFFFFFF, 0)
     parent.appendChild(this.renderer.domElement)
@@ -34,14 +34,14 @@ export class ThreePlanet {
 
       this.planetResize()
 
-      this.mixer = new THREE.AnimationMixer(gltf.scene)
+      this.mixer = new AnimationMixer(gltf.scene)
 
       gltf.animations.forEach((clip) => {
         this.mixer?.clipAction(clip).play()
       })
     })
 
-    const light = new THREE.AmbientLight(0xFFFFFF, 2)
+    const light = new AmbientLight(0xFFFFFF, 2)
     light.position.set(0, 0, 5)
     this.scene.add(light)
 

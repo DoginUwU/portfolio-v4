@@ -221,10 +221,6 @@ import faviconPNG from "../assets/images/favicon.png";
 </Layout>
 
 <script is:inline defer async>
-	emailjs.init({
-		publicKey: "user_pbH18gsT3YH3yt2bffOUA",
-	});
-
 	document.addEventListener("scroll", updateBackgroundOpacity);
 	setTimeout(updateBackgroundOpacity, 500);
 
@@ -245,6 +241,12 @@ import faviconPNG from "../assets/images/favicon.png";
 	const BUTTON_LOADING_MS = 3000;
 	const contactForm = document.getElementById("contact-form");
 	contactForm.addEventListener("submit", handleContactForms);
+
+	document.addEventListener("DOMContentLoaded", () => {
+		emailjs.init({
+			publicKey: "user_pbH18gsT3YH3yt2bffOUA",
+		});
+	});
 
 	async function handleContactForms(event) {
 		event.preventDefault();
