@@ -9,9 +9,10 @@ interface Props {
 	keywords?: string[];
 	author?: string;
 	image?: string | ImageMetadata;
+	needsEmail?: boolean;
 }
 
-const { title, description, keywords, author, image } = Astro.props;
+const { title, description, keywords, author, image, needsEmail } = Astro.props;
 
 function formatImageForMeta(): string | undefined {
 	if (!image) return undefined;
@@ -44,11 +45,15 @@ function formatImageForMeta(): string | undefined {
 			href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
 			rel="stylesheet"
 		/>
-		<script
-			is:inline
-			type="text/javascript"
-			src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
-		></script>
+		{
+			needsEmail && (
+				<script
+					is:inline
+					type="text/javascript"
+					src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+				/>
+			)
+		}
 		<title>{title}</title>
 	</head>
 	<body>
