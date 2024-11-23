@@ -26,16 +26,16 @@ const { Content } = await entry.render();
     author="Luiz E. Gotardo"
 >
     <article class="markdown-prettier article-size mt-12 min-h-screen">
-        <h1 class="text-center">{entry.data.title}</h1>
-        <div class="flex gap-1 mx-auto flex-wrap items-center justify-center">
+        <h1 class="text-start">{entry.data.title}</h1>
+        <span class="-mt-6 -mb-1">
+            {formatDate(entry.data.createdAt)}
+        </span>
+        <div class="flex gap-1 mr-auto flex-wrap items-center justify-center">
             {entry.data.tags.map((tag) => <Tag>{tag}</Tag>)}
-            <span>
-                {formatDate(entry.data.createdAt)}
-            </span>
         </div>
         {
             entry.data.subtitle && (
-                <p class="text-center text-slate-200">{entry.data.subtitle}</p>
+                <p class="text-start text-slate-200">{entry.data.subtitle}</p>
             )
         }
         <Image

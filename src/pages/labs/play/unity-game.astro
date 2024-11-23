@@ -1,0 +1,41 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../../../layouts/Layout.astro";
+
+import unityGameWEBP from "../assets/unity-game.webp";
+import labsSVG from "../../../assets/images/labs.svg";
+---
+
+<Layout
+    title="Unity Game - Gotardo"
+    description="Jogo utilizando WebGL criado pela Unity"
+    image={unityGameWEBP}
+>
+    <main>
+        <div
+            id="loading"
+            class="fixed w-screen h-screen bg-black z-10 top-0 left-0 flex items-center justify-center"
+        >
+            <Image
+                class="logo w-48 h-48 animate-pulse"
+                src={labsSVG}
+                alt="Logo com meu sobrenome"
+            />
+        </div>
+        <iframe
+            id="game"
+            class="w-screen h-screen absolute top-0 left-0 border-none"
+            src="https://demo-game.legotardo.com"
+            frameborder="0"></iframe>
+    </main>
+</Layout>
+
+<script>
+    const iframeElement = document.getElementById("game");
+    const loadingElement = document.getElementById("loading");
+
+    iframeElement?.addEventListener("load", async () => {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        loadingElement?.remove();
+    });
+</script>

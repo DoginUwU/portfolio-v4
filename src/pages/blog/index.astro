@@ -32,6 +32,9 @@ const allBlog = await getCollection("blog");
             }
         </ol> -->
         <div class="w-full h-[1px] bg-gray-700"></div>
+        <span id="terms-not-found" class="text-gray-300">
+            😥 Nenhum resultado foi encontrado...
+        </span>
         {
             allBlog.map((article) => (
                 <a
@@ -59,6 +62,7 @@ const allBlog = await getCollection("blog");
 <script>
     const posts = document.querySelectorAll<HTMLElement>("[data-title]");
     const inputElement = document.getElementById("search-blog");
+    const termsNotFoundElement = document.getElementById("terms-not-found");
 
     inputElement?.addEventListener("input", (event) => {
         if (event.target && "value" in event.target) {
@@ -71,6 +75,8 @@ const allBlog = await getCollection("blog");
     }
 
     function filterByTitle(value: string) {
+        let hasFoundPosts = false;
+
         posts.forEach((post) => {
             const postTitle = post.dataset.title;
 
@@ -78,10 +84,17 @@ const allBlog = await getCollection("blog");
 
             if (formatText(postTitle).includes(formatText(value))) {
                 post.style.display = "block";
+                hasFoundPosts = true;
             } else {
                 post.style.display = "none";
             }
         });
+
+        if (termsNotFoundElement) {
+            termsNotFoundElement.style.display = hasFoundPosts
+                ? "none"
+                : "block";
+        }
     }
 
     function formatText(value: string): string {
