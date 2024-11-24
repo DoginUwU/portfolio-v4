@@ -75,9 +75,9 @@ Depois do arquivo criado e com suas etapas bem definidas, basta rodar o comando 
 > zig build
 ```
 
-#### Adeus Garbage Collector
+#### Alocadores
 
-Diferente do C/C++, o Zig **não** conta com um **Garbage Collector**. Em vez disso, suas atribuições de memória são gerenciadas por meio de um **Alocador**, permitindo que você controle explicitamente o que será alocado e quando esses recursos deixarão de ser utilizados.
+Diferente de outras linguagens, o Zig **não** conta com um **Garbage Collector**. Em vez disso, suas atribuições de memória são gerenciadas por meio de um **Alocador**, permitindo que você controle explicitamente o que será alocado e quando esses recursos deixarão de ser utilizados.
 
 Além disso, existem diversos tipos de _Alocadores_, com usos diferentes dependendo do seu código. Vou dar um exemplo de um alocador de uso geral, o mais comum para ser útilizado:
 
