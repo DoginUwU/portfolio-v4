@@ -1,10 +1,10 @@
 ---
 import { getCollection } from "astro:content";
-import Layout from "../../layouts/Layout.astro";
+import { formatDataForMetaDescription } from "../../helpers/content";
 import { formatDate } from "../../helpers/date";
+import Layout from "../../layouts/Layout.astro";
 
 import faviconPNG from "../../assets/images/favicon.png";
-import { formatDataForMetaDescription } from "../../helpers/content";
 
 const allBlog = await getCollection("blog");
 // const tagsSet = new Set(allBlog.flatMap((article) => article.data.scope));

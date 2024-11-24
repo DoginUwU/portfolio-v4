@@ -6,6 +6,7 @@ import Tag from "../../components/Tag.vue";
 import { formatDate } from "../../helpers/date";
 import Layout from "../../layouts/Layout.astro";
 
+import faviconPNG from "../../assets/images/favicon.png";
 import angleRightSVG from "../../assets/icons/angle-right.svg";
 import angleLeftSVG from "../../assets/icons/angle-left.svg";
 import { formatDataForMetaDescription } from "../../helpers/content";
@@ -38,6 +39,7 @@ if (entry.data.previous) {
     description={formatDataForMetaDescription(entry)}
     keywords={entry.data.tags}
     author="Luiz E. Gotardo"
+    image={entry.data.image ?? faviconPNG}
 >
     <article class="markdown-prettier article-size mt-12 min-h-screen">
         <h1 class="text-start">{entry.data.title}</h1>

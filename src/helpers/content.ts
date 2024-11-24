@@ -8,5 +8,6 @@ export function formatDataForMetaDescription(value: Entry, limit = 300): string 
     return value.body.replace(/[\n\r\t]/gm, "")
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
+    .replace(/_/g, "")
     .slice(0, limit) + "...";
 }

@@ -3,7 +3,8 @@ title: Aprendendo Zig em 2024
 createdAt: "2024-11-24 00:00:00"
 tags: ["zig", "low level"]
 scope: Low Level Software Engineer
-estimated: 4
+image: ../assets/zig-draw.webp
+estimated: 10
 ---
 
 Uma das coisas que sempre fui apaixonado, desde o ínicio da minha jornada como desenvolvedor, é aprender coisas próximas ao código de máquina. A parte _low-level_ sempre me trouxe bastante curiosidade: criar softwares que pudessem se comunicar com o hardware e entender exatamente como o computador lida com os diferentes casos em aplicações complexas. 
