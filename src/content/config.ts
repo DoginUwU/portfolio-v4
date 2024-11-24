@@ -10,7 +10,7 @@ const projectsCollection = defineCollection({
         }),
         link: z.string(),
         createdAt: z.string(),
-        tags: z.array(z.enum(["typescript", "astro", "c++", "opengl", "glfw", "vue", "react", "nodejs", "electron"]))
+        tags: z.array(z.enum(["typescript", "astro", "c++", "opengl", "glfw", "vue", "react", "nodejs", "electron", "css"]))
     })
 })
 
