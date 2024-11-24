@@ -7,6 +7,7 @@ import { formatDate } from "../../helpers/date";
 import Layout from "../../layouts/Layout.astro";
 
 import externalLinkSVG from "../../assets/icons/external-link.svg";
+import { formatDataForMetaDescription } from "../../helpers/content";
 
 export async function getStaticPaths() {
     const projects = await getCollection("projects");
@@ -23,7 +24,7 @@ const { Content } = await entry.render();
 
 <Layout
     title={`${entry.data.title} - Gotardo`}
-    description={entry.data.subtitle}
+    description={formatDataForMetaDescription(entry)}
     keywords={entry.data.tags}
     image={entry.data.cover}
     author="Luiz E. Gotardo"

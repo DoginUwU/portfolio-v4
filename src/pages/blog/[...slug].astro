@@ -8,6 +8,7 @@ import Layout from "../../layouts/Layout.astro";
 
 import angleRightSVG from "../../assets/icons/angle-right.svg";
 import angleLeftSVG from "../../assets/icons/angle-left.svg";
+import { formatDataForMetaDescription } from "../../helpers/content";
 
 export async function getStaticPaths() {
     const projects = await getCollection("blog");
@@ -20,8 +21,6 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props;
 const { Content } = await entry.render();
-
-const description = entry.body.replace("\n", " ").slice(0, 300) + "...";
 
 let previousEntry: CollectionEntry<"blog"> | null | undefined = null;
 let nextEntry: CollectionEntry<"blog"> | null | undefined = null;
@@ -36,7 +35,7 @@ if (entry.data.previous) {
 
 <Layout
     title={`${entry.data.title} - Gotardo`}
-    description={description}
+    description={formatDataForMetaDescription(entry)}
     keywords={entry.data.tags}
     author="Luiz E. Gotardo"
 >

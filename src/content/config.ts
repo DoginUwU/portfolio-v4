@@ -1,5 +1,11 @@
 import { defineCollection, z } from "astro:content";
 
+const zTags = z.enum([
+    "typescript", "astro", "c++", "opengl", "glfw", "vue", "react", "nodejs", 
+    "electron", "css", "react-native", "expo", "flutter", "dart", "firebase", 
+    "zig", "low level"
+])
+
 const projectsCollection = defineCollection({
     type: 'content',
     schema: ({ image }) => z.object({
@@ -10,7 +16,7 @@ const projectsCollection = defineCollection({
         }),
         link: z.string(),
         createdAt: z.string(),
-        tags: z.array(z.enum(["typescript", "astro", "c++", "opengl", "glfw", "vue", "react", "nodejs", "electron", "css", "react-native", "expo", "flutter", "dart", "firebase"]))
+        tags: z.array(zTags)
     })
 })
 
@@ -19,7 +25,7 @@ const blogCollection = defineCollection({
     schema: () => z.object({
         title: z.string(),
         createdAt: z.string(),
-        tags: z.array(z.enum(["typescript", "astro", "c++", "opengl", "glfw", "vue"])),
+        tags: z.array(zTags),
         scope: z.string(),
         estimated: z.number().min(1),
 

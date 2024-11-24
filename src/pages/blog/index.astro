@@ -4,6 +4,7 @@ import Layout from "../../layouts/Layout.astro";
 import { formatDate } from "../../helpers/date";
 
 import faviconPNG from "../../assets/images/favicon.png";
+import { formatDataForMetaDescription } from "../../helpers/content";
 
 const allBlog = await getCollection("blog");
 // const tagsSet = new Set(allBlog.flatMap((article) => article.data.scope));
@@ -55,7 +56,9 @@ const allBlog = await getCollection("blog");
                         <h2 class="text-lg font-semibold group-hover:text-purple-400 transition-colors">
                             {article.data.title}
                         </h2>
-                        <p class="text-gray-300 line-clamp-3">{article.body}</p>
+                        <p class="text-gray-300 line-clamp-3">
+                            {formatDataForMetaDescription(article, 500)}
+                        </p>
                         <span class="text-sm text-gray-400">
                             {`${formatDate(article.data.createdAt)} - ${article.data.estimated} min`}
                         </span>

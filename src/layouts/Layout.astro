@@ -120,8 +120,16 @@ function formatImageForMeta(): string | undefined {
 		@apply text-4xl font-bold;
 	}
 
+	.markdown-prettier h2 {
+		@apply text-3xl font-bold;
+	}
+
 	.markdown-prettier h3 {
 		@apply text-2xl font-semibold text-slate-200;
+	}
+
+	.markdown-prettier h4 {
+		@apply text-xl font-semibold text-slate-200;
 	}
 
 	.markdown-prettier img {
@@ -151,5 +159,9 @@ function formatImageForMeta(): string | undefined {
 
 	.markdown-prettier table img {
 		@apply w-fit max-h-[500px] object-contain rounded-none;
+	}
+
+	.markdown-prettier a {
+		@apply underline text-purple-400 hover:text-purple-500;
 	}
 </style>
