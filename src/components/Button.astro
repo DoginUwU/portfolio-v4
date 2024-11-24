@@ -1,0 +1,74 @@
+---
+interface Props {
+    id?: string;
+    disabled?: boolean;
+    error?: boolean;
+    success?: boolean;
+    class?: string;
+    type?: "reset" | "submit" | "button";
+}
+const {
+    id,
+    disabled = false,
+    error = false,
+    success = false,
+    type = "button",
+    ...attrs
+} = Astro.props;
+---
+
+<button
+    class:list={[
+        "default-button relative overflow-hidden bg-purple-600 text-white rounded-3xl py-2 px-4 transition-all hover:bg-purple-700 active:scale-90",
+        attrs.class,
+    ]}
+    disabled={disabled}
+    type={type}
+    id={id}
+>
+    <slot />
+</button>
+
+<style>
+    .default-button.loading {
+        @apply pointer-events-none;
+    }
+
+    .default-button.loading::before {
+        content: "";
+        @apply absolute top-0 -left-full h-full w-full bg-purple-700 transition-all;
+        animation: loading 3s forwards;
+    }
+
+    .default-button.loading.finished::before {
+        animation: loading-complete 0.5s forwards;
+    }
+
+    .default-button.finished {
+        @apply bg-green-600;
+    }
+
+    @keyframes loading {
+        0% {
+            @apply -left-full;
+        }
+
+        70% {
+            @apply -left-[40%];
+        }
+
+        100% {
+            @apply -left-[35%];
+        }
+    }
+
+    @keyframes loading-complete {
+        from {
+            @apply -left-[35%];
+        }
+
+        to {
+            @apply bg-green-700 -left-0;
+        }
+    }
+</style>

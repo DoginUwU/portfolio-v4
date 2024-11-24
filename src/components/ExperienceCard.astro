@@ -1,0 +1,23 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+    icon: ImageMetadata;
+}
+
+const { icon } = Astro.props;
+---
+
+<div
+    class="px-4 pt-6 pb-8 default-card max-w-96 lg:max-w-80 flex flex-col gap-4 items-center text-center"
+>
+    <div
+        class="p-4 aspect-square flex items-center justify-center bg-white/10 rounded-full w-fit h-fit"
+    >
+        <Image class="text-white" src={icon} alt="simple icon to ilustrate" />
+    </div>
+    <slot name="title" />
+    <p class="text-sm text-white/70">
+        <slot />
+    </p>
+</div>

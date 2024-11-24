@@ -1,0 +1,309 @@
+---
+import { Image } from "astro:assets";
+import Button from "../components/Button.astro";
+import HeroAPIs from "../components/HeroAPIs/HeroAPIs.astro";
+import Layout from "../layouts/Layout.astro";
+import background from "../assets/images/background2.webp";
+import MarqueeLanguages from "../components/MarqueeLanguages.vue";
+import PlanetAnimation from "../components/PlanetAnimation.vue";
+import ProjectsGrid from "../components/ProjectsGrid.astro";
+import ExperienceCard from "../components/ExperienceCard.astro";
+import Stars from "../components/stars/index.vue";
+import ContactCard from "../components/ContactCard.astro";
+import Input from "../components/Input.astro";
+import Textarea from "../components/Textarea.astro";
+
+import LogoSVG from "../assets/images/logo.svg";
+import reactSVG from "../assets/icons/react.svg";
+import databaseSVG from "../assets/icons/database.svg";
+import appsSVG from "../assets/icons/apps.svg";
+import envelopeSVG from "../assets/icons/envelope.svg";
+import mapMarkerSVG from "../assets/icons/map-marker.svg";
+import githubSVG from "../assets/icons/github.svg";
+import linkedinSVG from "../assets/icons/linkedin.svg";
+
+import faviconPNG from "../assets/images/favicon.png";
+---
+
+<Layout
+	title="Gotardo - Developer"
+	description="Apenas um desenvolvedor apaixonado pelo o que faz."
+	keywords={[
+		"portfolio",
+		"full-stack",
+		"web",
+		"vue",
+		"react",
+		"mobile",
+		"game developer",
+	]}
+	image={faviconPNG}
+	needsEmail
+>
+	<main>
+		<section>
+			<Image
+				class="w-full max-w-[450px] px-20 mt-6 mx-auto lg:hidden"
+				src={LogoSVG}
+				alt="Logo with my last name"
+			/>
+			<section
+				class="default-container-size hero grid grid-cols-1 lg:grid-cols-2 py-4 items-center justify-center gap-12 mt-12 lg:mt-0"
+			>
+				<HeroAPIs />
+				<article
+					class="flex flex-col gap-16 items-start -order-1 lg:order-1"
+				>
+					<p class="leading-7">
+						Olá, meu nome é Luiz, e sou um apaixonado desenvolvedor
+						web full-stack. Minha paixão pelo software se traduz na
+						habilidade de conceber ideias e transformá-las em
+						realidade, por meio de interfaces elegantes. Dedico um
+						cuidado meticuloso à experiência do usuário, à
+						arquitetura e à qualidade do código em todos os projetos
+						que realizo. Atualmente, meu foco principal é garantir a
+						criação de produtos de alta qualidade que atendam às
+						expectativas e requisitos dos clientes.
+					</p>
+					<a class="w-full sm:w-fit" href="#contact">
+						<Button class="shadow-md w-full sm:w-fit">
+							Entrar em contato
+						</Button>
+					</a>
+				</article>
+				<Image
+					id="background"
+					class="background absolute top-0 left-0 w-screen h-screen object-cover -z-10 opacity-85"
+					src={background}
+					alt="Background"
+					loading="eager"
+					decoding="async"
+				/>
+			</section>
+		</section>
+		<MarqueeLanguages client:load />
+		<PlanetAnimation client:load />
+		<div class="text-center flex flex-col gap-4">
+			<h1 class="text-5xl font-bold uppercase text-image">Projetos</h1>
+			<span class="text-xl text-white/70">プロジェクト</span>
+		</div>
+		<ProjectsGrid class="default-container-size w-full mt-12" limit={3} />
+		<a class="mx-auto block mt-12 w-fit" href="/projects">
+			<Button>Ver projetos</Button>
+		</a>
+		<section
+			class="relative flex flex-col items-center gap-11 p-6 lg:p-24 my-16"
+		>
+			<Stars client:load />
+			<div class="text-center flex flex-col">
+				<h1 class="text-4xl font-bold mb-8">O que eu faço?</h1>
+				<p class="text-white/70">
+					Eu sou um desenvolvedor web full-stack, com foco em
+					desenvolvimento de aplicações web e mobile.
+				</p>
+				<p class="text-white/70">
+					Também tenho experiência com desenvolvimento de jogos e
+					aplicações desktop.
+				</p>
+			</div>
+
+			<div class="flex flex-col lg:flex-row gap-8">
+				<ExperienceCard icon={reactSVG}>
+					<h2 slot="title" class="font-bold">Front-end</h2>
+					<span>
+						Desenvolvimento de interfaces elegantes e responsivas
+						com foco na experiência do usuário. Utilizando
+						tecnologias como Vue.JS, React. Tenho experiência também
+						com aplicativos mobile utilizando React Native.
+					</span>
+				</ExperienceCard>
+				<ExperienceCard icon={databaseSVG}>
+					<h2 slot="title" class="font-bold">Back-end</h2>
+					<span>
+						Desenvolvimento de APIs robustas e escaláveis, com foco
+						na segurança e performance. Utilizando tecnologias como
+						NodeJS, Express. Também tenho experiência com bancos de
+						dados SQL e NoSQL.
+					</span>
+				</ExperienceCard>
+				<ExperienceCard icon={appsSVG}>
+					<h2 slot="title" class="font-bold">Aplicativos e Jogos</h2>
+					<span>
+						Desenvolvimento de aplicativos para computadores e
+						celular, utilizando linguagens como C++, C#,
+						React-Native, Java e Kotlin. Em questão de jogos, tenho
+						experiência com Unity e Godot Engine.
+					</span>
+				</ExperienceCard>
+			</div>
+		</section>
+		<section
+			id="contact"
+			class="default-container-size flex flex-col lg:flex-row items-stretch justify-between relative gap-8 mb-16"
+		>
+			<div class="flex flex-col items-start justify-between gap-6">
+				<div class="flex flex-col items-start justify-start gap-4">
+					<h1 class="text-4xl font-bold">Entre em contato</h1>
+					<p class="text-white/70 max-w-96">
+						Fique a vontade para escolher o modo de contato, irei te
+						responder o mais breve possível.
+					</p>
+				</div>
+				<div
+					class="flex flex-col items-start justify-start gap-4 w-full lg:w-fit"
+				>
+					<ContactCard
+						icon={envelopeSVG}
+						text="contato@legotardo.com"
+						active
+					/>
+					<ContactCard icon={mapMarkerSVG} text="Londrina, Brazil" />
+				</div>
+				<div
+					class="flex items-center justify-between gap-4 *:flex *:items-center *:justify-center *:p-3 *:bg-purple-600 *:rounded-full *:w-12 *:h-12 *:transition-colors"
+				>
+					<a
+						href="https://github.com/DoginUwU"
+						target="_blank"
+						rel="noreferrer"
+						aria-label="Github profile"
+						class="hover:bg-purple-700"
+					>
+						<Image src={githubSVG} width={16} alt="Github logo" />
+					</a>
+					<a
+						href="https://www.linkedin.com/in/luiz-gotardo/"
+						target="_blank"
+						rel="noreferrer"
+						aria-label="Linkedin profile"
+						class="hover:bg-purple-700"
+					>
+						<Image
+							src={linkedinSVG}
+							width={16}
+							alt="LinkedIn logo"
+						/>
+					</a>
+				</div>
+			</div>
+			<form
+				id="contact-form"
+				class="max-w-[500px] flex-1 p-8 default-card flex flex-col gap-8"
+			>
+				<Input
+					id="name"
+					name="user_name"
+					label="Seu nome"
+					placeholder="Seu nome..."
+					required
+				/>
+				<Input
+					id="email"
+					name="user_email"
+					label="Seu email"
+					placeholder="Seu email..."
+					type="email"
+					required
+				/>
+				<Textarea
+					id="message"
+					name="message"
+					label="Sua mensagem"
+					placeholder="Sua mensagem..."
+					required
+				/>
+				<Button id="submit-contact-form" type="submit">
+					<span class="relative">Enviar</span>
+				</Button>
+			</form>
+		</section>
+	</main>
+</Layout>
+
+<script is:inline defer async>
+	document.addEventListener("scroll", updateBackgroundOpacity);
+	setTimeout(updateBackgroundOpacity, 500);
+
+	function updateBackgroundOpacity() {
+		const backgroundElement = document.getElementById("background");
+
+		window.requestAnimationFrame(() => {
+			const scrollTop = window.scrollY;
+			const maxScroll = 700;
+			const opacity = Math.max(0, 1 - scrollTop / maxScroll);
+
+			if (!backgroundElement) return;
+
+			backgroundElement.style.opacity = String(opacity);
+		});
+	}
+
+	const BUTTON_LOADING_MS = 3000;
+	const contactForm = document.getElementById("contact-form");
+	contactForm.addEventListener("submit", handleContactForms);
+
+	document.addEventListener("DOMContentLoaded", () => {
+		emailjs.init({
+			publicKey: "user_pbH18gsT3YH3yt2bffOUA",
+		});
+	});
+
+	async function handleContactForms(event) {
+		event.preventDefault();
+
+		const form = event.target;
+		const submitButton = document.getElementById("submit-contact-form");
+		const submitButtonText = submitButton.getElementsByTagName("span")[0];
+
+		if (!submitButton) return;
+
+		submitButton.classList.add("loading");
+		submitButtonText.innerText = "Enviando...";
+		const currentTime = Date.now();
+
+		await emailjs.sendForm("service_x9v3gy7", "template_gpu5tlq", form);
+
+		const durationTime = Date.now();
+		const delayToContinue = Math.max(
+			0,
+			currentTime - durationTime + BUTTON_LOADING_MS,
+		);
+		await new Promise((resolve) => setTimeout(resolve, delayToContinue));
+
+		submitButton.classList.add("finished");
+		submitButtonText.innerText = "Enviado!";
+		form.reset();
+
+		await new Promise((resolve) => setTimeout(resolve, 2500));
+
+		submitButton.classList.remove("finished");
+		submitButton.classList.remove("loading");
+		submitButtonText.innerText = "Enviar";
+	}
+</script>
+
+<style>
+	.hero .background {
+		will-change: opacity;
+		animation: background 600ms cubic-bezier(1, 0, 0, 1);
+	}
+
+	@keyframes background {
+		0% {
+			scale: 0.8;
+			opacity: 0;
+			filter: blur(10px);
+		}
+		100% {
+			scale: 1;
+			opacity: 1;
+			filter: blur(0px);
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.hero {
+			height: calc(100vh - var(--navbar-height));
+		}
+	}
+</style>

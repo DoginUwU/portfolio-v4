@@ -1,0 +1,96 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
+import Tag from "../../components/Tag.vue";
+import { formatDate } from "../../helpers/date";
+import Layout from "../../layouts/Layout.astro";
+
+import faviconPNG from "../../assets/images/favicon.png";
+import angleRightSVG from "../../assets/icons/angle-right.svg";
+import angleLeftSVG from "../../assets/icons/angle-left.svg";
+import { formatDataForMetaDescription } from "../../helpers/content";
+
+export async function getStaticPaths() {
+    const projects = await getCollection("blog");
+
+    return projects.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+let previousEntry: CollectionEntry<"blog"> | null | undefined = null;
+let nextEntry: CollectionEntry<"blog"> | null | undefined = null;
+
+if (entry.data.next) {
+    nextEntry = await getEntry("blog", entry.data.next);
+}
+if (entry.data.previous) {
+    previousEntry = await getEntry("blog", entry.data.previous);
+}
+---
+
+<Layout
+    title={`${entry.data.title} - Gotardo`}
+    description={formatDataForMetaDescription(entry)}
+    keywords={entry.data.tags}
+    author="Luiz E. Gotardo"
+    image={entry.data.image ?? faviconPNG}
+>
+    <article class="markdown-prettier article-size mt-12 min-h-screen">
+        <h1 class="text-start">{entry.data.title}</h1>
+        <span class="-mt-6 -mb-1">
+            {formatDate(entry.data.createdAt)}
+        </span>
+        <div class="flex gap-1 mr-auto flex-wrap items-center justify-center">
+            {entry.data.tags.map((tag) => <Tag>{tag}</Tag>)}
+        </div>
+        <Content />
+        <div
+            class="flex justify-between items-center w-full mt-6 flex-wrap gap-4"
+        >
+            {
+                previousEntry && (
+                    <a href={`/blog/${previousEntry.slug}`}>
+                        <button class="flex gap-2 items-start group">
+                            <Image
+                                src={angleLeftSVG}
+                                class="group-hover:-translate-x-1 transition"
+                                alt="Ir para postagem anterior relacionada"
+                            />
+                            <div class="flex flex-col items-start">
+                                <span class="group-hover:text-purple-400 transition-colors text-start  max-w-full sm:max-w-[200px]">
+                                    {previousEntry.data.title}
+                                </span>
+                                <span class="text-sm text-gray-400 hidden md:block">{`${previousEntry.data.estimated} min`}</span>
+                            </div>
+                        </button>
+                    </a>
+                )
+            }
+            {
+                nextEntry && (
+                    <a href={`/blog/${nextEntry.slug}`}>
+                        <button class="ml-auto flex gap-2 items-start group">
+                            <div class="flex flex-col items-start">
+                                <span class="group-hover:text-purple-400 transition-colors text-start max-w-full sm:max-w-[200px]">
+                                    {nextEntry.data.title}
+                                </span>
+                                <span class="text-sm text-gray-400 hidden md:block">{`${nextEntry.data.estimated} min`}</span>
+                            </div>
+                            <Image
+                                src={angleRightSVG}
+                                class="group-hover:translate-x-1 transition"
+                                alt="Ir para próxima postagem relacionada"
+                            />
+                        </button>
+                    </a>
+                )
+            }
+        </div>
+    </article>
+</Layout>

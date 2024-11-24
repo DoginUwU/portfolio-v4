@@ -1,0 +1,69 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import Button from "../../components/Button.astro";
+import Tag from "../../components/Tag.vue";
+import { formatDate } from "../../helpers/date";
+import Layout from "../../layouts/Layout.astro";
+
+import externalLinkSVG from "../../assets/icons/external-link.svg";
+import { formatDataForMetaDescription } from "../../helpers/content";
+
+export async function getStaticPaths() {
+    const projects = await getCollection("projects");
+
+    return projects.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout
+    title={`${entry.data.title} - Gotardo`}
+    description={formatDataForMetaDescription(entry)}
+    keywords={entry.data.tags}
+    image={entry.data.cover}
+    author="Luiz E. Gotardo"
+>
+    <article class="markdown-prettier article-size mt-12 min-h-screen">
+        <div class="flex items-center justify-between flex-wrap gap-6">
+            <div class="flex flex-col gap-6">
+                <h1 class="text-start">{entry.data.title}</h1>
+                <span class="-mt-6 -mb-1">
+                    {formatDate(entry.data.createdAt)}
+                </span>
+                <div
+                    class="flex gap-1 mr-auto flex-wrap items-center justify-center"
+                >
+                    {entry.data.tags.map((tag) => <Tag>{tag}</Tag>)}
+                </div>
+            </div>
+            <a href={entry.data.link} target="_blank" class="w-full sm:w-fit">
+                <Button class="w-full sm:w-fit">
+                    <span class="flex gap-2 items-center justify-center">
+                        Acessar projeto
+                        <Image
+                            src={externalLinkSVG}
+                            alt="Símbolo de link externo"
+                            width={14}
+                        />
+                    </span>
+                </Button>
+            </a>
+        </div>
+        {
+            entry.data.subtitle && (
+                <p class="text-start text-slate-200">{entry.data.subtitle}</p>
+            )
+        }
+        <Image
+            src={entry.data.cover}
+            alt={`Cover image to show the ${entry.data.title} project`}
+        />
+        <Content />
+    </article>
+</Layout>
