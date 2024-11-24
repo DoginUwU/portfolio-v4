@@ -139,4 +139,17 @@ function formatImageForMeta(): string | undefined {
 	.markdown-prettier li:not(:first-child) {
 		@apply mt-3;
 	}
+
+	.markdown-prettier table {
+		@apply w-fit overflow-hidden;
+	}
+
+	.markdown-prettier table th,
+	.markdown-prettier table td {
+		@apply border border-slate-600;
+	}
+
+	.markdown-prettier table img {
+		@apply w-fit max-h-[500px] object-contain rounded-none;
+	}
 </style>
