@@ -2,7 +2,7 @@
 title: Hemocione (LP)
 cover: ../assets/hemocione.webp
 createdAt: "2024-03-31 00:00:00"
-tags: ["astro", "vue"]
+tags: ["astro", "vue", "typescript"]
 link: https://www.hemocione.com.br
 ---
 
