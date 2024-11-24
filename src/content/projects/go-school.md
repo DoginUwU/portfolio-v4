@@ -3,7 +3,7 @@ title: GoSchool
 cover: ../assets/go-school.webp
 createdAt: "2021-12-09 00:00:00"
 tags: ["react", "typescript"]
-link: https://go-school.vercel.app/
+link: https://go-school.vercel.app
 ---
 
 Este projeto foi desenvolvido como parte de um desafio da Rocketseat, com o objetivo de criar um site simples para uma escola de Educação a Distância (EAD). Para o desafio, optei por utilizar o confiável ReactJS, para focar em praticar minhas habilidades em front-end e frameworks reativos.
