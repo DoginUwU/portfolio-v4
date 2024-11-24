@@ -9,6 +9,9 @@ export default {
 		  fontFamily: {
 			sans: ['Nunito', 'sans-serif'],
 		  },
+		  dropShadow: {
+			'navbar': '0 2px 2px rgba(0, 0, 0, 0.5)',
+		  }
 		},
 	},
 	plugins: [],

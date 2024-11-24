@@ -16,8 +16,8 @@ Meu objetivo com isso é utilizar e consolidar conhecimentos em computação gr�
 
 ### Objetivos
 
-- **Simplificar a criação de componentes de um jogo:** Permitir o uso abstrato de funções para renderização de um jogo, possibilitando futuramente a troca/adição de outros frameworks (Exemplo: Vulkan), sem alterar a parte de mais alto nível.
+- **Simplificar a criação de componentes de um jogo:** Permitir o uso abstrato de funções para renderização de um jogo, possibilitando futuramente a troca/adição de outros frameworks (Exemplo: Vulkan), sem alterar a parte de mais alto nível
 - **Gerenciamento de recursos (Assets):** Criação de um sistema para armazenamento e carregamento de assets no jogo, tais como: Shaders, Texturas, Objetos, etc...
-- **Gerencimanto de cenas:** Gerenciamento de cenas para escopar componentes individuais do jogo, possibilitando ter um maior controle de quais elementos serão exibidos na tela.
+- **Gerencimanto de cenas:** Gerenciamento de cenas para escopar componentes individuais do jogo, possibilitando ter um maior controle de quais elementos serão exibidos na tela
 
 ![Arquitetura do Dog Engine atualmente](../assets/dog-arch1.webp)

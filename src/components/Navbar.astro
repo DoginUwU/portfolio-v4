@@ -32,8 +32,8 @@ const MENU = [
 >
     <a href="/" class="hidden lg:block">
         <Image
-            class="logo transition-all"
             src={LogoSVG}
+            class="logo transition-all"
             alt="Logo with my last name"
         />
     </a>
@@ -44,7 +44,7 @@ const MENU = [
             MENU.map((item) => (
                 <li>
                     <a
-                        class="font-semibold text-sm text-white/80 transition hover:text-purple-500 active:scale-90"
+                        class="font-semibold text-sm text-white/80 transition hover:text-purple-500 active:scale-90 drop-shadow-navbar"
                         href={item.link}
                     >
                         {item.title}
