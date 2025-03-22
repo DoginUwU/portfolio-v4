@@ -2,14 +2,16 @@
 import { Image } from "astro:assets";
 
 interface Props {
+    id?: string;
     icon: ImageMetadata;
 }
 
-const { icon } = Astro.props;
+const { id, icon } = Astro.props;
 ---
 
 <div
-    class="px-4 pt-6 pb-8 default-card max-w-96 lg:max-w-80 flex flex-col gap-4 items-center text-center"
+    id={id}
+    class="px-4 pt-6 pb-8 default-card max-w-96 lg:max-w-80 flex flex-col gap-4 items-center text-center select-none"
 >
     <div
         class="p-4 aspect-square flex items-center justify-center bg-white/10 rounded-full w-fit h-fit"

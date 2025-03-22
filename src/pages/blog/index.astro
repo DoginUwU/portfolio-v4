@@ -46,6 +46,7 @@ const allBlog = await getCollection("blog");
         {
             allBlog.map((article) => (
                 <a
+                    id="blog-article"
                     data-title={article.data.title}
                     href={`/blog/${article.slug}`}
                 >
@@ -70,6 +71,8 @@ const allBlog = await getCollection("blog");
 </Layout>
 
 <script>
+    import { animate, stagger } from "motion";
+
     const posts = document.querySelectorAll<HTMLElement>("[data-title]");
     const inputElement = document.getElementById("search-blog");
     const termsNotFoundElement = document.getElementById("terms-not-found");
@@ -105,6 +108,8 @@ const allBlog = await getCollection("blog");
                 ? "none"
                 : "block";
         }
+
+        handleArticleAnimations();
     }
 
     function formatText(value: string): string {
@@ -113,6 +118,19 @@ const allBlog = await getCollection("blog");
             .normalize("NFD")
             .replace(/[\u0300-\u036f]/g, "")
             .replace(/[^a-zA-Z]/g, "");
+    }
+
+    function handleArticleAnimations() {
+        animate(
+            "#blog-article",
+            { opacity: [0, 1], y: [-20, 0] },
+            { delay: stagger(0.05) },
+        );
+        animate(
+            "#terms-not-found",
+            { opacity: [0, 1], y: [-20, 0] },
+            { delay: stagger(0.05) },
+        );
     }
 
     // const tags = document.querySelectorAll<HTMLLIElement>(".filter-tag");
@@ -138,5 +156,9 @@ const allBlog = await getCollection("blog");
 <style>
     .filter-tag.active {
         @apply bg-white rounded-2xl text-black;
+    }
+
+    #blog-article {
+        opacity: 0;
     }
 </style>

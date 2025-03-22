@@ -20,7 +20,7 @@ import Button from "../../components/Button.astro";
             <Image src={flaskSVG} alt="Frasco de laboratório" width={34} />
         </div>
 
-        <section class="flex flex-wrap gap-8">
+        <section id="lab-card" class="flex flex-wrap gap-8">
             <Image
                 src={UnityGameWEBP}
                 widths={[400]}
@@ -44,3 +44,13 @@ import Button from "../../components/Button.astro";
         </section>
     </main>
 </Layout>
+
+<script>
+    import { animate, stagger } from "motion";
+
+    animate(
+        "#lab-card",
+        { opacity: [0, 1], y: [-20, 0] },
+        { delay: stagger(0.05) },
+    );
+</script>

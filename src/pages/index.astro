@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import Button from "../components/Button.astro";
 import HeroAPIs from "../components/HeroAPIs/HeroAPIs.astro";
 import Layout from "../layouts/Layout.astro";
-import background from "../assets/images/background2.webp";
+import background from "../assets/images/background3.webp";
 import MarqueeLanguages from "../components/MarqueeLanguages.vue";
 import PlanetAnimation from "../components/PlanetAnimation.vue";
 import ProjectsGrid from "../components/ProjectsGrid.astro";
@@ -50,8 +50,9 @@ import faviconPNG from "../assets/images/favicon.png";
 			<section
 				class="default-container-size hero grid grid-cols-1 lg:grid-cols-2 py-4 items-center justify-center gap-12 mt-12 lg:mt-0"
 			>
-				<HeroAPIs />
+				<HeroAPIs id="hero" />
 				<article
+					id="hero"
 					class="flex flex-col gap-16 items-start -order-1 lg:order-1"
 				>
 					<p class="leading-7">
@@ -108,7 +109,7 @@ import faviconPNG from "../assets/images/favicon.png";
 			</div>
 
 			<div class="flex flex-col lg:flex-row gap-8">
-				<ExperienceCard icon={reactSVG}>
+				<ExperienceCard id="experience-card" icon={reactSVG}>
 					<h2 slot="title" class="font-bold">Front-end</h2>
 					<span>
 						Desenvolvimento de interfaces elegantes e responsivas
@@ -117,7 +118,7 @@ import faviconPNG from "../assets/images/favicon.png";
 						com aplicativos mobile utilizando React Native.
 					</span>
 				</ExperienceCard>
-				<ExperienceCard icon={databaseSVG}>
+				<ExperienceCard id="experience-card" icon={databaseSVG}>
 					<h2 slot="title" class="font-bold">Back-end</h2>
 					<span>
 						Desenvolvimento de APIs robustas e escaláveis, com foco
@@ -126,7 +127,7 @@ import faviconPNG from "../assets/images/favicon.png";
 						dados SQL e NoSQL.
 					</span>
 				</ExperienceCard>
-				<ExperienceCard icon={appsSVG}>
+				<ExperienceCard id="experience-card" icon={appsSVG}>
 					<h2 slot="title" class="font-bold">Aplicativos e Jogos</h2>
 					<span>
 						Desenvolvimento de aplicativos para computadores e
@@ -220,6 +221,25 @@ import faviconPNG from "../assets/images/favicon.png";
 	</main>
 </Layout>
 
+<script>
+	import { animate, stagger, hover } from "motion";
+
+	animate(
+		"#hero",
+		{ opacity: [0, 1], y: [-20, 0] },
+		{ type: "spring", delay: stagger(0.1) },
+	);
+
+	const experienceCards = document.querySelectorAll("#experience-card");
+	const experienceCardsArray = experienceCards.values().toArray();
+	hover(experienceCards, (element, event) => {
+		const index = experienceCardsArray.findIndex((a) => a === element);
+		animate(element, { rotate: index % 2 === 0 ? 2 : -2 });
+
+		return () => animate(element, { rotate: 0 });
+	});
+</script>
+
 <script is:inline defer async>
 	document.addEventListener("scroll", updateBackgroundOpacity);
 	setTimeout(updateBackgroundOpacity, 500);
@@ -286,6 +306,10 @@ import faviconPNG from "../assets/images/favicon.png";
 	.hero .background {
 		will-change: opacity;
 		animation: background 600ms cubic-bezier(1, 0, 0, 1);
+	}
+
+	#hero {
+		opacity: 0;
 	}
 
 	@keyframes background {
